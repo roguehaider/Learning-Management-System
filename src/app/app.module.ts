@@ -50,6 +50,17 @@ import { NzSpinModule } from "ng-zorro-antd/spin";
 import { NotificationComponent } from './components/notification/notification.component';
 import { PageNotFoundComponent } from './pages/page-not-found/page-not-found.component';
 import { HomeComponent } from './pages/home/home.component';
+import { AdminClickComponent } from './pages/admin-click/admin-click.component';
+import { TeacherClickComponent } from './pages/teacher-click/teacher-click.component';
+import { ParentClickComponent } from './pages/parent-click/parent-click.component';
+import { AboutusComponent } from './pages/aboutus/aboutus.component';
+import { ContactusComponent } from './pages/contactus/contactus.component';
+import { AdminsignupComponent } from './pages/adminsignup/adminsignup.component';
+import { AdminloginComponent } from './pages/adminlogin/adminlogin.component';
+import { TeacherloginComponent } from './pages/teacherlogin/teacherlogin.component';
+import { ParentloginComponent } from './pages/parentlogin/parentlogin.component';
+import { ParentsignupComponent } from './pages/parentsignup/parentsignup.component';
+import { TeachersignupComponent } from './pages/teachersignup/teachersignup.component';
 
 const icons: IconDefinition[] = [
   PhoneOutline,
@@ -79,6 +90,17 @@ registerLocaleData(en);
     NotificationComponent,
     PageNotFoundComponent,
     HomeComponent,
+    AdminClickComponent,
+    TeacherClickComponent,
+    ParentClickComponent,
+    AboutusComponent,
+    ContactusComponent,
+    AdminsignupComponent,
+    AdminloginComponent,
+    TeacherloginComponent,
+    ParentloginComponent,
+    ParentsignupComponent,
+    TeachersignupComponent,
   ],
   imports: [
     BrowserModule,

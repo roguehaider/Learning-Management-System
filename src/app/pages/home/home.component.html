@@ -1,17 +1,60 @@
 <div class="upper">
-    <img src="../../../assets/images/home.jpg" alt="">
-    <div class="content">
-        <h1>Welcome</h1>
-        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, delectus magni eligendi id nosrum vitae ducimus voluptatem laudantium similique libero sed doloribus. Temporibus quo modi voluptatibus doloremque tempora quaerat natus.</p>
-        <button nz-button nzType="primary">Primary Button</button>
-    </div>
+  <img src="../../../assets/images/home.jpg" alt="" />
+  <div class="content">
+    <h1>Welcome</h1>
+    <p>
+      Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, delectus
+      magni eligendi id nosrum vitae ducimus voluptatem laudantium similique
+      libero sed doloribus. Temporibus quo modi voluptatibus doloremque tempora
+      quaerat natus.
+    </p>
+    <button nz-button routerLink="/parentsignup" nzType="primary">Admission Form</button>
+  </div>
 </div>
-<div class="bottom">
-        <nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate">
-        </nz-card>
-      <ng-template #coverTemplate>
+<div
+  style="
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10%;
+    padding: 50px;
+    background-color: rgb(216, 212, 212);
+  "
+>
+  <div class="bottom">
+    <nz-card nzHoverable style="width: 240px" [nzCover]="coverTemplate1">
+      <ng-template #coverTemplate1>
         <img alt="example" src="../../../assets/images/admin.png" />
-        <nz-card-meta nzTitle="Admin"></nz-card-meta>
-        <button nz-button nzType="primary">Primary Button</button>
       </ng-template>
+      <div style="text-align: center; justify-content: center;">
+      <nz-card-meta nzTitle="Admin"></nz-card-meta>
+        <button nz-button nzType="primary" routerLink="/admin-click" class="card-button">VIEW</button>
+      </div>
+    </nz-card>
+  </div>
+
+  <div class="bottom">
+    <nz-card nzHoverable style="width: 240px" [nzCover]="coverTemplate2">
+      <ng-template #coverTemplate2>
+        <img alt="example" src="../../../assets/images/teacher.png" />
+      </ng-template>
+      <div style="text-align: center;">
+      <nz-card-meta nzTitle="Teacher"></nz-card-meta>
+        <button nz-button nzType="primary" routerLink="/teacher-click" class="card-button">VIEW</button>
+      </div>
+    </nz-card>
+  </div>
+
+  <div class="bottom">
+    <nz-card nzHoverable style="width: 240px" [nzCover]="coverTemplate3">
+      <ng-template #coverTemplate3>
+        <img alt="example" src="../../../assets/images/student1.png" />
+      </ng-template>
+      <div style="text-align: center;">
+      <nz-card-meta nzTitle="Parent"></nz-card-meta>
+        <button nz-button nzType="primary" routerLink="/parent-click" class="card-button">VIEW</button>
+      </div>
+    </nz-card>
+  </div>
 </div>
+
