@@ -1,0 +1,278 @@
+<div class="view-leads-container">
+  <h1 class="title">Leads Management</h1>
+
+  <div class="loader">
+    <nz-spin [nzSpinning]="loader" nzSize="large"> </nz-spin>
+  </div>
+  <div [hidden]="loader">
+    <div class="filter-bar">
+      <nz-select
+        class="filter-select"
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Name"
+        [(ngModel)]="nameFilter"
+        (ngModelChange)="filterData()"
+      >
+        <nz-option
+          *ngFor="let option of nameOptions"
+          [nzLabel]="option"
+          [nzValue]="option"
+        ></nz-option>
+        <i
+          nz-select-clear
+          *ngIf="nameFilter"
+          class="ant-select-clear"
+          (click)="clearFilteredSelection()"
+        ></i>
+      </nz-select>
+
+      <nz-select
+        class="filter-select"
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Business Name"
+        [(ngModel)]="businessNameFilter"
+        (ngModelChange)="filterData()"
+      >
+        <nz-option
+          *ngFor="let option of businessNameOptions"
+          [nzLabel]="option"
+          [nzValue]="option"
+        ></nz-option>
+        <i
+          nz-select-clear
+          *ngIf="businessNameFilter"
+          class="ant-select-clear"
+          (click)="clearFilteredSelection()"
+        ></i>
+      </nz-select>
+
+      <nz-select
+        class="filter-select"
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Phone Number"
+        [(ngModel)]="phoneNumberFilter"
+        (ngModelChange)="filterData()"
+      >
+        <nz-option
+          *ngFor="let option of phoneNumberOptions"
+          [nzLabel]="option"
+          [nzValue]="option"
+        ></nz-option>
+        <i
+          nz-select-clear
+          *ngIf="phoneNumberFilter"
+          class="ant-select-clear"
+          (click)="clearFilteredSelection()"
+        ></i>
+      </nz-select>
+
+      <nz-select
+        class="filter-select"
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="Email"
+        [(ngModel)]="emailFilter"
+        (ngModelChange)="filterData()"
+      >
+        <nz-option
+          *ngFor="let option of emailOptions"
+          [nzLabel]="option"
+          [nzValue]="option"
+        ></nz-option>
+        <i
+          nz-select-clear
+          *ngIf="emailFilter"
+          class="ant-select-clear"
+          (click)="clearFilteredSelection()"
+        ></i>
+      </nz-select>
+
+      <nz-select
+        class="filter-select"
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="City"
+        [(ngModel)]="cityFilter"
+        (ngModelChange)="filterData()"
+      >
+        <nz-option
+          *ngFor="let option of cityOptions"
+          [nzLabel]="option"
+          [nzValue]="option"
+        ></nz-option>
+        <i
+          nz-select-clear
+          *ngIf="cityFilter"
+          class="ant-select-clear"
+          (click)="clearFilteredSelection()"
+        ></i>
+      </nz-select>
+
+      <nz-select
+        class="filter-select"
+        nzShowSearch
+        nzAllowClear
+        nzPlaceHolder="State"
+        [(ngModel)]="stateFilter"
+        (ngModelChange)="filterData()"
+      >
+        <nz-option
+          *ngFor="let option of stateOptions"
+          [nzLabel]="option"
+          [nzValue]="option"
+        ></nz-option>
+        <i
+          nz-select-clear
+          *ngIf="phoneNumberFilter"
+          class="ant-select-clear"
+          (click)="clearFilteredSelection()"
+        ></i>
+      </nz-select>
+    </div>
+
+    <div class="form-btn-container">
+      <a class="form-add-inbulk-btn" (click)="showModal()">Add in-bulk</a>
+      <a class="form-add-btn" routerLink="/lead-management/add-lead"
+        >Add Lead</a
+      >
+    </div>
+    <div class="table-container">
+      <nz-table
+        #leadsListingTable
+        [nzData]="leadsData"
+        class="lead-management-table"
+      >
+        <thead class="table-header">
+          <tr>
+            <th>Business Name</th>
+            <th>Business Type</th>
+            <th>Full Address</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Contact Name</th>
+            <th>Phone Number</th>
+            <th>Second Phone Number</th>
+            <th>Email</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of leadsListingTable.data">
+            <td>{{ data.business_name }}</td>
+            <td>{{ data.business_type }}</td>
+            <td>{{ data.full_address }}</td>
+            <td>{{ data.address_city }}</td>
+            <td>{{ data.address_state }}</td>
+            <td>{{ data.first_name + " " + data.last_name }}</td>
+            <td>{{ data.phone_number }}</td>
+            <td>{{ data.second_phone_number }}</td>
+            <td>{{ data.email }}</td>
+            <td>
+              <div class="table-action-container">
+                <a 
+                  (click)="showCallLogModal(data)"
+                  nz-tooltip
+                  nzTooltipTitle="Add Call"
+                >
+                  <span nz-icon nzType="phone" nzTheme="outline"></span>
+                </a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a
+                  (click)="onViewIconClick(data, true)"
+                  nz-tooltip
+                  nzTooltipTitle="Edit"
+                  ><span nz-icon nzType="edit" nzTheme="outline"></span
+                ></a>
+                <nz-divider nzType="vertical"></nz-divider>
+                <a
+                  (click)="showDeleteConfirm(data.docId)"
+                  nz-tooltip
+                  nzTooltipTitle="Delete"
+                  ><span nz-icon nzType="delete" nzTheme="outline"></span
+                ></a>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+    </div>
+  </div>
+    <div>
+    <nz-modal [(nzVisible)]="isCallDialogOpen" nzTitle="Add Call" (nzOnCancel)="handleCancel()" [nzMaskClosable]="false">
+      <form *nzModalContent [formGroup]="callLogForm">
+        <div class="add-details">
+          <div class="flex-item" > 
+            <label>Call Duration (Minutes)</label>
+
+            <nz-input-number
+              placeholder="Call Duration"
+              formControlName="call_duration"
+              class="call-duration"
+              [nzMin]="0"
+              [nzStep]="1"
+            ></nz-input-number>
+            <p id="callDurationErrorMessage" class="error-message">This field is required</p>
+          </div>
+          <div class="flex-item">
+            <label>Desposition</label>
+            <nz-select nzShowSearch (ngModelChange)="callBackDesposition($event, 'disposition')" nzAllowClear
+              nzPlaceHolder="Desposition" formControlName="desposition" class="custom-select">
+              <nz-option *ngFor="let data of despositionData" [nzLabel]="data.disposition"
+                [nzValue]="data.disposition"></nz-option>
+            </nz-select>
+            <p id="despositionErrorMessage" class="error-message">This field is required</p>
+          </div>
+        </div>
+        <div class="comment">
+          <textarea
+            nz-input
+            placeholder="comment"
+            class="custom-input"
+            [nzAutosize]="{ minRows: 2, maxRows: 6 }"
+            formControlName="comment"
+          ></textarea>
+
+          <!-- <textarea nz-input placeholder="Autosize height with minimum and maximum number of lines"
+            ></textarea> -->
+          <nz-date-picker [nzShowTime]="true" nzDisabled={{dateDisable}} [nzDisabledDate]="predateDisable"  formControlName="call_back_date"
+            class="call-back"></nz-date-picker>
+        </div>
+      </form>
+      <div *nzModalFooter class="custom-modal-footer">
+        <button
+          nz-button
+          nzType="default"
+          class="cancel-btn"
+          (click)="handleCancel()"
+        >
+          Cancel
+        </button>
+        <button
+          nz-button
+          nzType="primary"
+          class="save-btn"
+          (click)="handleCallLogOk()"
+        >
+          Save
+        </button>
+      </div>
+    </nz-modal>
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="Add In-Bulk Lead(s)" (nzOnCancel)="handleCancel()"
+      (nzOnOk)="handleOk()" [nzOkLoading]="isOkLoading" nzOkText="Upload" [nzMaskClosable]="false">
+      <div class="modal-container">
+        <div *nzModalContent>
+          <input
+            type="file"
+            accept=".csv"
+            class="file-upload"
+            (change)="onFileChange($event)"
+          />
+        </div>
+      </div>
+    </nz-modal>
+  </div>
+
+</div>

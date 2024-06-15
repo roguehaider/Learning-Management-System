@@ -1,0 +1,128 @@
+<div class="disp-main">
+  <h1 class="title">Company</h1>
+
+  <div class="loader">
+    <nz-spin [nzSpinning]="loader" nzSize="large"> </nz-spin>
+  </div>
+  <div [hidden]="loader">
+    <div class="form-btn-container">
+      <a class="form-add-btn" (click)="disp()"
+        >Add Company</a
+      >
+    </div>
+
+    <nz-modal
+      [(nzVisible)]="isVisible"
+      nzTitle="Add Company"
+      [nzOkLoading]="isOkLoading"
+      (nzOnCancel)="handleCancel()"
+    >
+      <form *nzModalContent [formGroup]="addComp" (ngsubmit)="saveCompany()">
+        <div class="add-details">
+          <div class="flex-item">
+            <label>Company Name</label>
+            <input
+              type="text"
+              formControlName="company_name"
+              nz-input
+              placeholder="Company"
+              class="comp-enter"
+            />
+          </div>
+          <div class="flex-item">
+            <label>Created by</label>
+            <input
+              type="text"
+              id="userInput"
+              value="{{ currentUser.name }}"
+              readonly
+            />
+          </div>
+        </div>
+      </form>
+      <div *nzModalFooter>
+        <button nz-button nzType="default" (click)="handleCancel()">
+          Cancel
+        </button>
+        <button nz-button nzType="primary" (click)="saveCompany()">Save</button>
+      </div>
+    </nz-modal>
+
+    <div class="table-container">
+      <nz-table class="disposition-table" #basicTable [nzData]="data">
+        <thead class="table-header">
+          <tr>
+            <th>Name</th>
+            <th>Created by</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let dataa of data">
+            <td>{{ dataa.company_name }}</td>
+
+            <td>{{ dataa.created_by }}</td>
+
+          <td>
+            <div class="table-action-container">
+              <nz-divider nzType="vertical"></nz-divider>
+              <a
+                nz-tooltip
+                nz-tooltip
+                nzTooltipTitle="Edit"
+                (click)="updateModal(dataa)"
+                ><span nz-icon nzType="edit" nzTheme="outline"></span
+              ></a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a
+                (click)="showDeleteConfirm(dataa.docId)"
+                nz-tooltip
+                nzTooltipTitle="Delete"
+                ><span nz-icon nzType="delete" nzTheme="outline"></span
+              ></a>
+            </div>
+
+              <nz-modal
+                [(nzVisible)]="isUpdateVisible"
+                nzTitle="Edit Company"
+                [nzOkLoading]="isOkLoading"
+              >
+                <form *nzModalContent [formGroup]="compEdit">
+                  <div class="add-details">
+                    <div class="flex-item">
+                      <label>Company Name</label>
+                      <input
+                        type="text"
+                        formControlName="company_name"
+                        value="dataa.company_name"
+                        nz-input
+                        placeholder="Company"
+                        class="comp-enter"
+                      />
+                    </div>
+                    <div class="flex-item">
+                      <label>Created by</label>
+                      <input
+                        type="text"
+                        id="userInput"
+                        value="{{ currentUser.name }}"
+                        readonly
+                      />
+                    </div>
+                  </div>
+                </form>
+              <div *nzModalFooter>
+                <button nz-button nzType="default" (click)="handleCancel()">
+                  Cancel
+                </button>
+                <button nz-button nzType="primary" (click)="updateCompany()">
+                  Save
+                </button>
+              </div>
+            </nz-modal>
+          </td>
+        </tr>
+      </tbody>
+    </nz-table>
+  </div>
+</div>

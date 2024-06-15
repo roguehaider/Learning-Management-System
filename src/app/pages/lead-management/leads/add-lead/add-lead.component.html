@@ -1,0 +1,278 @@
+<h1 class="form-title">
+  {{ editable ? "Edit Lead" : "Add Lead" }}
+</h1>
+<div class="form-container">
+  <div class="loader">
+    <nz-spin [nzSpinning]="loader" nzSize="large"> </nz-spin>
+  </div>
+  <div [hidden]="loader">
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="saveOrUpdateData()">
+    <div class="form-row">
+      <nz-form-item class="form-item">
+        <nz-form-label class="form-label" nzRequired
+          >Business Name</nz-form-label
+        >
+        <nz-form-control nzHasFeedback [nzErrorTip]="businessNameErrorTpl">
+          <input
+            nz-input
+            formControlName="business_name"
+            placeholder="input here"
+            class="form-input"
+          />
+          <ng-template #businessNameErrorTpl let-control>
+            <ng-container *ngIf="control.errors?.['required']"
+              ><span class="form-item-explain-error"
+                >Please enter your business name!</span
+              ></ng-container
+            >
+            <ng-container *ngIf="control.errors?.['whitespace']"
+              ><span class="form-item-explain-error"
+                >No whitespace(s) allowed!</span
+              ></ng-container
+            >
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="form-item">
+        <nz-form-label class="form-label" nzRequired
+          >Business Type</nz-form-label
+        >
+        <nz-form-control nzHasFeedback [nzErrorTip]="businessTypeErrorTpl">
+          <input
+            nz-input
+            formControlName="business_type"
+            placeholder="input here"
+            class="form-input"
+          />
+          <ng-template #businessTypeErrorTpl let-control>
+            <ng-container *ngIf="control.errors?.['required']"
+              ><span class="form-item-explain-error"
+                >Please enter your business type!</span
+              ></ng-container
+            >
+            <ng-container *ngIf="control.errors?.['whitespace']"
+              ><span class="form-item-explain-error"
+                >No whitespace(s) allowed!</span
+              ></ng-container
+            >
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="form-item">
+        <nz-form-label class="form-label"  nzRequired>Full Address</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="fullAddressErrorTpl">
+          <input
+            nz-input
+            formControlName="full_address"
+            placeholder="input here"
+            class="form-input"
+          />
+          <ng-template #fullAddressErrorTpl let-control>
+            <ng-container *ngIf="control.errors?.['required']"
+              ><span class="form-item-explain-error"
+                >Please enter your full address!</span
+              ></ng-container
+            >
+            <ng-container *ngIf="control.errors?.['whitespace']"
+              ><span class="form-item-explain-error"
+                >No whitespace(s) allowed!</span
+              ></ng-container
+            >
+            <ng-container *ngIf="control.errors?.['duplicated']"
+              ><span class="form-item-explain-error"
+                >This address is already exists!</span
+              ></ng-container
+            >
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="form-row">
+      <nz-form-item class="form-item">
+        <nz-form-label class="form-label">Street</nz-form-label>
+        <nz-form-control nzHasFeedback>
+          <input
+            nz-input
+            formControlName="address_street"
+            placeholder="input here"
+            class="form-input"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="form-item">
+        <nz-form-label class="form-label">City</nz-form-label>
+        <nz-form-control nzHasFeedback>
+          <input
+            nz-input
+            formControlName="address_city"
+            placeholder="input here"
+            class="form-input"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="form-item">
+        <nz-form-label class="form-label">State</nz-form-label>
+        <nz-form-control nzHasFeedback>
+          <input
+            nz-input
+            formControlName="address_state"
+            placeholder="input here"
+            class="form-input"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="form-row">
+      <nz-form-item class="form-item">
+        <nz-form-label class="form-label">Zip Code</nz-form-label>
+        <nz-form-control nzHasFeedback>
+          <input
+            nz-input
+            formControlName="address_zipcode"
+            placeholder="input here"
+            class="form-input"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="form-item">
+        <nz-form-label class="form-label">First Name</nz-form-label>
+        <nz-form-control nzHasFeedback nzErrorTip="No whitespace(s) allowed!">
+          <input
+            nz-input
+            formControlName="first_name"
+            placeholder="input here"
+            class="form-input"
+          />
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="form-item">
+        <nz-form-label class="form-label">Last Name</nz-form-label>
+        <nz-form-control nzHasFeedback nzErrorTip="No whitespace(s) allowed!">
+          <input
+            nz-input
+            formControlName="last_name"
+            placeholder="input here"
+            class="form-input"
+          />
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="form-row">
+      <nz-form-item class="form-item">
+        <nz-form-label class="form-label" nzRequired
+          >Phone Number</nz-form-label
+        >
+        <nz-form-control
+          nzHasFeedback
+          [nzErrorTip]="phoneNumErrorTpl"
+          nzValidatingTip="Validating..."
+        >
+          <input
+            nz-input
+            formControlName="phone_number"
+            placeholder="input here"
+            class="form-input"
+          />
+          <ng-template #phoneNumErrorTpl let-control>
+            <ng-container *ngIf="control.errors?.['required']"
+              ><span class="form-item-explain-error"
+                >Please enter your Phone Number!</span
+              ></ng-container
+            >
+            <ng-container *ngIf="control.errors?.['invalidType']"
+              ><span class="form-item-explain-error"
+                >Input must be type number</span
+              ></ng-container
+            >
+            <ng-container *ngIf="!control.errors?.['required'] && control.errors?.['minLength'] || control.errors?.['maxLength']"
+              ><span class="form-item-explain-error"
+                >Number length must be 7 to 15</span
+              ></ng-container
+            >
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="form-item">
+        <nz-form-label class="form-label">E-mail</nz-form-label>
+        <nz-form-control
+          nzHasFeedback
+          [nzErrorTip]="emailErrorTpl"
+          nzValidatingTip="Validating..."
+        >
+          <input
+            nz-input
+            formControlName="email"
+            type="email"
+            placeholder="input here"
+            class="form-input"
+          />
+          <ng-template #emailErrorTpl let-control>
+            <ng-container *ngIf="control.errors?.['email']"
+              ><span class="form-item-explain-error"
+                >Please enter a valid email!</span
+              ></ng-container
+            >
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item class="form-item">
+        <nz-form-label class="form-label">Second Phone Number</nz-form-label>
+        <nz-form-control nzHasFeedback [nzErrorTip]="secPhoneNumErrorTpl">
+          <input
+            nz-input
+            formControlName="second_phone_number"
+            placeholder="input here"
+            class="form-input"
+          />
+          <ng-template #secPhoneNumErrorTpl let-control>
+            <ng-container *ngIf="control.errors?.['minLength'] || control.errors?.['maxLength']"
+              ><span class="form-item-explain-error"
+                >Number length must be 7 to 15</span
+              ></ng-container
+            >
+            <ng-container *ngIf="control.errors?.['whitespace']"
+              ><span class="form-item-explain-error"
+                >No whitespace(s) allowed!</span
+              ></ng-container
+            >
+            <ng-container *ngIf="control.errors?.['invalidType']"
+              ><span class="form-item-explain-error"
+                >Input must be type number</span
+              ></ng-container
+            >
+          </ng-template>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <div class="form-item-textarea-container">
+      <nz-form-label class="form-label">Comment</nz-form-label>
+      <nz-form-item class="form-item">
+        <nz-form-control nzHasFeedback>
+          <textarea
+            rows="4"
+            nz-input
+            placeholder="input here"
+            class="form-item-textarea"
+            formControlName="comment"
+          ></textarea>
+        </nz-form-control>
+      </nz-form-item>
+    </div>
+    <nz-form-item class="form-item">
+      <nz-form-control>
+        <button
+          nz-button
+          nzType="primary"
+          class="form-button"
+          [disabled]="!validateForm.valid"
+        >
+          {{ editable ? "Update" : "Add" }} Lead
+        </button>
+        <button nz-button (click)="resetForm($event)" class="form-button">
+          Reset
+        </button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  </div>
+</div>

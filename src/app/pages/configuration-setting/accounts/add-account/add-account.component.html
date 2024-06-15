@@ -1,0 +1,95 @@
+<h1 class="form-title">
+  {{ editable ? "Edit Account" : "Add Account" }}
+</h1>
+<div class="loader">
+  <nz-spin [nzSpinning]="loader" nzSize="large"> </nz-spin>
+</div>
+
+<div [hidden]="loader">
+<div class="form-container">
+  <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>Username</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback [nzErrorTip]="userErrorTpl">
+        <input nz-input formControlName="name" />
+        <ng-template #userErrorTpl let-control>
+          <ng-container *ngIf="control.errors?.['required']"
+            >Please input your username!</ng-container
+          >
+          <ng-container *ngIf="control.errors?.['whitespace']"
+            ><span class="form-item-explain-error"
+              >No whitespace(s) allowed!</span
+            ></ng-container
+          >
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzRequired>E-mail</nz-form-label>
+      <nz-form-control
+        [nzSpan]="12"
+        nzHasFeedback
+        [nzErrorTip]="emailErrorTpl"
+        nzValidatingTip="Validating..."
+      >
+        <input
+          nz-input
+          formControlName="email"
+          type="email"
+          [readonly]="editable"
+        />
+        <ng-template #emailErrorTpl let-control>
+          <ng-container *ngIf="control.errors?.['email']"
+            >The input is not a valid E-mail!</ng-container
+          >
+          <ng-container *ngIf="control.errors?.['required']"
+            >Please input your E-mail!</ng-container
+          >
+          <ng-container *ngIf="control.errors?.['duplicated']"
+            >The email is redundant!</ng-container
+          >
+        </ng-template>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item *ngIf="!editable">
+      <nz-form-label [nzSpan]="7" nzRequired>Password</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzHasFeedback nzErrorTip="MinLength is 6">
+        <input
+          nz-input
+          type="password"
+          formControlName="password"
+          minlength="6"
+        />
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7" nzFor="gender" nzRequired>Role</nz-form-label>
+      <nz-form-control [nzSpan]="12" nzErrorTip="Please select account role!">
+        <nz-select
+          id="role"
+          formControlName="role"
+          nzPlaceHolder="Select a role"
+        >
+          <nz-option nzValue="user" nzLabel="User"></nz-option>
+          <nz-option nzValue="admin" nzLabel="Admin"></nz-option>
+          <nz-option nzValue="analyst" nzLabel="Analyst"></nz-option>
+        </nz-select>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-label [nzSpan]="7">Active</nz-form-label>
+      <nz-form-control [nzSpan]="12">
+        <nz-switch formControlName="is_active"></nz-switch>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item>
+      <nz-form-control [nzOffset]="7" [nzSpan]="12">
+        <button nz-button nzType="primary" [disabled]="!validateForm.valid">
+          Submit
+        </button>
+        <button nz-button (click)="resetForm($event)" [disabled]="editable">Reset</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+</div>
+</div>

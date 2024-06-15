@@ -1,0 +1,17 @@
+<div class="upper">
+    <img src="../../../assets/images/home.jpg" alt="">
+    <div class="content">
+        <h1>Welcome</h1>
+        <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. Ab, delectus magni eligendi id nosrum vitae ducimus voluptatem laudantium similique libero sed doloribus. Temporibus quo modi voluptatibus doloremque tempora quaerat natus.</p>
+        <button nz-button nzType="primary">Primary Button</button>
+    </div>
+</div>
+<div class="bottom">
+        <nz-card nzHoverable style="width:240px" [nzCover]="coverTemplate">
+        </nz-card>
+      <ng-template #coverTemplate>
+        <img alt="example" src="../../../assets/images/admin.png" />
+        <nz-card-meta nzTitle="Admin"></nz-card-meta>
+        <button nz-button nzType="primary">Primary Button</button>
+      </ng-template>
+</div>

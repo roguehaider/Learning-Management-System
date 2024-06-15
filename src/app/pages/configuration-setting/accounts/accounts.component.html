@@ -1,0 +1,80 @@
+<h1 class="title">Accounts</h1>
+<div class="loader">
+  <nz-spin [nzSpinning]="loader" nzSize="large"> </nz-spin>
+</div>
+<div [hidden]="loader">
+  <div class="filterBar">
+    <div class="filterInner">
+      <h2>Filters</h2>
+      <div class="filterClose">
+        <nz-select
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Select a Username"
+          [(ngModel)]="userName"
+          (ngModelChange)="fil($event, 'name')"
+        >
+          <nz-option
+            *ngFor="let user of userNameList"
+            [nzLabel]="user"
+            [nzValue]="user"
+          ></nz-option>
+        </nz-select>
+        <nz-select
+          nzShowSearch
+          nzAllowClear
+          nzPlaceHolder="Select a Email"
+          [(ngModel)]="email"
+          (ngModelChange)="fil($event, 'email')"
+        >
+          <nz-option
+            *ngFor="let user of emailList"
+            [nzLabel]="user"
+            [nzValue]="user"
+          ></nz-option>
+        </nz-select>
+      </div>
+    </div>
+  </div>
+
+  <button style="float: right" routerLink="/settings/add-account">
+    Create Account
+  </button>
+  <nz-table #basicTable [nzData]="listOfData">
+    <!-- <span nz-icon nzType="user-add" nzTheme="outline"></span> -->
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Role</th>
+        <th>Email</th>
+        <th>Active</th>
+        <th>Action</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr *ngFor="let data of basicTable.data">
+        <td>{{ data.name }}</td>
+        <td>{{ data.role | uppercase }}</td>
+        <td>{{ data.email }}</td>
+        <td>{{ data.is_active.toString() | titlecase }}</td>
+        <td>
+          <div class="table-action-container">
+            <nz-divider nzType="vertical"></nz-divider>
+            <a
+              nz-tooltip
+              nz-tooltip
+              (click)="onEditIconClick(data, true)"
+              nzTooltipTitle="Edit"
+              ><span nz-icon nzType="edit" nzTheme="outline"></span
+            ></a>
+            <nz-divider nzType="vertical"></nz-divider>
+            <a nz-tooltip nzTooltipTitle="Delete"
+              ><span nz-icon nzType="delete" nzTheme="outline"></span
+            ></a>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>

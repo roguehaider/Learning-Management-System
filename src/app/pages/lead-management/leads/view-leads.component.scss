@@ -1,0 +1,188 @@
+.form-btn-container {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  margin-bottom: 10px;
+  font-weight: 700;
+
+  .form-add-btn {
+    padding: 10px 20px;
+    background-color: #387de5;
+    border: 1px solid #387de5;
+    border-radius: 8px;
+    color: #fff;
+    margin-right: 10px;
+  }
+
+  .form-add-inbulk-btn {
+    padding: 10px 10px;
+    text-decoration: underline;
+    color: #387de5;
+  }
+
+  .form-add-btn:hover {
+    background-color: #fff;
+    color: #387de5;
+  }
+}
+
+
+.table-container {
+  width: 100%;
+
+  .lead-management-table {
+    overflow-x: scroll;
+    width: 100%;
+  }
+}
+
+.table-action-container {
+  width: 100px;
+}
+
+td {
+  background-color: #fff;
+  font-size: 12px;
+  padding: 10px;
+}
+
+.table-header {
+  th:first-child {
+    border-top-left-radius: 8px;
+  }
+
+  th:last-child {
+    border-top-right-radius: 8px;
+  }
+}
+
+.table-container th {
+  background: #162553;
+  color: #ffffff;
+  font-weight: 400;
+  padding: 10px;
+  font-size: 13px;
+}
+
+.view-leads-container {
+  width: 100%;
+
+  .cdk-overlay-container {
+    background-color: brown;
+  }
+}
+
+.filter-bar {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  // grid-template-columns: 17% 14% 13% 11% 11% 11% 11% 11%;
+  gap: 7px;
+  padding-bottom: 20px;
+}
+
+nz-select {
+  width: 100%;
+  padding: 2.5px;
+  background-color: #ffffff;
+  margin-top: 5px;
+}
+
+::ng-deep .ant-select-focused:not(.ant-select-disabled).ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background: #ffffff;
+
+  border: 1px solid #d9d9d9;
+  border: transparent;
+}
+
+
+::ng-deep .flex-item .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  cursor: text;
+  // border: none;
+  border: 1px solid #d9d9d9;
+  border-radius: 7px;
+  background: #ffffff;
+}
+
+::ng-deep .ant-select-show-search.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  cursor: text;
+  border: none;
+  border-radius: 7px;
+  background: #ffffff;
+}
+
+.custom-option {
+  background-color: #ffffff;
+}
+
+.comment {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  text-align: center;
+  align-items: center;
+
+  textarea {
+    padding: 10px;
+    border-radius: 7px;
+    width: 49%;
+  }
+
+  nz-date-picker {
+    width: 38%;
+    height: 100%;
+  }
+}
+
+.add-details {
+  gap: 20px;
+  display: flex;
+  justify-content: flex-start;
+  text-align: center;
+
+  .flex-item {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+
+    p {
+      color: red;
+      font-size: 13px;
+      text-align: left;
+      display: none;
+    }
+  }
+
+  .call-duration {
+    width: 100% !important;
+    border-radius: 7px;
+    margin-top: 10px;
+  }
+}
+
+::ng-deep .disposition {
+  padding: 10px;
+  border-radius: 7px;
+}
+
+.custom-input {
+  border: 1px solid rgb(211, 208, 208);
+}
+
+.custom-modal-footer button {
+  padding: 5px;
+  margin-left: 8px;
+  padding: 6px 17px;
+}
+
+.save-btn {
+  background-color: #1890FF;
+  border: transparent;
+  color: #ffffff;
+}
+
+.cancel-btn {
+  background-color: #ffffff;
+  color: black;
+  border: 1px solid rgb(211, 208, 208);
+}

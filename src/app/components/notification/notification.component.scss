@@ -1,0 +1,48 @@
+:host {
+    position: relative;
+    display: inline-block;
+  }
+  
+  .notification-container {
+    position: absolute;
+    width: 350px;
+    top: 50px;
+    right: 0; /* Position to the right */
+    background-color: #fff;
+    border: 1px solid #ccc;
+    padding: 10px;
+    z-index: 9999;
+    max-height: 200px; /* Set a max height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling */
+    border-radius: 5px;
+  }
+  
+  ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  li {
+    margin-bottom: 10px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 5px;
+    transition: background-color 0.3s; /* Add transition effect */
+    cursor: pointer;
+    // border: 0.5px solid #ccc;
+  }
+  
+  li:hover {
+    background-color: #f5f5f5; /* Light color on hover */
+  }
+  
+  li:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+  }
+
+  .notification-icon {
+    cursor: pointer;
+   }
+  
+  

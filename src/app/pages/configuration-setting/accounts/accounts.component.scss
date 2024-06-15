@@ -1,0 +1,43 @@
+nz-select {
+  width: 200px;
+}
+
+.filters {
+  display: flex;
+  gap: 50px;
+  justify-content: center;
+  margin-bottom: 20px;
+}
+
+button {
+  background-color: #387de5;
+  border-color: #387de5;
+  color: #fff;
+  height: 50px;
+  width: 150px;
+  border-radius: 10px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
+
+.filterBar {
+  padding: 20px 30px 5px;
+  background-color: #fff;
+  margin-bottom: 20px;
+}
+.filterBar .filterInner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-height: 85px;
+  padding: 0 30px;
+  background-color: #fff;
+}
+.filterClose {
+  display: flex;
+  gap: 1rem !important;
+}
+h2 {
+  font-size: 25px;
+}
+

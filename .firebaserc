@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "call-centre-crm": {
+      "hosting": {
+        "bitcoin_crm": [
+          "call-centre-crm"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "call-centre-crm"
+  }
+}

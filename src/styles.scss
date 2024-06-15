@@ -1,0 +1,22 @@
+/* You can add global styles to this file, and also import other style files */
+h1 {
+  text-align: center;
+  font-size: 36px;
+}
+
+.ant-table-thead > tr > th {
+  background-color: #162553;
+  font-size: 16px;
+  color: white;
+}
+
+.loader {
+  position: absolute !important;
+  top: 50%;
+  left: 50%;
+}
+
+.title {
+  color: #162553;
+  font-weight: 600;
+}

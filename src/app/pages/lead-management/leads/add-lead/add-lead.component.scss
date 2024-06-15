@@ -1,0 +1,134 @@
+.form-container {
+    width: 100%;
+    background-color: #fff;
+    border-radius: 8px;
+
+    .form-item-textarea-container {
+        width: 45%;
+        margin: 0 auto;
+        text-align: left;
+
+        .form-label {
+            margin-left: 10px;
+            font-weight: 700;
+        }
+    }
+
+    .form-item-textarea {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        text-align: left;
+        padding: 5px;
+    }
+
+    form {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background-color: lightsteelblue !important;
+        border-radius: 8px;
+
+        .form-row {
+            display: grid;
+            text-align: left;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+            margin-bottom: 20px;
+            width: 90%;
+
+            .form-item {
+                width: 100%;
+                display: flex;
+                flex-direction: column;
+                margin-left: auto;
+
+                .ant-form-item-control {
+                    display: flex;
+                    flex-direction: column;                
+                }
+
+                .form-address {
+                    display: grid;
+                    grid-template-columns: 156% 145%;
+                    justify-content: space-between;
+                    gap: 27px;
+                }
+
+                .form-item-explain-error {
+                    font-size: 14px;
+                    margin: 0;
+                }
+
+                .form-input{
+                    padding: 7px 10px;
+                    width: 100%;
+                    border: none;
+                    border-radius: 5px;
+                }
+            }
+
+            .form-label {
+                text-align: left;
+                font-weight: 700;
+            }
+        }
+
+        .form-button {
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 8px;
+            font-size: 16px;
+            font-weight: 500;
+            border: 1px solid;
+            margin-right: 10px;
+        }
+
+        .form-submit-btn {
+            background-color: blue;
+            color: #ffffff;
+            margin-right: 10px;
+            border-color: blue;
+        }
+
+        .form-submit-btn:hover {
+            background-color: #ffffff;
+            color: blue !important;
+        }
+
+        .form-reset-btn {
+            background-color: gray;
+        }
+        .form-btn-disabled {
+            cursor: not-allowed;
+        }
+
+        .submit-btn{
+            margin-left: 8px;
+            border-radius:10px ;
+        }
+
+    }
+
+    ::ng-deep .form-label {
+        color: #162553;
+    }
+
+    ::ng-deep .form-button {
+        white-space: nowrap;
+
+        button {
+            border-radius: 7px;
+            border: transparent;
+            color: #ffffff !important;
+        }
+    }
+
+}
+
+.form-title{
+    font-size: 36px;
+    text-align: center;
+    margin-bottom: 0;
+}
