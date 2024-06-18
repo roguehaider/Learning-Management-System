@@ -1,15 +1,15 @@
 <nz-layout>
   <nz-header>
-    <div style="display: grid; grid-template-columns: 75% 25%; gap: 30px; ">
-    <ul nz-menu nzTheme="dark" nzMode="horizontal">
-      <li nz-menu-item>Home</li>
-      <li nz-menu-item>Admin</li>
-      <li nz-menu-item>Teacher</li>
-      <li nz-menu-item>Student</li>
-    </ul>
+    <div style="display: grid; grid-template-columns: 75% 25%; gap: 30px;">
       <ul nz-menu nzTheme="dark" nzMode="horizontal">
-        <li nz-menu-item>About Us</li>
-        <li nz-menu-item>Contact Us</li>
+        <li nz-menu-item routerLinkActive="active"><a routerLink="/">Home</a></li>
+        <li nz-menu-item routerLinkActive="active"><a routerLink="/admin-click">Admin</a></li>
+        <li nz-menu-item routerLinkActive="active"><a routerLink="/teacher-click">Teacher</a></li>
+        <li nz-menu-item routerLinkActive="active"><a routerLink="/parent-click">Parent</a></li>
+      </ul>
+      <ul nz-menu nzTheme="dark" nzMode="horizontal">
+        <li nz-menu-item routerLinkActive="active"><a routerLink="/aboutus">About Us</a></li>
+        <li nz-menu-item routerLinkActive="active"><a routerLink="/contactus">Contact Us</a></li>
       </ul>
     </div>
   </nz-header>

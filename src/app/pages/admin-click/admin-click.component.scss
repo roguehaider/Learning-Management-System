@@ -1,0 +1,42 @@
+.jumbotron-custom {
+    background-color: #f8f9fa;
+    padding: 2rem 1rem;
+    margin-bottom: 0;
+    border-radius: 0.3rem;
+    text-align: center;
+  }
+  
+  .jumbotron-custom h1 {
+    font-size: 3rem;
+    font-weight: 300;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+  
+  .jumbotron-custom p.lead {
+    font-size: 1.25rem;
+    font-weight: 300;
+
+  }
+  
+  .jumbotron-custom hr {
+    border: 0;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+    margin: 1.5rem 0;
+  }
+  
+  .custom-button {
+    padding-bottom: 40px;
+    font-size: 1.25rem;
+    border-radius: 0.3rem;
+    color: #fff;
+    background-color: #007bff;
+    border: none;
+    text-decoration: none;
+  }
+  
+  .custom-button:hover {
+    background-color: #0056b3;
+    color: #fff;
+  }
+  

@@ -13,6 +13,17 @@ import { AdminTeacherComponent } from "./pages/admin/admin-teacher/admin-teacher
 import { ApproveStudentsComponent } from "./pages/admin/approve-students/approve-students.component";
 import { ApproveTeacherComponent } from "./pages/admin/approve-teacher/approve-teacher.component";
 import { TakeAttendanceComponent } from "./pages/admin/admin-attendance/take-attendance/take-attendance.component";
+import { AdminClickComponent } from "./pages/admin-click/admin-click.component";
+import { ParentClickComponent } from "./pages/parent-click/parent-click.component";
+import { TeacherClickComponent } from "./pages/teacher-click/teacher-click.component";
+import { AboutusComponent } from "./pages/aboutus/aboutus.component";
+import { ContactusComponent } from "./pages/contactus/contactus.component";
+import { AdminsignupComponent } from "./pages/adminsignup/adminsignup.component";
+import { AdminloginComponent } from "./pages/adminlogin/adminlogin.component";
+import { TeachersignupComponent } from "./pages/teachersignup/teachersignup.component";
+import { TeacherloginComponent } from "./pages/teacherlogin/teacherlogin.component";
+import { ParentsignupComponent } from "./pages/parentsignup/parentsignup.component";
+import { ParentloginComponent } from "./pages/parentlogin/parentlogin.component";
 const routes: Routes = [
   {
     path: "",
@@ -61,9 +72,54 @@ const routes: Routes = [
       // },
     ],
   },
+
   {
     path: "home",
     component: HomeComponent,
+  },
+  {
+    path: "admin-click",
+    component: AdminClickComponent,
+  },
+  {
+    path: "parent-click",
+    component: ParentClickComponent,
+  },
+  {
+    path: "teacher-click",
+    component: TeacherClickComponent,
+  },
+  {
+    path: "aboutus",
+    component: AboutusComponent,
+  },
+  {
+    path: "contactus",
+    component: ContactusComponent,
+  },
+  {
+    path: "adminsignup",
+    component: AdminsignupComponent,
+  },
+  {
+    path: "adminlogin",
+    component: AdminloginComponent,
+  },
+  {
+    path: "teachersignup",
+    component: TeachersignupComponent,
+  },
+  {
+    path: "teacherlogin",
+    component: TeacherloginComponent,
+  },
+  {
+    path: "parentsignup",
+    component: ParentsignupComponent,
+  },
+  {
+    path: "parentlogin",
+    component: ParentloginComponent,
   },
   {
     path: "**",

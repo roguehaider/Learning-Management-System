@@ -1,0 +1,54 @@
+.alert-success-custom {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 1rem 1rem;
+    margin-bottom: 0px;
+    border: 1px solid transparent;
+    border-color: #c3e6cb;
+    border-radius: 0.25rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .jumbotron-custom {
+    background-color: #f8f9fa;
+    padding: 2rem 1rem;
+    margin: 0; // Sets both margin-top and margin-bottom to 0
+    border-radius: 0.3rem;
+    text-align: center;
+  
+    h1 {
+      font-size: 3rem;
+      font-weight: 300;
+      line-height: 1.2;
+      margin-bottom: 1rem;
+    }
+  
+    .lead {
+      font-size: 1.25rem;
+      font-weight: 300;
+    }
+  
+    hr {
+      border: 0;
+      border-top: 1px solid rgba(0, 0, 0, 0.1);
+      margin: 1.5rem 0;
+    }
+  
+    .btn-custom {
+      padding: 0.5rem 1rem;
+      font-size: 1.25rem;
+      border-radius: 0.3rem;
+      color: #fff;
+      background-color: #007bff;
+      border: none;
+      text-decoration: none;
+  
+      &:hover {
+        background-color: #0056b3;
+        color: #fff;
+      }
+    }
+  }
+  

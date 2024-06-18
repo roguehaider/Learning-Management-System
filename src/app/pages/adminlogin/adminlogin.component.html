@@ -1,0 +1,44 @@
+<div class="layout">
+    <form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+        <div class="note">
+            <p>Admin Login</p>
+          </div>
+          <nz-form-item>
+              <nz-form-label
+              [nzSm]="6"
+              [nzXs]="24"
+              nzFor="nickname"
+              nzRequired
+              nzTooltipTitle="What do you want others to call you"
+              >
+              <span>Username</span>
+            </nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your nickname!">
+                <input nz-input id="nickname" formControlName="nickname" />
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+          <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="password" nzRequired>Password</nz-form-label>
+          <nz-form-control [nzSm]="14" [nzXs]="24" nzErrorTip="Please input your password!">
+            <input
+              nz-input
+              type="password"
+              id="password"
+              formControlName="password"
+            />
+          </nz-form-control>
+        </nz-form-item>
+        <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+          <button nz-button class="button" nzType="primary">Login</button>
+        </nz-form-control>
+      </nz-form-item>
+      <nz-form-item nz-row class="register-area">
+        <nz-form-control [nzSpan]="14" [nzOffset]="6">
+          <div class="text-center">Already have an account? <a routerLink="/adminsignup">SignUp here</a></div>
+
+        </nz-form-control>
+      </nz-form-item>
+    </form>
+  </div>
+  
