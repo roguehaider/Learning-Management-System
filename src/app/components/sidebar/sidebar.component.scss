@@ -1,21 +1,74 @@
+// .logo {
+//   height: 40px;
+//   margin: 16px;
+//   h1 {
+//     text-align: center;
+//     color: #fff;
+//   }
+// }
+
+// nz-sider {
+//   overflow: auto;
+//   height: 100%;
+//   position: fixed;
+//   left: 0;
+// }
+
+// .right-layout {
+//   margin-left: 200px;
+// }
+
+// nz-header {
+//   background: #fff;
+//   padding: 0;
+// }
+
+// nz-content {
+//   margin: 24px 16px 0;
+//   overflow: initial;
+// }
+
+// .inner-content {
+//   padding: 24px;
+//   background: #fff;
+//   text-align: center;
+// }
+
+// nz-footer {
+//   text-align: center;
+// }
+
+// span {
+//   font-size: 16px;
+// }
+// li {
+//   font-size: 16px;
+// }
+
+// .active{
+//   background-color: #1890ff;
+//   color: #fff;
+// }
+
+
+
+
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
 .logo {
-  height: 40px;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
   margin: 16px;
-  h1 {
-    text-align: center;
-    color: #fff;
-  }
-}
-
-nz-sider {
-  overflow: auto;
-  height: 100%;
-  position: fixed;
-  left: 0;
-}
-
-.right-layout {
-  margin-left: 200px;
 }
 
 nz-header {
@@ -24,28 +77,19 @@ nz-header {
 }
 
 nz-content {
-  margin: 24px 16px 0;
-  overflow: initial;
+  margin: 0 16px;
+}
+
+nz-breadcrumb {
+  margin: 16px 0;
 }
 
 .inner-content {
   padding: 24px;
   background: #fff;
-  text-align: center;
+  min-height: 360px;
 }
 
 nz-footer {
   text-align: center;
-}
-
-span {
-  font-size: 16px;
-}
-li {
-  font-size: 16px;
-}
-
-.active{
-  background-color: #1890ff;
-  color: #fff;
 }

@@ -1,0 +1,37 @@
+.notice{
+    display: ruby-text;
+    align-items: center;
+}
+.container{
+    display: grid;
+    gap: 5%;
+    border: 1px solid gray;
+    width: 100%;
+}
+.banner{
+    // height: 90px;
+    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+    padding: 3%;
+    h1{
+        color: #ffffff;
+    }
+}
+.form{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    // align-items: center;
+    padding: 2%;
+}
+textarea{
+    height: 100%;
+    width: 100%;
+    padding: 12px;
+    margin-bottom: 16px;
+    border-radius: 5px;
+}
+button{
+    border-radius: 15px;
+    width: 150px;
+    margin-bottom: 16px;
+}

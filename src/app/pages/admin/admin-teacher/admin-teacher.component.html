@@ -1,0 +1,59 @@
+<div class="teachers">
+    <div class="container">
+        <!-- <div class="card" style="background-color: #6494edaf;">
+            <div class="card-title">View All Teacher</div>
+            <span nz-icon nzType="eye" nzTheme="fill"></span>
+        </div> -->
+        <div class="buttons">
+            <Button style="background-color: #4caf4fc2;">Add Teachers<span nz-icon nzType="plus-circle"
+                    nzTheme="fill"></span></Button>
+            <Button style="background-color: #f0b255a4;" (click)="navigateToApprove()">Approve Teachers<span nz-icon nzType="check-circle"
+                    nzTheme="fill"></span> </Button>
+        </div>
+        <!-- <div class="card" style="background-color: #4caf4fc2;">
+            <div class="card-title">Add Teachers</div>
+            <span nz-icon nzType="plus-circle" nzTheme="fill"></span>
+        </div> -->
+
+        <!-- <div class="card" style="background-color: #f0b255a4;">
+            <div class="card-title">Approve Teacher</div>
+            <span nz-icon nzType="check-circle" nzTheme="fill"></span>
+        </div> -->
+        <!--           
+        <div class="card" style="background-color: #d165c891;">
+            <div class="card-title">View Teachers Salary</div>
+            <span nz-icon nzType="money-collect" nzTheme="fill"></span>
+        </div> -->
+        <div class="table">
+            <h2>Teachers</h2>
+            <nz-table #basicTable [nzData]="teachers">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone no</th>
+                        <th>Salary</th>
+                        <th>Joining Date</th>
+                        <th>Update</th>
+                        <th>Delete</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of basicTable.data">
+                        <td>{{ data.name }}</td>
+                        <td>{{ data.mobile }}</td>
+                        <td>{{ data.salary }}</td>
+                        <td>{{ data.joiningDate }}</td>
+                        <td>
+                            <a style="font-size: 21px; color: green;"><span nz-icon nzType="edit"
+                                    nzTheme="outline"></span></a>
+                        </td>
+                        <td>
+                            <a style="font-size: 22px; color: red;"><span nz-icon nzType="delete"
+                                    nzTheme="fill"></span></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+</div>

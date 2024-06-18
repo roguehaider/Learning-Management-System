@@ -1,0 +1,21 @@
+<div class="fee">
+    <div class="table">
+        <h2>Attendance</h2>
+        <nz-table #basicTable [nzData]="classes">
+            <thead>
+                <tr>
+                    <th>Class</th>
+                    <th>View Dues</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                    <td>{{ data.name }}</td>
+                    <td>
+                        <a style="font-size: 22px;"><span nz-icon nzType="eye" nzTheme="fill"></span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>
