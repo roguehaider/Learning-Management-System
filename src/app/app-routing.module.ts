@@ -24,6 +24,9 @@ import { TeachersignupComponent } from "./pages/teachersignup/teachersignup.comp
 import { TeacherloginComponent } from "./pages/teacherlogin/teacherlogin.component";
 import { ParentsignupComponent } from "./pages/parentsignup/parentsignup.component";
 import { ParentloginComponent } from "./pages/parentlogin/parentlogin.component";
+import { AddTeacherComponent } from "./pages/admin/add-teacher/add-teacher.component";
+import { AddStudentComponent } from "./pages/admin/add-student/add-student.component";
+import { AdminViewAttendanceComponent } from "./pages/admin/admin-view-attendance/admin-view-attendance.component";
 const routes: Routes = [
   {
     path: "",
@@ -38,6 +41,10 @@ const routes: Routes = [
        { path: "admin-approve-student", component: ApproveStudentsComponent},
        { path: "admin-approve-teacher", component: ApproveTeacherComponent},
        { path: "admin-take-attendance", component: TakeAttendanceComponent},
+       { path: "admin-add-teacher", component: AddTeacherComponent},
+       { path: "admin-add-student", component: AddStudentComponent},
+       { path: "admin-view-attendance", component: AdminViewAttendanceComponent},
+
 
       // { path: "", component: HomeComponent,canActivate:[AuthGuardService] },
       // {

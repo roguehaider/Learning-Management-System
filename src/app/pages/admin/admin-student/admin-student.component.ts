@@ -46,5 +46,8 @@ export class AdminStudentComponent {
   constructor(private router: Router) {}
   navigateToApprove() {
     this.router.navigate(['/admin-approve-student']); 
-  }
+  } 
+  navigateToAdd() {
+    this.router.navigate(['/admin-add-student']); 
+  } 
 }

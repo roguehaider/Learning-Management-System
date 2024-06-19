@@ -68,4 +68,7 @@ export class AdminTeacherComponent {
   navigateToApprove() {
     this.router.navigate(['/admin-approve-teacher']); 
   }
+  navigateToAdd() {
+    this.router.navigate(['/admin-add-teacher']); 
+  }
 }

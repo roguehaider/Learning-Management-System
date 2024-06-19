@@ -31,4 +31,7 @@ export class AdminAttendanceComponent {
   navigateToAttendence() {
     this.router.navigate(['/admin-take-attendance']);
   }
+  navigateToViewAttendence() {
+    this.router.navigate(['/admin-view-attendance']);
+  }
 }

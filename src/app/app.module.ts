@@ -8,7 +8,6 @@ import { HeaderComponent } from "./components/header/header.component";
 import { FooterComponent } from "./components/footer/footer.component";
 import { LayoutComponent } from "./layout/layout.component";
 import { environment } from "src/environments/environment";
-import { SidebarComponent } from "./components/sidebar/sidebar.component";
 import { AdminDashboardComponent } from "./pages/admin/admin-dashboard/admin-dashboard.component";
 import { AdminAttendanceComponent } from "./pages/admin/admin-attendance/admin-attendance.component";
 import { TakeAttendanceComponent } from "./pages/admin/admin-attendance/take-attendance/take-attendance.component";
@@ -33,6 +32,7 @@ import { NZ_ICONS } from 'ng-zorro-antd/icon';
 import { IconDefinition } from '@ant-design/icons-angular';
 import * as AllIcons from '@ant-design/icons-angular/icons';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
+import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 
 
 import {
@@ -70,6 +70,9 @@ import { TeacherloginComponent } from './pages/teacherlogin/teacherlogin.compone
 import { ParentloginComponent } from './pages/parentlogin/parentlogin.component';
 import { ParentsignupComponent } from './pages/parentsignup/parentsignup.component';
 import { TeachersignupComponent } from './pages/teachersignup/teachersignup.component';
+import { AddTeacherComponent } from './pages/admin/add-teacher/add-teacher.component';
+import { AddStudentComponent } from './pages/admin/add-student/add-student.component';
+import { AdminViewAttendanceComponent } from './pages/admin/admin-view-attendance/admin-view-attendance.component';
 
 // const icons: IconDefinition[] = [
 //   PhoneOutline,
@@ -98,7 +101,6 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     HeaderComponent,
     FooterComponent,
     LayoutComponent,
-    SidebarComponent,
     PageNotFoundComponent,
     HomeComponent,
     AdminDashboardComponent,
@@ -121,6 +123,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     ParentloginComponent,
     ParentsignupComponent,
     TeachersignupComponent,
+    AddTeacherComponent,
+    AddStudentComponent,
+    AdminViewAttendanceComponent,
   ],
   imports: [
     BrowserModule,
@@ -145,6 +150,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzSpinModule,
     NzCardModule,
     NzAlertModule,
+    NzDatePickerModule,
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US } ,{provide: NZ_ICONS, useValue: icons}], 
   bootstrap: [AppComponent],
