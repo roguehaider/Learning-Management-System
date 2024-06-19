@@ -1,0 +1,40 @@
+
+.container{
+    display: grid;
+    gap: 20px;
+    width: 100%;
+    border: 1px solid rgb(190, 187, 187);
+}
+h2{
+    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+    text-align: center;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 20px;
+}
+.form{
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+nz-date-picker,
+nz-range-picker {
+    width: 65%;
+  margin: 0 8px 12px 0;
+}
+.button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    font-size: 14px;
+    background-color: #154279;
+    border-radius: 17px;
+    border: transparent;
+    width: 140px;
+    height: 37px;
+    margin-bottom: 16px;
+}

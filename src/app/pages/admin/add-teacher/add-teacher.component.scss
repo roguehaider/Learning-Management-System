@@ -1,0 +1,47 @@
+
+.container{
+    display: grid;
+    gap: 20px;
+    width: 100%;
+    border: 1px solid rgb(190, 187, 187);
+}
+h2{
+    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+    text-align: center;
+    color: #ffffff;
+    font-size: 17px;
+    font-weight: 700;
+    padding: 20px;
+}
+.form{
+    display: grid;
+    grid-template-columns: 40% 40%;
+    align-items: center;
+    text-align: center;
+    justify-content: center;
+    gap: 5%;
+}
+input{
+    margin: 5px;
+    border: 1px solid rgb(180, 177, 177);
+    padding: 10px;
+    border-radius: 10px;
+}
+input :focus{
+    border: 1px solid rgb(180, 177, 177);
+}
+.button{
+    margin-top: 4%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+button{
+    font-size: 14px;
+    background-color: #154279;
+    border-radius: 17px;
+    border: transparent;
+    width: 140px;
+    height: 37px;
+    margin-bottom: 16px;
+}
