@@ -27,26 +27,26 @@ import { ParentloginComponent } from "./pages/parentlogin/parentlogin.component"
 import { AddTeacherComponent } from "./pages/admin/add-teacher/add-teacher.component";
 import { AddStudentComponent } from "./pages/admin/add-student/add-student.component";
 import { AdminViewAttendanceComponent } from "./pages/admin/admin-view-attendance/admin-view-attendance.component";
+import { TeacherDashboardComponent } from "./pages/teacher/teacher-dashboard/teacher-dashboard.component";
+import { LayoutTeacherComponent } from "./layout-teacher/layout-teacher.component";
 const routes: Routes = [
   {
-    path: "",
+    path: "admin",
     component: LayoutComponent,
     children: [
-       { path: "admin-dashboard", component: AdminDashboardComponent},
-       { path: "admin-teacher", component: AdminTeacherComponent},
-       { path: "admin-student", component: AdminStudentComponent},
-       { path: "admin-attendance", component: AdminAttendanceComponent},
-       { path: "admin-fee", component: AdminFeeComponent},
-       { path: "admin-notice", component: AdminNoticeComponent},
-       { path: "admin-approve-student", component: ApproveStudentsComponent},
-       { path: "admin-approve-teacher", component: ApproveTeacherComponent},
-       { path: "admin-take-attendance", component: TakeAttendanceComponent},
-       { path: "admin-add-teacher", component: AddTeacherComponent},
-       { path: "admin-add-student", component: AddStudentComponent},
-       { path: "admin-view-attendance", component: AdminViewAttendanceComponent},
-
-
-      // { path: "", component: HomeComponent,canActivate:[AuthGuardService] },
+       { path: "dashboard", component: AdminDashboardComponent},
+       { path: "teacher", component: AdminTeacherComponent},
+       { path: "student", component: AdminStudentComponent},
+       { path: "attendance", component: AdminAttendanceComponent},
+       { path: "fee", component: AdminFeeComponent},
+       { path: "notice", component: AdminNoticeComponent},
+       { path: "approve-student", component: ApproveStudentsComponent},
+       { path: "approve-teacher", component: ApproveTeacherComponent},
+       { path: "take-attendance", component: TakeAttendanceComponent},
+       { path: "add-teacher", component: AddTeacherComponent},
+       { path: "add-student", component: AddStudentComponent},
+       { path: "view-attendance", component: AdminViewAttendanceComponent},
+       // { path: "", component: HomeComponent,canActivate:[AuthGuardService] },
       // {
       //   path: "settings",
       //   loadChildren: () =>
@@ -81,7 +81,15 @@ const routes: Routes = [
   },
 
   {
-    path: "home",
+    path: "teacher",
+    component: LayoutTeacherComponent,
+    children: [
+       { path: "dashboard", component: TeacherDashboardComponent},
+    ],
+  },
+
+  {
+    path: "",
     component: HomeComponent,
   },
   {
