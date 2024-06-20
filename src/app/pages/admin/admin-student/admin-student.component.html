@@ -50,11 +50,21 @@
                         <td>{{ data.mobile }}</td>
                         <td>{{ data.fee }}</td>
                         <td>
-                            <a style="font-size: 21px; color: green;"><span nz-icon nzType="edit"
-                                    nzTheme="outline"></span></a>
+                            <a style="font-size: 21px; color: green;" (click)="showModal()"><span nz-icon nzType="edit"
+                                nzTheme="outline"></span></a>
+                                <nz-modal [(nzVisible)]="isVisible" nzTitle="Update Student" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                                    <ng-container *nzModalContent>
+                                      <div class="form" style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;">
+                                        <input type="text" [(ngModel)]="data.name" placeholder="First Name" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                                        <input type="text" [(ngModel)]="data.class" placeholder="Last Name" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                                        <input type="text" [(ngModel)]="data.mobile" placeholder="Phone No" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                                        <input type="text" [(ngModel)]="data.fee" placeholder="Joining Date" style="border: 1px solid gray; padding: 6px; border-radius: 7px;                                                                                                                                                                                          ">
+                                      </div>
+                                    </ng-container>
+                                  </nz-modal>
                         </td>
                         <td>
-                            <a style="font-size: 22px; color: red;"><span nz-icon nzType="delete"
+                            <a style="font-size: 22px; color: red;" (click)="showDeleteConfirm()"><span nz-icon nzType="delete"
                                     nzTheme="fill"></span></a>
                         </td>
                     </tr>

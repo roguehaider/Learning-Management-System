@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { NzModalService } from 'ng-zorro-antd/modal';
 export interface Teachers {
   key: string;
   name: string;
@@ -13,6 +14,8 @@ export interface Teachers {
   styleUrls: ['./admin-teacher.component.scss']
 })
 export class AdminTeacherComponent {
+  isVisible = false;
+
   teachers: Teachers[] = [
     {
       key: '1',
@@ -64,11 +67,38 @@ export class AdminTeacherComponent {
       joiningDate: 'Jan 1st, 2024',
     },
   ];
-  constructor(private router: Router) {}
+  constructor(private router: Router,private modal: NzModalService) {}
+
   navigateToApprove() {
-    this.router.navigate(['/admin-approve-teacher']); 
+    this.router.navigate(['/admin/approve-teacher']); 
   }
   navigateToAdd() {
-    this.router.navigate(['/admin-add-teacher']); 
+    this.router.navigate(['/admin/add-teacher']); 
+  }
+
+  showDeleteConfirm(): void {
+    this.modal.confirm({
+      nzTitle: 'Are you sure remove this teacher?',
+      // nzContent: '<b style="color: red;">Some descriptions</b>',
+      nzOkText: 'Yes',
+      nzOkType: 'primary',
+      nzOkDanger: true,
+      nzOnOk: () => console.log('OK'),
+      nzCancelText: 'No',
+      nzOnCancel: () => console.log('Cancel')
+    });
+  }
+  showModal(): void {
+    this.isVisible = true;
+  }
+
+  handleOk(): void {
+    console.log('Button ok clicked!');
+    this.isVisible = false;
+  }
+
+  handleCancel(): void {
+    console.log('Button cancel clicked!');
+    this.isVisible = false;
   }
 }

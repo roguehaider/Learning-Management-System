@@ -51,17 +51,34 @@ nz-content{
   color: #1890ff;
 }
 
+Button{
+  font-size: 15px;
+  color: red;
+  font-weight: 600;
+  border: transparent;
+  background-color: #ffffff;
+  height: 50%;
+  margin-right: 16px;
+  float: right;
+}
+
 .logo {
   display: grid;
   height: 32px;
   background: rgba(255, 255, 255, 0.2);
   margin: 16px;
-  color: #ffffff;
+  font-size: 18px;
+  font-weight: 600;
+  color: #8a4141;
   text-align: center;
   align-items: center;
 }
 
 nz-header {
+  display: grid;
+  grid-template-columns: 5% 80% 25%;
+  align-items: center;
+  width: 100%;
   background: #fff;
   padding: 0;
 }
