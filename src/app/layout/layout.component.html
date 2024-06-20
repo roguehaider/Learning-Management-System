@@ -17,7 +17,6 @@
 
 <nz-layout>
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
-    <div class="logo">School Management</div>
     <div class="profile" [ngClass]="{'hidden': isCollapsed}">
       <img src="../../assets/images/admin.jpg" alt="">
       <h2>Admin</h2>
@@ -36,25 +35,25 @@
         </a>
       </li>
       <li nz-menu-item>
-        <a routerLink="/admin/student">
+        <a routerLink="/admin//student">
         <span nz-icon nzType="user" nzTheme="outline"></span>
         <span>Student</span>
         </a>
       </li>
       <li nz-menu-item>
-        <a routerLink="/admin/attendance">
+        <a routerLink="/admin//attendance">
         <span nz-icon nzType="idcard" nzTheme="outline"></span>
         <span>Attendance</span>
       </a>
       </li>
-      <li nz-menu-item>
-        <a routerLink="/admin/fee">
+      <!-- <li nz-menu-item>
+        <a routerLink="/admin//fee">
         <span nz-icon nzType="money-collect" nzTheme="outline"></span>
         <span>Fee</span>
         </a>
-      </li>
+      </li> -->
       <li nz-menu-item>
-        <a routerLink="/admin/notice">
+        <a routerLink="/admin//notice">
         <span nz-icon nzType="notification" nzTheme="outline"></span>
         <span>Notice</span>
         </a>
@@ -65,6 +64,8 @@
     <nz-header>
       <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
         (click)="isCollapsed = !isCollapsed"></span>
+        <div class="logo">School Management</div>
+        <button>Logout</button>
     </nz-header>
     <nz-content>
       <router-outlet></router-outlet>

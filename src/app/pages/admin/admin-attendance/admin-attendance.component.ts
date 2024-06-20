@@ -29,9 +29,9 @@ export class AdminAttendanceComponent {
   constructor(private router: Router) {}
 
   navigateToAttendence() {
-    this.router.navigate(['/admin-take-attendance']);
+    this.router.navigate(['/admin/take-attendance']);
   }
   navigateToViewAttendence() {
-    this.router.navigate(['/admin-view-attendance']);
+    this.router.navigate(['/admin/view-attendance']);
   }
 }
