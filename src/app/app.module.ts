@@ -73,6 +73,12 @@ import { TeachersignupComponent } from './pages/teachersignup/teachersignup.comp
 import { AddTeacherComponent } from './pages/admin/add-teacher/add-teacher.component';
 import { AddStudentComponent } from './pages/admin/add-student/add-student.component';
 import { AdminViewAttendanceComponent } from './pages/admin/admin-view-attendance/admin-view-attendance.component';
+import { LayoutTeacherComponent } from './layout-teacher/layout-teacher.component';
+import { TeacherDashboardComponent } from './pages/teacher/teacher-dashboard/teacher-dashboard.component';
+import { TeacherAttendanceComponent } from './pages/teacher/teacher-attendance/teacher-attendance.component';
+import { TeacherNoticeComponent } from './pages/teacher/teacher-notice/teacher-notice.component';
+import { TeacherTakeAttendanceComponent } from './pages/teacher/teacher-attendance/teacher-take-attendance/teacher-take-attendance.component';
+import { TeacherViewAttendanceComponent } from './pages/teacher/teacher-view-attendance/teacher-view-attendance.component';
 
 // const icons: IconDefinition[] = [
 //   PhoneOutline,
@@ -126,6 +132,12 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     AddTeacherComponent,
     AddStudentComponent,
     AdminViewAttendanceComponent,
+    LayoutTeacherComponent,
+    TeacherDashboardComponent,
+    TeacherAttendanceComponent,
+    TeacherNoticeComponent,
+    TeacherTakeAttendanceComponent,
+    TeacherViewAttendanceComponent,
   ],
   imports: [
     BrowserModule,
