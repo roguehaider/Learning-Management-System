@@ -30,21 +30,27 @@
       </li>
       <li nz-menu-item [routerLinkActive]="'active'">
         <a routerLink="/admin/teacher">
-        <span nz-icon nzType="audit" nzTheme="outline"></span>
-        <span>Teacher</span>
+          <span nz-icon nzType="audit" nzTheme="outline"></span>
+          <span>Teacher</span>
         </a>
       </li>
       <li nz-menu-item>
         <a routerLink="/admin//student">
-        <span nz-icon nzType="user" nzTheme="outline"></span>
-        <span>Student</span>
+          <span nz-icon nzType="user" nzTheme="outline"></span>
+          <span>Student</span>
         </a>
       </li>
       <li nz-menu-item>
         <a routerLink="/admin//attendance">
-        <span nz-icon nzType="idcard" nzTheme="outline"></span>
-        <span>Attendance</span>
-      </a>
+          <span nz-icon nzType="idcard" nzTheme="outline"></span>
+          <span>Attendance</span>
+        </a>
+      </li>
+      <li nz-menu-item>
+        <a routerLink="/admin//leaves">
+          <span nz-icon nzType="file-done" nzTheme="outline"></span>
+          <span>Leaves</span>
+        </a>
       </li>
       <!-- <li nz-menu-item>
         <a routerLink="/admin//fee">
@@ -54,8 +60,8 @@
       </li> -->
       <li nz-menu-item>
         <a routerLink="/admin//notice">
-        <span nz-icon nzType="notification" nzTheme="outline"></span>
-        <span>Notice</span>
+          <span nz-icon nzType="notification" nzTheme="outline"></span>
+          <span>Notice</span>
         </a>
       </li>
     </ul>
@@ -64,8 +70,8 @@
     <nz-header>
       <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
         (click)="isCollapsed = !isCollapsed"></span>
-        <div class="logo">School Management</div>
-        <button>Logout</button>
+      <div class="logo">School Management</div>
+      <button>Logout</button>
     </nz-header>
     <nz-content>
       <router-outlet></router-outlet>

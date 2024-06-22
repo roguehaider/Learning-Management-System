@@ -52,13 +52,15 @@ nz-content{
 }
 
 Button{
-  font-size: 15px;
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
   color: red;
   font-weight: 600;
   border: transparent;
   background-color: #ffffff;
   height: 50%;
-  margin-right: 16px;
+  margin-right: 16px; 
   float: right;
 }
 

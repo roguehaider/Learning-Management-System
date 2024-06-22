@@ -19,28 +19,28 @@ export class AdminStudentComponent {
   students: Students[] = [
     {
       key: '1',
-      name: 'Teacher IT',
+      name: 'Student A',
       class: 'Class 1',
       mobile: '12345678',
       fee: '130,000',
     },
     {
       key: '3',
-      name: 'Teacher IT',
+      name: 'Student B',
       class: 'Class 1',
       mobile: '12345678',
       fee: '100,000',
     },
     {
       key: '3',
-      name: 'Teacher IT',
+      name: 'Student C',
       class: 'Class 1',
       mobile: '12345678',
       fee: '100,000',
     },
     {
       key: '3',
-      name: 'Teacher IT',
+      name: 'Student D',
       class: 'Class 1',
       mobile: '12345678',
       fee: '100,000',
@@ -54,9 +54,9 @@ export class AdminStudentComponent {
     this.router.navigate(['/admin/add-student']); 
   } 
 
-  showDeleteConfirm(): void {
+  showDeleteConfirm(name: any): void {
     this.modal.confirm({
-      nzTitle: 'Are you sure remove this student?',
+      nzTitle: `Are you sure remove ${name}?`,
       // nzContent: '<b style="color: red;">Some descriptions</b>',
       nzOkText: 'Yes',
       nzOkType: 'primary',

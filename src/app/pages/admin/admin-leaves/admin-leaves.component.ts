@@ -1,43 +1,51 @@
 import { Component } from '@angular/core';
-import { Students } from '../admin-student/admin-student.component';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+export interface Leaves {
+  key: string;
+  name: string;
+  class: string;
+  reason: string;
+  date: string;
+}
 @Component({
-  selector: 'app-approve-students',
-  templateUrl: './approve-students.component.html',
-  styleUrls: ['./approve-students.component.scss']
+  selector: 'app-admin-leaves',
+  templateUrl: './admin-leaves.component.html',
+  styleUrls: ['./admin-leaves.component.scss']
 })
-export class ApproveStudentsComponent {
+export class AdminLeavesComponent {
+
   isVisible = false;
   confirmModal?: NzModalRef;
-
-  students: Students[] = [
+  
+  leaves: Leaves[] = [
     {
       key: '1',
-      name: 'Teacher IT',
+      name: 'Student A',
       class: 'Class 1',
-      mobile: '12345678',
-      fee: '130,000',
+      reason: 'Sick Leave',
+      date: '21 June, 2024',
     },
     {
       key: '3',
-      name: 'Teacher IT',
+      name: 'Student B',
       class: 'Class 1',
-      mobile: '12345678',
-      fee: '100,000',
+      reason: 'Vacation',
+      date: '21 June, 2024',
     },
     {
       key: '3',
-      name: 'Teacher IT',
+      name: 'Student C',
       class: 'Class 1',
-      mobile: '12345678',
-      fee: '100,000',
+      reason: 'Sick Leave',
+      date: '22 June, 2024',
     },
   ];
+
   constructor(private modal: NzModalService) {}
 
-  showConfirm(name: any): void {
+  showConfirm(): void {
     this.confirmModal = this.modal.confirm({
-      nzTitle: `Do you Want to approve ${name}?`,
+      nzTitle: `Do you Want to approve this leave?`,
       nzOkText: 'Approve',
       // nzContent: 'When clicked the OK button, this dialog will be closed after 1 second',
       nzOnOk: () =>
@@ -47,9 +55,9 @@ export class ApproveStudentsComponent {
     });
   }
 
-  showDeleteConfirm(name: any): void {
+  showDeleteConfirm(): void {
     this.modal.confirm({
-      nzTitle: `Are you sure remove ${name}?`,
+      nzTitle: `Are you sure remove this leave?`,
       // nzContent: '<b style="color: red;">Some descriptions</b>',
       nzOkText: 'Yes',
       nzOkType: 'primary',

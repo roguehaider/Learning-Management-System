@@ -79,6 +79,9 @@ import { TeacherAttendanceComponent } from './pages/teacher/teacher-attendance/t
 import { TeacherNoticeComponent } from './pages/teacher/teacher-notice/teacher-notice.component';
 import { TeacherTakeAttendanceComponent } from './pages/teacher/teacher-attendance/teacher-take-attendance/teacher-take-attendance.component';
 import { TeacherViewAttendanceComponent } from './pages/teacher/teacher-view-attendance/teacher-view-attendance.component';
+import { AdminLeavesComponent } from './pages/admin/admin-leaves/admin-leaves.component';
+import { TeacherDiaryComponent } from './pages/teacher/teacher-diary/teacher-diary.component';
+import { TeacherViewDiaryComponent } from './pages/teacher/teacher-view-diary/teacher-view-diary.component';
 
 // const icons: IconDefinition[] = [
 //   PhoneOutline,
@@ -138,6 +141,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     TeacherNoticeComponent,
     TeacherTakeAttendanceComponent,
     TeacherViewAttendanceComponent,
+    AdminLeavesComponent,
+    TeacherDiaryComponent,
+    TeacherViewDiaryComponent,
   ],
   imports: [
     BrowserModule,

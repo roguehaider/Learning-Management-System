@@ -76,9 +76,9 @@ export class AdminTeacherComponent {
     this.router.navigate(['/admin/add-teacher']); 
   }
 
-  showDeleteConfirm(): void {
+  showDeleteConfirm(name: any): void {
     this.modal.confirm({
-      nzTitle: 'Are you sure remove this teacher?',
+      nzTitle: `Are you sure remove ${name}?`,
       // nzContent: '<b style="color: red;">Some descriptions</b>',
       nzOkText: 'Yes',
       nzOkType: 'primary',

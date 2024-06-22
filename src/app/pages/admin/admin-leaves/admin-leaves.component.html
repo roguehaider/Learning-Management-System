@@ -1,27 +1,27 @@
 <div class="table">
-    <h2>Students</h2>
-    <nz-table #basicTable [nzData]="students">
+    <h2>Leaves</h2>
+    <nz-table #basicTable [nzData]="leaves">
         <thead>
             <tr>
+                <th>Date</th>
                 <th>Name</th>
                 <th>Class</th>
-                <th>Phone no</th>
-                <th>Fee</th>
+                <th>Reason</th>
                 <th>Approve</th>
                 <th>Delete</th>
             </tr>
         </thead>
         <tbody>
             <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.date }}</td>
                 <td>{{ data.name }}</td>                        
                 <td>{{ data.class }}</td>
-                <td>{{ data.mobile }}</td>
-                <td>{{ data.fee }}</td>
+                <td>{{ data.reason }}</td>
                 <td>
-                    <a style="font-size: 21px; color: green;" (click)="showConfirm(data.name)"><span nz-icon nzType="check" nzTheme="outline"></span></a>
+                    <a style="font-size: 21px; color: green;" (click)="showConfirm()"><span nz-icon nzType="check" nzTheme="outline"></span></a>
                 </td>
                 <td>
-                    <a style="font-size: 22px; color: red;" (click)="showDeleteConfirm(data.name)"><span nz-icon nzType="delete"
+                    <a style="font-size: 22px; color: red;" (click)="showDeleteConfirm()"><span nz-icon nzType="delete"
                             nzTheme="fill"></span></a>
                 </td>
             </tr>

@@ -29,6 +29,9 @@ import { AddStudentComponent } from "./pages/admin/add-student/add-student.compo
 import { AdminViewAttendanceComponent } from "./pages/admin/admin-view-attendance/admin-view-attendance.component";
 import { TeacherDashboardComponent } from "./pages/teacher/teacher-dashboard/teacher-dashboard.component";
 import { LayoutTeacherComponent } from "./layout-teacher/layout-teacher.component";
+import { AdminLeavesComponent } from "./pages/admin/admin-leaves/admin-leaves.component";
+import { TeacherDiaryComponent } from "./pages/teacher/teacher-diary/teacher-diary.component";
+import { TeacherViewDiaryComponent } from "./pages/teacher/teacher-view-diary/teacher-view-diary.component";
 const routes: Routes = [
   {
     path: "admin",
@@ -46,6 +49,7 @@ const routes: Routes = [
        { path: "add-teacher", component: AddTeacherComponent},
        { path: "add-student", component: AddStudentComponent},
        { path: "view-attendance", component: AdminViewAttendanceComponent},
+       { path: "leaves", component: AdminLeavesComponent},
        // { path: "", component: HomeComponent,canActivate:[AuthGuardService] },
       // {
       //   path: "settings",
@@ -85,6 +89,8 @@ const routes: Routes = [
     component: LayoutTeacherComponent,
     children: [
        { path: "dashboard", component: TeacherDashboardComponent},
+       { path: "diary", component: TeacherDiaryComponent},
+       { path: "view-diary", component: TeacherViewDiaryComponent},
     ],
   },
 
