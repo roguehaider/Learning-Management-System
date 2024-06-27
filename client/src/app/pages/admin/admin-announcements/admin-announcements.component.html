@@ -1,0 +1,65 @@
+<!-- <div class="announcements">
+    <div class="container">
+        <Button style="background-color: #6AB187;">Add Announcement<span nz-icon nzType="plus-circle"
+            nzTheme="fill"></span></Button>
+            <h2>Annoucements</h2>
+            <nz-list nzItemLayout="horizontal" [nzLoading]="loading">
+                <ng-container *ngIf="data.length > 0; else emptyList">
+                    <nz-list-item *ngFor="let item of data; trackBy: trackByFn">
+                        <nz-list-item-meta nzAvatar="https://zos.alipayobjects.com/rmsportal/ODTLcjxAfvqbxHnVXCYX.png"
+                        nzDescription="Ant Design, a design language for background applications, is refined by Ant UED Team">
+                        <nz-list-item-meta-title>
+                            <a href="https://ng.ant.design">{{ item.title }}</a>
+                        </nz-list-item-meta-title>
+                    </nz-list-item-meta>
+                </nz-list-item>
+            </ng-container>
+            <ng-template #emptyList>
+                <nz-list-empty></nz-list-empty>
+            </ng-template>
+        </nz-list>
+    </div>
+</div> -->
+
+    <div class="container">
+        <div class="buttons">
+            <Button style="background-color: #6AB187;" (click)="showModal()">Add Announcement<span nz-icon
+                    nzType="plus-circle" nzTheme="fill"></span></Button>
+            <!-- <Button style="background-color: #f0b255a4;"(click)="navigateToApprove()">Approve Students<span nz-icon nzType="check-circle"
+                    nzTheme="fill"></span> </Button> -->
+            <nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()"
+                (nzOnOk)="handleOk()">
+                <ng-container *nzModalContent>
+                    <div class="form"
+                        style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;">
+                        <input type="text" [(ngModel)]="newAnnouncement.title" placeholder="Title"
+                            style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                        <input type="text" [(ngModel)]="newAnnouncement.description" placeholder="Description"
+                            style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                        <!-- <nz-date-picker [(ngModel)]="selectedStudent.DOB"></nz-date-picker> -->
+                    </div>
+                </ng-container>
+            </nz-modal>
+        </div>
+        <div class="list">
+            <h2>Annoucements</h2>
+            <nz-list nzItemLayout="horizontal" [nzLoading]="loading">
+                <ng-container *ngIf="announcements.length > 0; else emptyList">
+                  <nz-list-item *ngFor="let item of announcements; trackBy: trackByFn" class="suggestion-item">
+                    <nz-list-item-meta>
+                      <nz-list-item-meta-title>
+                        {{ item.title }}
+                      </nz-list-item-meta-title>
+                      <nz-list-item-meta-description>
+                        {{ item.description }}
+                      </nz-list-item-meta-description>
+                    </nz-list-item-meta>
+                  </nz-list-item>
+                </ng-container>
+                <ng-template #emptyList>
+                  <nz-list-empty></nz-list-empty>
+                </ng-template>
+              </nz-list>
+              
+        </div>
+    </div>
