@@ -169,6 +169,10 @@ export class AuthService {
         const userData = JSON.parse(localStorage.getItem('userData') || '{}');
         return userData.Fame || null;
     }
+    getUser(): string | null {
+        const userData = JSON.parse(localStorage.getItem('userData') || '{}');
+        return userData || null;
+    }
 
     register(user: any): Observable<any> {
         return this.http.post<any>(`${this.apiUrl}/admin/register`, user);

@@ -39,6 +39,9 @@ import { TeacherLeavesComponent } from "./pages/teacher/teacher-leaves/teacher-l
 import { TeacherCoursesComponent } from "./pages/teacher/teacher-courses/teacher-courses.component";
 import { AdminCoursesComponent } from "./pages/admin/admin-courses/admin-courses.component";
 import { AdminSuggestionsComponent } from "./pages/admin/admin-suggestions/admin-suggestions.component";
+import { TeacherAnnouncementsComponent } from "./pages/teacher/teacher-announcements/teacher-announcements.component";
+import { TeacherSuggestionsComponent } from "./pages/teacher/teacher-suggestions/teacher-suggestions.component";
+import { TeacherAttendanceComponent } from "./pages/teacher/teacher-attendance/teacher-attendance.component";
 const routes: Routes = [
   {
     path: "admin",
@@ -92,10 +95,14 @@ const routes: Routes = [
     component: LayoutTeacherComponent,
     children: [
       { path: "dashboard", component: TeacherDashboardComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
+      { path: "announcements", component: TeacherAnnouncementsComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
       { path: "diary", component: TeacherDiaryComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
       { path: "courses", component: TeacherCoursesComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
       { path: "leaves", component: TeacherLeavesComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
       { path: "view-diary", component: TeacherViewDiaryComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
+      { path: "attendance", component: TeacherAttendanceComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
+      { path: "suggestions", component: TeacherSuggestionsComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
+
     ],
   },
 

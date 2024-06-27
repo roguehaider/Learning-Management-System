@@ -1,1 +1,37 @@
-<p>teacher-attendance works!</p>
+<div class="container">
+    <nz-select ngModel="lucy">
+        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
+        <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
+        <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
+    </nz-select>
+    <div class="table">
+        <h2>Attendance</h2>
+        <nz-table #basicTable [nzData]="attendance">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Name</th>
+                    <th>Class</th>
+                    <th>Reason</th>
+                    <th>Approve</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                    <td>{{ data.date }}</td>
+                    <!-- <td>{{ data.name }}</td>                        
+                    <td>{{ data.class }}</td>
+                    <td>{{ data.reason }}</td> -->
+                    <td>
+                        <a style="font-size: 21px; color: green;"><span nz-icon nzType="check" nzTheme="outline"></span></a>
+                    </td>
+                    <td>
+                        <a style="font-size: 22px; color: red;"><span nz-icon nzType="delete"
+                                nzTheme="fill"></span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

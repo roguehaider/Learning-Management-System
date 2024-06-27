@@ -125,7 +125,7 @@ export class Service {
     return this.http.delete<any>(`${this.apiUrl}deleteSuggestion/${_id}`, { withCredentials: true });
   }
 
-  //teacher
+  //teacher---------------------------------------------------------------------------------------------------------------------------------------
   //teacher-courses
   getTeacherCourses(): Observable<any> {
     const accessToken = localStorage.getItem('accessToken');
@@ -135,5 +135,44 @@ export class Service {
     document.cookie = `refreshToken=${refreshToken}`;
     return this.http.get<any>(`${this.apiUrl}teacher/courses`,  { withCredentials: true });
   }
+  getTeacherSuggestions(): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+
+    return this.http.get(`${this.apiUrl}teacher/suggestion`, { withCredentials: true });
+  }
+
+  postTeacherSuggestion(suggestion:any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+
+    return this.http.post(`${this.apiUrl}teacher/suggestion`, suggestion, { withCredentials: true });
+  }
+
+  postDiary(diary: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.post<any>(`${this.apiUrl}teacher/course/diary`, diary, { withCredentials: true });
+  }
+  getTeacherDiaries(): Observable<{ diaries: any }> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+    const user = localStorage.getItem(`user`)
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.get<{ diaries: any }>(`${this.apiUrl}teacher/diaries`, { withCredentials: true });
+  }
+
+  
 }
 

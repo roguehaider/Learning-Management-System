@@ -12,6 +12,12 @@
             <span style="margin-left: 10px">Dashboard</span>
           </a>
         </li>
+        <li nz-menu-item>
+          <a routerLink="/teacher/announcements">
+            <span nz-icon nzType="bell" nzTheme="outline"></span>
+            <span>Annoucements</span>
+          </a>
+        </li>
         <li nz-menu-item [routerLinkActive]="'active'">
           <a routerLink="/teacher/courses">
             <span nz-icon nzType="file-text" nzTheme="outline"></span>
@@ -37,9 +43,9 @@
           </a>
         </li>
         <li nz-menu-item>
-          <a routerLink="/teacher/notice">
-          <span nz-icon nzType="notification" nzTheme="outline"></span>
-          <span>Notice</span>
+          <a routerLink="/teacher/suggestions">
+            <span nz-icon nzType="info-circle" nzTheme="outline"></span>
+            <span>Suggestions</span>
           </a>
         </li>
       </ul>

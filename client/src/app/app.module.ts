@@ -78,7 +78,6 @@ import { LayoutTeacherComponent } from './layout-teacher/layout-teacher.componen
 import { TeacherDashboardComponent } from './pages/teacher/teacher-dashboard/teacher-dashboard.component';
 import { TeacherAttendanceComponent } from './pages/teacher/teacher-attendance/teacher-attendance.component';
 import { TeacherNoticeComponent } from './pages/teacher/teacher-notice/teacher-notice.component';
-import { TeacherTakeAttendanceComponent } from './pages/teacher/teacher-attendance/teacher-take-attendance/teacher-take-attendance.component';
 import { TeacherViewAttendanceComponent } from './pages/teacher/teacher-view-attendance/teacher-view-attendance.component';
 import { AdminLeavesComponent } from './pages/admin/admin-leaves/admin-leaves.component';
 import { TeacherDiaryComponent } from './pages/teacher/teacher-diary/teacher-diary.component';
@@ -91,6 +90,8 @@ import { AdminCoursesComponent } from './pages/admin/admin-courses/admin-courses
 import { AuthService } from "./services/auth/auth.service";
 import { TokenInterceptor } from "./services/token-inceptor.service";
 import { AdminSuggestionsComponent } from './pages/admin/admin-suggestions/admin-suggestions.component';
+import { TeacherAnnouncementsComponent } from './pages/teacher/teacher-announcements/teacher-announcements.component';
+import { TeacherSuggestionsComponent } from './pages/teacher/teacher-suggestions/teacher-suggestions.component';
 
 
 // const icons: IconDefinition[] = [
@@ -149,7 +150,6 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     TeacherDashboardComponent,
     TeacherAttendanceComponent,
     TeacherNoticeComponent,
-    TeacherTakeAttendanceComponent,
     TeacherViewAttendanceComponent,
     AdminLeavesComponent,
     TeacherDiaryComponent,
@@ -160,6 +160,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     TeacherCoursesComponent,
     AdminCoursesComponent,
     AdminSuggestionsComponent,
+    TeacherAnnouncementsComponent,
+    TeacherSuggestionsComponent,
   ],
   imports: [
     BrowserModule,

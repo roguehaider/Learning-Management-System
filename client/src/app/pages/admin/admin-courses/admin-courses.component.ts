@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Service } from 'src/app/services/service';
 export interface Courses {
-  id: string;
+  course_id: string;
   name: string;
 }
 @Component({
