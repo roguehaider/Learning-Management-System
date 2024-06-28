@@ -92,6 +92,11 @@ import { TokenInterceptor } from "./services/token-inceptor.service";
 import { AdminSuggestionsComponent } from './pages/admin/admin-suggestions/admin-suggestions.component';
 import { TeacherAnnouncementsComponent } from './pages/teacher/teacher-announcements/teacher-announcements.component';
 import { TeacherSuggestionsComponent } from './pages/teacher/teacher-suggestions/teacher-suggestions.component';
+import { LayoutStudentComponent } from './layout-student/layout-student.component';
+import { StudentDashboardComponent } from './pages/student/student-dashboard/student-dashboard.component';
+import { StudentAnnouncementsComponent } from './pages/student/student-announcements/student-announcements.component';
+import { StudentCoursesComponent } from './pages/student/student-courses/student-courses.component';
+import { StudentGiveRemarksComponent } from './pages/student/student-give-remarks/student-give-remarks.component';
 
 
 // const icons: IconDefinition[] = [
@@ -162,6 +167,11 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     AdminSuggestionsComponent,
     TeacherAnnouncementsComponent,
     TeacherSuggestionsComponent,
+    LayoutStudentComponent,
+    StudentDashboardComponent,
+    StudentAnnouncementsComponent,
+    StudentCoursesComponent,
+    StudentGiveRemarksComponent,
   ],
   imports: [
     BrowserModule,

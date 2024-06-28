@@ -19,7 +19,7 @@
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="profile" [ngClass]="{'hidden': isCollapsed}">
       <img src="../../assets/images/admin.jpg" alt="">
-      <h2>Admin</h2>
+      <h2>{{userName}}</h2>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
       <li nz-menu-item [routerLinkActive]="'active'">

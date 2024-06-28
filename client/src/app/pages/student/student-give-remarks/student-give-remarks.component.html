@@ -1,0 +1,25 @@
+<div class="container">
+    <div *ngIf="loading">Post Remarks</div>
+    <div *ngIf="!loading">
+        <h2>Post a Remark</h2>
+        <form (ngSubmit)="postRemark()">
+            <div>
+                <label for="reciever">Teacher</label>
+                <nz-select ngModel="lucy" [(ngModel)]="newRemark.reciever">
+                    <nz-option nzValue="01" nzLabel="Jack"></nz-option>
+                    <nz-option nzValue="02" nzLabel="Lucy"></nz-option>
+                </nz-select>
+                <!-- <input type="text" id="reciever" [(ngModel)]="newRemark.reciever" name="reciever" required> -->
+            </div>
+            <div>
+                <!-- <label for="title">Title:</label> -->
+                <input type="text" id="title" placeholder="Title" [(ngModel)]="newRemark.title" name="title" required>
+            </div>
+            <div>
+                <!-- <label for="description">Description:</label> -->
+                <textarea type="text" id="description" placeholder="Description" [(ngModel)]="newRemark.description" name="description"  rows="4" required></textarea>
+            </div>
+            <button type="submit">Post Remark</button>
+        </form>
+    </div>
+</div>
