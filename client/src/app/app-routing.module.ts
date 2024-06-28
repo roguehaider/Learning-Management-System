@@ -42,6 +42,11 @@ import { AdminSuggestionsComponent } from "./pages/admin/admin-suggestions/admin
 import { TeacherAnnouncementsComponent } from "./pages/teacher/teacher-announcements/teacher-announcements.component";
 import { TeacherSuggestionsComponent } from "./pages/teacher/teacher-suggestions/teacher-suggestions.component";
 import { TeacherAttendanceComponent } from "./pages/teacher/teacher-attendance/teacher-attendance.component";
+import { StudentDashboardComponent } from "./pages/student/student-dashboard/student-dashboard.component";
+import { LayoutStudentComponent } from "./layout-student/layout-student.component";
+import { StudentAnnouncementsComponent } from "./pages/student/student-announcements/student-announcements.component";
+import { StudentCoursesComponent } from "./pages/student/student-courses/student-courses.component";
+import { StudentGiveRemarksComponent } from "./pages/student/student-give-remarks/student-give-remarks.component";
 const routes: Routes = [
   {
     path: "admin",
@@ -105,6 +110,17 @@ const routes: Routes = [
 
     ],
   },
+  {
+    path: "student",
+    component: LayoutStudentComponent,
+    children: [
+      { path: "dashboard", component: StudentDashboardComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
+      { path: "announcements", component: StudentAnnouncementsComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
+      { path: "courses", component: StudentCoursesComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
+      { path: "remarks", component: StudentGiveRemarksComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
+
+    ],
+  },
 
   {
     path: "",
@@ -135,7 +151,7 @@ const routes: Routes = [
     component: AdminsignupComponent,
   },
   {
-    path: "adminlogin",
+    path: "login",
     component: AdminloginComponent,
   },
   {

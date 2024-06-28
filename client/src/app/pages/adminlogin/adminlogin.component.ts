@@ -28,10 +28,6 @@ export class AdminloginComponent {
       email: ['', [Validators.required]],
     });
   }
-  // validateForm: FormGroup<{
-  //   password: FormControl<string>;
-  //   email: FormControl<string>;
-  // }>;
   captchaTooltipIcon: NzFormTooltipIcon = {
     type: 'info-circle',
     theme: 'twotone'

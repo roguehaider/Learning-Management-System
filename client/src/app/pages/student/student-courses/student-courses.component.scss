@@ -1,0 +1,38 @@
+.courses {
+    display: grid;
+    align-items: center;
+    text-align: center;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 5px;
+}
+.table {
+    width: 100%;
+    border: 1px solid #1F3F49;
+    border-radius: 5px;
+
+    h2 {
+        font-size: 16px;
+        color: #ffffff;
+        background-color: #1F3F49;
+        width: 100%;
+        text-align: center;
+        padding: 5px;
+        border-radius: 4px 4px 0 0;
+        margin-bottom: 0;
+    }
+}
+
+::ng-deep nz-table{
+    padding: 1%;
+}
+
+::ng-deep .ant-table-thead>tr>th {
+    color: black;
+    background-color: #ffffff;
+    font-size: 14px;
+}
