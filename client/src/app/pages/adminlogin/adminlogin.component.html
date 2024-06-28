@@ -1,0 +1,34 @@
+<app-header></app-header>
+<div class="layout">
+  <form nz-form [nzLayout]="'horizontal'" [formGroup]="validateForm" (ngSubmit)="submitForm()">
+    <div class="note">
+      <p>Admin Login</p>
+    </div>
+    <nz-form-item nz-row>
+      <nz-form-control nzSpan="8" nzErrorTip="Please input your username!">
+        <nz-input-group nzPrefixIcon="user">
+          <input formControlName="email" [(ngModel)]="credentials.email" nz-input placeholder="Email" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-row>
+      <nz-form-control nzSpan="8" nzErrorTip="Please input your Password!">
+        <nz-input-group nzPrefixIcon="lock">
+          <input formControlName="password"  [(ngModel)]="credentials.password" nz-input type="password" placeholder="Password" />
+        </nz-input-group>
+      </nz-form-control>
+    </nz-form-item>
+    <nz-form-item nz-row>
+      <nz-form-control nzSpan="8">
+        <button nz-button nzType="primary"  type="submit">Log in</button>
+      </nz-form-control>
+    </nz-form-item>
+  </form>
+  <nz-form-item nz-row class="register-area">
+    <nz-form-control [nzSpan]="14" [nzOffset]="6">
+      <div class="text-center">Already have an account? <a routerLink="/adminsignup">SignUp here</a></div>
+
+    </nz-form-control>
+  </nz-form-item>
+
+</div>

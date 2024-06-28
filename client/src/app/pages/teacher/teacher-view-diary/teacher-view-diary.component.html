@@ -1,0 +1,47 @@
+<div class="container">
+    <nz-select ngModel="lucy" >
+        <nz-option *ngFor="let course of courses" [nzValue]="course.course_id" [nzLabel]="course.name"></nz-option>
+    </nz-select>
+    <div class="table">
+        <h2>Diary</h2>
+        <nz-table #basicTable [nzData]="diary">
+            <thead>
+                <tr>
+                    <th>Courses</th>
+                    <th>Add Diary</th>                  
+                    <th>View Diary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                    <td>{{ data.description }}</td>
+                    <!-- <td>
+                        <a style="font-size: 21px;" (click)="showModal()" ><span nz-icon nzType="plus-square" nzTheme="fill"></span></a>
+                        <nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk(data)">
+                            <ng-container *nzModalContent>
+                                <form [formGroup]="diaryForm">
+                                    <nz-form-item>
+                                      <nz-form-label [nzSpan]="6" nzFor="description" nzRequired>Description</nz-form-label>
+                                      <nz-form-control [nzSpan]="14" nzErrorTip="Please input description">
+                                        <textarea nz-input formControlName="description" id="description" placeholder="Enter Description"></textarea>
+                                      </nz-form-control>
+                                    </nz-form-item>
+                                
+                                    <nz-form-item>
+                                      <nz-form-label [nzSpan]="6" nzFor="date" nzRequired>Date</nz-form-label>
+                                      <nz-form-control [nzSpan]="14" nzErrorTip="Please select a date">
+                                        <nz-date-picker formControlName="date" id="date"></nz-date-picker>
+                                      </nz-form-control>
+                                    </nz-form-item>
+                                  </form>
+                            </ng-container>
+                          </nz-modal>
+                    </td>
+                    <td>
+                        <a style="font-size: 22px;" (click)="navigateToView()"><span nz-icon nzType="eye" nzTheme="fill"></span></a>
+                    </td> -->
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

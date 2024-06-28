@@ -1,0 +1,62 @@
+<nz-layout>
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
+      <div class="logo">School Management</div>
+      <div class="profile" [ngClass]="{'hidden': isCollapsed}">
+        <img src="../../assets/images/admin.jpg" alt="">
+        <h2>{{userName}}</h2>
+      </div>
+      <ul nz-menu nzTheme="dark" nzMode="inline">
+        <li nz-menu-item [routerLinkActive]="'active'">
+          <a routerLink="/teacher/dashboard">
+            <span nz-icon nzType="dashboard" nzTheme="outline"></span>
+            <span style="margin-left: 10px">Dashboard</span>
+          </a>
+        </li>
+        <li nz-menu-item>
+          <a routerLink="/teacher/announcements">
+            <span nz-icon nzType="bell" nzTheme="outline"></span>
+            <span>Annoucements</span>
+          </a>
+        </li>
+        <li nz-menu-item [routerLinkActive]="'active'">
+          <a routerLink="/teacher/courses">
+            <span nz-icon nzType="file-text" nzTheme="outline"></span>
+            <span style="margin-left: 10px">Courses</span>
+          </a>
+        </li>
+        <li nz-menu-item>
+          <a routerLink="/teacher/attendance">
+          <span nz-icon nzType="idcard" nzTheme="outline"></span>
+          <span>Attendance</span>
+        </a>
+        </li>
+        <li nz-menu-item>
+          <a routerLink="/teacher/leaves">
+            <span nz-icon nzType="audit" nzTheme="outline"></span>
+            <span>Leave</span>
+        </a>
+        </li>
+        <li nz-menu-item [routerLinkActive]="'active'">
+          <a routerLink="/teacher/diary">
+            <span nz-icon nzType="unordered-list" nzTheme="outline"></span>
+            <span style="margin-left: 10px">Diary</span>
+          </a>
+        </li>
+        <li nz-menu-item>
+          <a routerLink="/teacher/suggestions">
+            <span nz-icon nzType="info-circle" nzTheme="outline"></span>
+            <span>Suggestions</span>
+          </a>
+        </li>
+      </ul>
+    </nz-sider>
+    <nz-layout>
+      <nz-header>
+        <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
+          (click)="isCollapsed = !isCollapsed"></span>
+      </nz-header>
+      <nz-content>
+        <router-outlet></router-outlet>
+      </nz-content>
+    </nz-layout>
+  </nz-layout>
