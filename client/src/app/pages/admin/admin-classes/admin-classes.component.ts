@@ -3,11 +3,8 @@ import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Service } from 'src/app/services/service';
 export interface Classes {
-  id: string;
+  _id: string;
   name: string;
-  mobile: string;
-  salary: string;
-  joiningDate: string;
 }
 @Component({
   selector: 'app-admin-classes',
@@ -18,8 +15,12 @@ export class AdminClassesComponent {
 
   isVisible = false;
 
-  classes: Classes[] = [ ];
-  constructor(private router: Router,private modal: NzModalService, private service: Service) {}
+  classes: Classes[] = [];
+  newClass: Partial<Classes> = {
+    name: '',
+  }
+
+  constructor(private router: Router, private modal: NzModalService, private service: Service) { }
   ngOnInit(): void {
     this.fetchClasses();
   }
@@ -28,32 +29,15 @@ export class AdminClassesComponent {
       .subscribe(
         response => {
           console.log(response)
-         this.classes = response.classes;
-         console.log(this.classes)
+          this.classes = response.classes;
+          console.log(this.classes)
         },
         error => {
           console.error('Error fetching classes:', error);
           // Handle error, show error message, etc.
         }
-        
+
       );
-  }
-
-  navigateToAdd() {
-    this.router.navigate(['/admin/add-teacher']); 
-  }
-
-  showDeleteConfirm(name: any): void {
-    this.modal.confirm({
-      nzTitle: `Are you sure remove ${name}?`,
-      // nzContent: '<b style="color: red;">Some descriptions</b>',
-      nzOkText: 'Yes',
-      nzOkType: 'primary',
-      nzOkDanger: true,
-      nzOnOk: () => console.log('OK'),
-      nzCancelText: 'No',
-      nzOnCancel: () => console.log('Cancel')
-    });
   }
   showModal(): void {
     this.isVisible = true;
@@ -61,12 +45,31 @@ export class AdminClassesComponent {
 
   handleOk(): void {
     console.log('Button ok clicked!');
+
+    this.service.createClass(this.newClass)
+      .subscribe(
+        response => {
+          console.log('Class created successfully:', response);
+          this.isVisible = false;
+          this.fetchClasses();
+          this.newClass = { name: '' };        },
+        error => {
+          console.error('Error creating class:', error);
+        }
+      )
+  
     this.isVisible = false;
   }
 
   handleCancel(): void {
     console.log('Button cancel clicked!');
     this.isVisible = false;
+  }
+
+  navigateToClassDetail(classDetail: Classes): void {
+    const className = encodeURIComponent(classDetail.name);
+    const classId = classDetail._id;
+    this.router.navigate([`/admin/class-detail/${className}`], { queryParams: { id: classId } });
   }
 }
 

@@ -1,17 +1,28 @@
-<!-- <div class="container">
-    <div class="header">
-        <h2>New Admission of Student In School</h2>
-    </div>
-    <div class="form" (ngSubmit)="addStudent()">
-        <input type="text" [(ngModel)]="student.Fname" placeholder="First Name">
-        <input type="text" [(ngModel)]="student.Lname" placeholder="Last Name">
-        <input type="text" [(ngModel)]="student.email" placeholder="Email">
-        <input type="text" [(ngModel)]="student.password" placeholder="Password">
-        <input type="text" [(ngModel)]="student.phone_No" placeholder="Phone No.">
-        <input type="text" [(ngModel)]="student.classId" placeholder="Class">
-        <input type="text" [(ngModel)]="student.roll_No" placeholder="Roll No">
+<div class="container">
+    <h2>Add Students</h2>
+    <form nz-form (submit)="addStudent()">
+        <div class="inputs">
+
+            <input placeholder="Roll No" type="text" [(ngModel)]="studentForm.roll_No" name="Roll No" required>
+
+            <input placeholder="First Name" type="text" [(ngModel)]="studentForm.Fname" name="First Name" required>
+
+
+            <input placeholder="Last Name" type="text" [(ngModel)]="studentForm.Lname" name="Last Name" required>
+
+            <input placeholder="Email" type="text" [(ngModel)]="studentForm.email" name="Email" required>
+
+            <input placeholder="Phone No" type="text" [(ngModel)]="studentForm.phone" name="Phone No" required>
+
+            <input placeholder="Password" type="text" [(ngModel)]="studentForm.password" name="Password" required>
+            <nz-date-picker [(ngModel)]="studentForm.DOB" name="DOB" required></nz-date-picker>
+
+            <input placeholder="Profile Photo" type="file" [(ngModel)]="studentForm.photo"
+                (change)="onFileChange($event)" required>
         </div>
-    <div class="button">
-        <button nz-button type="submit" nzType="primary">Submit</button>
-    </div>
-</div> -->
+
+        <div class="button">
+            <button type="submit" nz-button nzType="primary">Register</button>
+        </div>
+    </form>
+</div>

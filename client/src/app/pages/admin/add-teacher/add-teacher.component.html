@@ -1,16 +1,26 @@
 <div class="container">
-    <div class="header">
-        <h2>Hire New Teacher To School</h2>
-    </div>
-    <div class="form">
-        <input type="text" placeholder="First Name">
-        <input type="text" placeholder="Last Name">
-        <input type="text" placeholder="User Name">
-        <input type="text" placeholder="Password">
-        <input type="text" placeholder="Phone No.">
-        <input type="text" placeholder="Salary">
-    </div>
-    <div class="button">
-        <button nz-button nzType="primary">Hire</button>
-    </div>
+    <h2>Add Teacher</h2>
+    <form nz-form (submit)="addStudent()">
+        <div class="inputs">
+
+            <input placeholder="First Name" type="text" [(ngModel)]="teacherForm.Fname" name="First Name" required>
+
+
+            <input placeholder="Last Name" type="text" [(ngModel)]="teacherForm.Lname" name="Last Name" required>
+
+            <input placeholder="Email" type="text" [(ngModel)]="teacherForm.email" name="Email" required>
+
+            <input placeholder="Phone No" type="text" [(ngModel)]="teacherForm.phone" name="Phone No" required>
+
+            <input placeholder="Password" type="text" [(ngModel)]="teacherForm.password" name="Password" required>
+            <nz-date-picker [(ngModel)]="teacherForm.DOB" name="DOB" required></nz-date-picker>
+
+            <input placeholder="Profile Photo" type="file" [(ngModel)]="teacherForm.photo"
+                (change)="onFileChange($event)" required>
+        </div>
+        
+        <div class="button">
+            <button type="submit" nz-button nzType="primary">Register</button>
+        </div>
+    </form>
 </div>

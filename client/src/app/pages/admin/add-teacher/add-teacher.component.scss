@@ -3,23 +3,24 @@
     display: grid;
     gap: 20px;
     width: 100%;
-    border: 1px solid rgb(190, 187, 187);
+    // border: 1px solid rgb(190, 187, 187);
 }
 h2{
-    background: -webkit-linear-gradient(left, #0072ff, #8811c5);
+    background-color: #1F3F49;
     text-align: center;
     color: #ffffff;
     font-size: 17px;
     font-weight: 700;
     padding: 20px;
 }
-.form{
+::ng-deep .inputs{
     display: grid;
     grid-template-columns: 40% 40%;
     align-items: center;
     text-align: center;
     justify-content: center;
     gap: 5%;
+    height: 100%;
 }
 input{
     margin: 5px;

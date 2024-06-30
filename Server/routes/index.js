@@ -56,7 +56,9 @@ const { handlePostDiary ,
 const {handleCreateAttendence,
     getStudentsOfClass,
     getAttendenceByClass,
-    getAttendenceByDate} = require('../controllers/Teacher/attendence')
+    getAttendenceByDate,
+    getLeaveRequests,
+    handleRespondLeaveRequest} = require('../controllers/Teacher/attendence')
 
 const {handleCreateAssessment,
     handleAddAssesmentMarks,
@@ -73,7 +75,9 @@ const {handleGetDiary} = require('../controllers/Student/diary')
 const {handleStudentPostRemarks,
     handleGetRemarksByCourse} = require('../controllers/Student/remarks')
 
-const {getStudentAttendance} = require('../controllers/Student/attendence')   
+const {getStudentAttendance , 
+    handlePutLeave,
+    handleGetLeaveStatus} = require('../controllers/Student/attendence')   
 
 const {getStudentAssementByCourse} = require('../controllers/Student/assesment');
 
@@ -141,7 +145,7 @@ router.get('/admin/getClass/:id' , auth , checkAuth('Admin') , handleGetClassByI
 
 // 14 add course to class 
 
-router.post('/admin/addCourse' , auth  , checkAuth("Admin") , handleAddCourse)
+router.post('/admin/class/addCourse' , auth  , checkAuth("Admin") , handleAddCourse)
 
 // 15 remove course 
 
@@ -153,11 +157,11 @@ router.post('/admin/class/addTeacher' , auth , checkAuth("Admin") ,handleAddClas
 
 // 16 add students to class 
 
-router.post('/admin/addStudents' , auth , checkAuth("Admin") , handleAddStudents)
+router.post('/admin/class/addStudents' , auth , checkAuth("Admin") , handleAddStudents)
 
 // 17 remove Student 
 
-router.post('/admin/removeStudent/:id' , auth  , checkAuth("Admin") , handleRemoveStudent)
+router.post('/admin/class/removeStudent/:id' , auth  , checkAuth("Admin") , handleRemoveStudent)
 
 // 18 create course 
 
@@ -175,7 +179,7 @@ router.delete('/deleteCourse/:course_id' , auth  , checkAuth("Admin") , handleDe
 
 router.get('/admin/allCourses' , auth , checkAuth('Admin') , getAllCourses)
 
-// 22 get class by id  
+// 22 get course by id  
 
 router.get('/admin/getCourse/:id' , auth , checkAuth('Admin') , handleGetCourseById)
 
@@ -224,11 +228,19 @@ router.post('/teacher/course/diary/update/:dairy_id' , auth , checkAuth("Teacher
 
 // get all diaries posted bt teacher
 
-router.get('/teacher/dairies' , auth , checkAuth("Teacher"),handleGetAllDiaries)
+router.get('/teacher/dairies/:date' , auth , checkAuth("Teacher"),handleGetAllDiaries)
 
 // get students for attendence and others 
 
 router.get('/teacher/course/students' , auth , checkAuth("Teacher") , getStudentsOfClass)
+
+// get leaves requests 
+
+router.get('/teacher/leaves/:date' , auth , checkAuth("Teacher"), getLeaveRequests)
+
+//respond to leave request
+
+router.post('/teacher/leave' , auth , checkAuth("Teacher") , handleRespondLeaveRequest)
 
 // create attendence of specific class
 
@@ -273,6 +285,9 @@ router.post('/teacher/suggestion' , auth , checkAuth("Teacher") , handleCreateSu
 //  get suggestions posted by Teacher 
 
 router.get('/teacher/suggestion' , auth , checkAuth("Teacher") ,  getSuggestionsByUser)
+
+// start online meeting 
+
 
 
 
@@ -319,6 +334,16 @@ router.post('/suggestion' , auth , checkAuth("Student") , handleCreateSuggestion
 
 router.get('/suggestion' , auth , checkAuth("Student") ,  getSuggestionsByUser)
 
+// put leave request 
+
+router.post('/student/leave' , auth , checkAuth("Student"), handlePutLeave)
+
+// get leave status 
+
+router.get('/student/leave/:date', auth , checkAuth("Student"),handleGetLeaveStatus)
+
+
+
 
 
 
@@ -334,9 +359,10 @@ module.exports=router;
 
 
 // Admin side pending
-// update user
-// adding picture , other details
 // adding account
+// report 
+// Attendence
+// chalan
 // delete data after some time 
 
 
@@ -353,7 +379,7 @@ module.exports=router;
 // 8 chat                                   pending
 // 9 post diary                    tick
 //10 share notes                            pending
-//11 approve leave                          pending
+//11 approve leave                 tick        
 
 
 
@@ -368,6 +394,6 @@ module.exports=router;
 //6 live meeting
 //7 diary                          tick 
 //8 put suggestion                 tick
-//9 put leave
+//9 put leave                      tick
 //10 remarks                       tick
 //11 get notes

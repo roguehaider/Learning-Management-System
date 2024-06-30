@@ -1,0 +1,65 @@
+<div class="container">
+    <h2>{{className}}</h2>
+    <div class="details">
+        <div class="item">
+            <h3>Assigned Teacher:</h3>
+            <span>{{assignedTeacherName}}</span>
+            <span nz-icon nzType="edit" nzTheme="outline"></span>
+        </div>
+        <div class="item">
+            <h3>Total Students:</h3>
+            <span>{{totalStudents}}</span>
+        </div>
+        <div class="item">
+            <h3>Total Courses</h3>
+            <span>{{assignedTeacherId}}</span>
+        </div>
+    </div>
+    <div class="table">
+     
+        
+        <nz-table #basicTable [nzData]="studentDetails">
+            <thead>
+                <tr>
+                    <th>Roll No</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>DOB</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                    <td>{{ data.roll_No }}</td>       
+                    <td>{{ data.Fname }}</td>       
+                    <td>{{ data.Lname }}</td> 
+                    <td>{{ data.phone }}</td>
+                    <td>{{ data.email }}</td>
+                    <td>{{ formatTimestamp(data.DOB) }}</td>
+                    <!-- <td>
+                        <a style="font-size: 21px; color: green;" (click)="showModal(data)"><span nz-icon nzType="edit"
+                            nzTheme="outline"></span></a>
+                            <nz-modal [(nzVisible)]="isVisible" nzTitle="Update Student" (nzOnCancel)="handleCancel()"  (nzOnOk)="handleOk()" >
+                                <ng-container *nzModalContent>
+                                   <div class="form" style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;" >
+                                    <input type="text" [(ngModel)]="selectedStudent.roll_No" placeholder="Roll No" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                                    <input type="text" [(ngModel)]="selectedStudent.Fname" placeholder="First Name" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                                    <input type="text" [(ngModel)]="selectedStudent.Lname" placeholder="Last Name" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                                    <input type="text" [(ngModel)]="selectedStudent.phone" placeholder="Phone No" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                                     <input type="text" [(ngModel)]="selectedStudent.email" placeholder="Email" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                                     <nz-date-picker [(ngModel)]="selectedStudent.DOB"></nz-date-picker>
+                                    </div> 
+                                </ng-container>
+                              </nz-modal>
+                    </td> -->
+                    <td>
+                        <a style="font-size: 22px; color: red;" (click)="showDeleteConfirm(data)"><span nz-icon nzType="delete"
+                                nzTheme="fill"></span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

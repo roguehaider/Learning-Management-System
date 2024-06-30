@@ -1,8 +1,54 @@
-<div class="courses">
+<div class="buttons">
+  <Button style="background-color: #6AB187;" (click)="showModal()">Add Course<span nz-icon nzType="plus-circle"
+      nzTheme="fill"></span></Button>
+  <nz-modal [(nzVisible)]="isVisible" nzTitle="Add Course" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+    <ng-container *nzModalContent>
+      <div class="form"
+        style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;">
+        <input type="text" [(ngModel)]="newCourse.name" placeholder="Course Name"
+          style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+        <input type="text" [(ngModel)]="newCourse.description" placeholder="Description"
+          style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+        <div>
+          <label for="classId">Class</label>
+          <nz-select [(ngModel)]="newCourse.teacher_id" name="classId">
+            <nz-option *ngFor="let teacher of teachers" [nzValue]="teacher._id" [nzLabel]="teacher.Fname"></nz-option>
+          </nz-select>
+        </div>
+        </div>
+    </ng-container>
+  </nz-modal>
+</div>
+<h2>Courses</h2>
+<div class="container">
+  <div class="courses">
+    <div class="cards"  (click)="navigateToCourseDetail(course)" *ngFor="let course of courses">
+      <h3>{{ course.name }}</h3>
+    </div>
+  </div>
+
+</div>
+<!-- <div class="courses">
     <div class="container">
         <div class="buttons">
-            <Button style="background-color: #6AB187;" (click)="navigateToAdd()">Add Course<span nz-icon nzType="plus-circle"
+            <Button style="background-color: #6AB187;" (click)="showAddModal()">Add Course<span nz-icon nzType="plus-circle"
                     nzTheme="fill"></span></Button>
+                    <nz-modal [(nzVisible)]="isAddVisible" nzTitle="Add Course" (nzOnCancel)="handleAddCancel()" (nzOnOk)="handleAddOk()">
+                        <ng-container *nzModalContent>
+                          <div class="form" style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;">
+                            <input type="text" [(ngModel)]="newCourse.name" placeholder="Course Name" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                          </div>
+                          <div class="form" style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;">
+                            <input type="text" [(ngModel)]="newCourse.description" placeholder="Course Description" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                          </div>
+                          <div>
+                            <label for="classId">Class</label>
+                            <nz-select [(ngModel)]="newCourse.teacher_id" name="classId">
+                                <nz-option *ngFor="let teacher of teachers" [nzValue]="teacher" [nzLabel]="teacher.Fname"></nz-option>
+                            </nz-select>
+                        </div>
+                        </ng-container>
+                      </nz-modal>
         </div>
         <div class="table">
             <h2>Classes</h2>
@@ -39,4 +85,4 @@
             </nz-table>
         </div>
     </div>
-</div>
+</div> -->

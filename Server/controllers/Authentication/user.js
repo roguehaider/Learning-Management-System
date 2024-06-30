@@ -44,8 +44,8 @@ async function handleUserLogin(req , res , next){
     } catch (error) {
         return next(error)
     }
-    const accessToken = JWTService.signAccessToken({_id:user._id},'30m')
-    const refreshToken = JWTService.signRefreshToken({_id:user._id},'60m')
+    const accessToken = JWTService.signAccessToken({_id:user._id},'7d')
+    const refreshToken = JWTService.signRefreshToken({_id:user._id},'7d')
 
     //update refresh token
     try {
@@ -61,26 +61,26 @@ async function handleUserLogin(req , res , next){
     }
 
    res.cookie('accessToken',accessToken,{
-    maxAge:1000*60*60*24,
+    maxAge:1000*60*60*24*7,
     httpOnly:true
    })
    res.cookie('refreshToken',refreshToken,{
-    maxAge:1000*60*60*24,
+    maxAge:1000*60*60*24*7,
     httpOnly:true
    })
 
    if(user.role==="Student"){
     const userDto = new userDTO(user)
-    return res.status(200).json({user:userDto,auth:true, accessToken:accessToken, refreshToken:refreshToken })
+    return res.status(200).json({user:userDto,auth:true, accessToken: accessToken, refreshToken: refreshToken})
    }
    if(user.role==="Teacher"){
     const tUserDto = new tUserDTO(user);
-    return res.status(200).json({user:tUserDto,auth:true, accessToken:accessToken, refreshToken:refreshToken})
+    return res.status(200).json({user:tUserDto,auth:true, accessToken: accessToken, refreshToken: refreshToken})
    }
 
    const adminDto = new adminDTO(user);
 
-   return res.status(200).json({user:adminDto,auth:true, accessToken:accessToken, refreshToken:refreshToken})
+   return res.status(200).json({user:adminDto,auth:true, accessToken: accessToken, refreshToken: refreshToken})
 }
 async function handleUserLogout(req , res , next){
     const {refreshToken , accessToken} = req.cookies;

@@ -159,8 +159,15 @@ export class AuthService {
                 })
             );
     }
-
-
+    logout(user: any): Observable<any> {
+        const accessToken = localStorage.getItem('accessToken');
+        const refreshToken = localStorage.getItem('refreshToken');
+    
+        document.cookie = `accessToken=${accessToken}`;
+        document.cookie = `refreshToken=${refreshToken}`;
+       
+        return this.http.post<any>(`http://localhost:8000/logout`, user,  { withCredentials: true });
+      }
     getUserRole(): string | null {
         const userData = JSON.parse(localStorage.getItem('userData') || '{}');
         return userData.role || null;
@@ -174,20 +181,11 @@ export class AuthService {
         return userData || null;
     }
 
-    register(user: any): Observable<any> {
-        return this.http.post<any>(`${this.apiUrl}/admin/register`, user);
-    }
-
     getAccessToken(): string | null {
         return localStorage.getItem('accessToken');
     }
 
     getRefreshToken(): string | null {
         return localStorage.getItem('refreshToken');
-    }
-
-    logout(): void {
-        localStorage.removeItem('accessToken');
-        localStorage.removeItem('refreshToken');
     }
 }

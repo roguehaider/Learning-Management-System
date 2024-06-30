@@ -3,8 +3,7 @@
         <div class="buttons">
             <Button style="background-color: #6AB187;" (click)="navigateToAdd()">Add Student<span nz-icon nzType="plus-circle"
                     nzTheme="fill"></span></Button>
-            <!-- <Button style="background-color: #f0b255a4;"(click)="navigateToApprove()">Approve Students<span nz-icon nzType="check-circle"
-                    nzTheme="fill"></span> </Button> -->
+           
         </div>
         <div class="table">
             <h2>Students</h2>
@@ -28,7 +27,7 @@
                         <td>{{ data.Lname }}</td> 
                         <td>{{ data.phone }}</td>
                         <td>{{ data.email }}</td>
-                        <td>{{ data.DOB }}</td>
+                        <td>{{ formatTimestamp(data.DOB) }}</td>
                         <td>
                             <a style="font-size: 21px; color: green;" (click)="showModal(data)"><span nz-icon nzType="edit"
                                 nzTheme="outline"></span></a>
@@ -46,7 +45,7 @@
                                   </nz-modal>
                         </td>
                         <td>
-                            <a style="font-size: 22px; color: red;" (click)="showDeleteConfirm(data.Fname)"><span nz-icon nzType="delete"
+                            <a style="font-size: 22px; color: red;" (click)="showDeleteConfirm(data)"><span nz-icon nzType="delete"
                                     nzTheme="fill"></span></a>
                         </td>
                     </tr>

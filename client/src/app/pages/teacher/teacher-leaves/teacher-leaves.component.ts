@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
+import { Service } from 'src/app/services/service';
 export interface Leaves {
   key: string;
   name: string;
@@ -16,38 +17,33 @@ export class TeacherLeavesComponent {
 
   isVisible = false;
   confirmModal?: NzModalRef;
-  
-  leaves: Leaves[] = [
-    {
-      key: '1',
-      name: 'Student A',
-      class: 'Class 1',
-      reason: 'Sick Leave',
-      date: '21 June, 2024',
-    },
-    {
-      key: '3',
-      name: 'Student B',
-      class: 'Class 1',
-      reason: 'Vacation',
-      date: '21 June, 2024',
-    },
-    {
-      key: '3',
-      name: 'Student C',
-      class: 'Class 1',
-      reason: 'Sick Leave',
-      date: '22 June, 2024',
-    },
-  ];
+  dateFormat = 'yyyy/MM/dd';
 
-  constructor(private modal: NzModalService) {}
+  leaves: Leaves[] = [];
+  leaveDate: Partial<Leaves> = {
+  date:''
+  }
+
+  constructor(private modal: NzModalService, private service: Service) {}
+
+
+  fetchLeaveRequests(): void {
+    console.log(this.leaveDate)
+    this.service.getLeaveRequests(this.leaveDate.date).subscribe(
+      response => {
+        this.leaves = response.leaves;
+        console.log(response)
+      },
+      error => {
+        console.error('Error fetching leave requests:', error);
+      }
+    );
+  }
 
   showConfirm(): void {
     this.confirmModal = this.modal.confirm({
       nzTitle: `Do you Want to approve this leave?`,
       nzOkText: 'Approve',
-      // nzContent: 'When clicked the OK button, this dialog will be closed after 1 second',
       nzOnOk: () =>
         new Promise((resolve, reject) => {
           setTimeout(Math.random() > 0.5 ? resolve : reject, 1000);
@@ -58,7 +54,6 @@ export class TeacherLeavesComponent {
   showDeleteConfirm(): void {
     this.modal.confirm({
       nzTitle: `Are you sure remove this leave?`,
-      // nzContent: '<b style="color: red;">Some descriptions</b>',
       nzOkText: 'Yes',
       nzOkType: 'primary',
       nzOkDanger: true,

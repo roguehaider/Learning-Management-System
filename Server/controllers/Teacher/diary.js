@@ -93,15 +93,14 @@ async function handleGetAllDiaries(req , res , next){
 
     let diaries;
     let diaryDto = []
-
+    const {date} = req.params 
     try{   
 
         // Find diaries for the specific date and courses taught by the teacher
         diaries = await Diary.find({
             course_id: { $in: courseIds },
-            date: Date.now()
+            date: date
         }).populate('course_id');
-
     }
     catch (error){
         return next(error);

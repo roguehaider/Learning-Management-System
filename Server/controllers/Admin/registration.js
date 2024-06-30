@@ -245,7 +245,7 @@ async function handleUpdateStudent(req, res, next) {
                 email,
                 DOB,
                 phone,
-                photoPath:response.url
+                photoPath: response.url
             })
         }
         catch (error) {
@@ -291,7 +291,7 @@ async function handleUpdateTeacher(req, res, next) {
         return next(error)
     }
 
-    const hashedPassword = await bcrypt.hash(password, 10);
+    // const hashedPassword = await bcrypt.hash(password, 10);
 
     // 5 user updation 
     let user;
@@ -315,7 +315,7 @@ async function handleUpdateTeacher(req, res, next) {
                 email,
                 DOB,
                 phone,
-                photoPath:response.url
+                photoPath: response.url
             })
         }
         catch (error) {
