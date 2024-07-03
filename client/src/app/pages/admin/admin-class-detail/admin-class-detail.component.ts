@@ -73,7 +73,7 @@ export class AdminClassDetailComponent {
   fetchClassDetail(): void {
     this.service.getClassById(this.classId).subscribe(
       response => {
-        console.log(response)
+        console.log("det",response)
         this.classDetail = response.class;
         if (response.class.teacher_id) {
           this.assignedTeacherId = response.class.teacher_id;
@@ -163,26 +163,25 @@ export class AdminClassDetailComponent {
         this.studentDetails = [];
         this.listOfStudents = [];
 
-        // Check if the classDetail.students is empty
         if (this.classDetail.students.length === 0) {
           this.listOfStudents = allStudents;
         } else {
           allStudents.forEach((student: any) => {
+            console.log("all",student._id, this.classDetail.students)
             let found = false;
             this.classDetail.students.forEach((classStudentId: any) => {
               if (student._id === classStudentId) {
+
                 this.studentDetails.push(student);
                 found = true;
               }
             });
 
-            // Only add to listOfStudents if not found in classDetail.students
             if (!found) {
               this.listOfStudents.push(student);
             }
 
 
-            // Remove duplicates from studentDetails and listOfStudents
             this.studentDetails = Array.from(new Set(this.studentDetails.map(s => JSON.stringify(s)))).map(s => JSON.parse(s));
             this.listOfStudents = Array.from(new Set(this.listOfStudents.map(s => JSON.stringify(s)))).map(s => JSON.parse(s));
 
