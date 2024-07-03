@@ -15,7 +15,17 @@
 <div class="container">
     <div class="classes">
         <div class="cards" (click)="navigateToClassDetail(class)" *ngFor="let class of classes">
-            <h3>{{ class.name }}</h3>
+            <h3 >{{ class.name }}</h3>
+            <span style="width: 80%; background-color: #ccc; height: 2px;"></span>
+            <div class="actions">
+                <!-- <div class="edit">
+                    <span style="color: green; font-size: 23px;" nz-icon nzType="edit" nzTheme="outline"></span>
+                </div>
+                <span class="separator"></span> -->
+                <div class="delete">
+                    <span style="color: red; font-size: 21px;" (click)="showDeleteConfirm(class)" nz-icon nzType="delete" nzTheme="outline"></span>
+                </div>
+            </div>
         </div>
     </div>
 

@@ -8,6 +8,8 @@ export interface Courses {
   name: string;
   description: string;
   teacher_id: string;
+  class_id: string;
+
 }
 @Component({
   selector: 'app-admin-courses',
@@ -26,6 +28,12 @@ export class AdminCoursesComponent {
     name: '',
     description: '',
     teacher_id: ''
+  }
+  selectedCourse: Partial<Courses> = {
+    name: '',
+    description: '',
+    class_id: '',
+    teacher_id: '',
   }
   constructor(private router: Router,private modal: NzModalService, private service: Service) {}
   ngOnInit(): void {
@@ -52,14 +60,25 @@ export class AdminCoursesComponent {
     this.router.navigate(['/admin/add-teacher']); 
   }
 
-  showDeleteConfirm(name: any): void {
+  showDeleteConfirm(courseData: any): void {
     this.modal.confirm({
-      nzTitle: `Are you sure remove ${name}?`,
-      // nzContent: '<b style="color: red;">Some descriptions</b>',
+      nzTitle: `Are you sure remove ${courseData.name}?`,
       nzOkText: 'Yes',
       nzOkType: 'primary',
       nzOkDanger: true,
-      nzOnOk: () => console.log('OK'),
+      nzOnOk: () => {
+        console.log('Deleting user with ID:', courseData._id);  
+
+        this.service.deleteCourse(courseData._id).subscribe(
+          response => {
+            console.log('User deleted successfully', response);
+            this.fetchCourses();
+          },
+          error => {
+            console.error('Error deleting user', error);
+          }
+        );
+      },
       nzCancelText: 'No',
       nzOnCancel: () => console.log('Cancel')
     });
@@ -81,7 +100,7 @@ export class AdminCoursesComponent {
       );
   }
   showModal(): void {
-    this.isVisible = true;
+    this.isAddVisible = true;
   }
 
   handleOk(): void {
@@ -99,12 +118,12 @@ export class AdminCoursesComponent {
         }
       )
   
-    this.isVisible = false;
+    this.isAddVisible = false;
   }
 
   handleCancel(): void {
     console.log('Button cancel clicked!');
-    this.isVisible = false;
+    this.isAddVisible = false;
   }
 
   
@@ -112,6 +131,31 @@ export class AdminCoursesComponent {
     const courseName = encodeURIComponent(courseDetail.name);
     const courseId = courseDetail._id;
     this.router.navigate([`/admin/course-detail/${courseName}`], { queryParams: { id: courseId } });
+  }
+
+  showEditModal(courseData: any): void {
+    const { name, description, teacher_id, class_id } = courseData;
+    this.selectedCourse = { name, description, teacher_id, class_id};
+    this.isVisible = true;
+  }
+
+  handleEditOk(courseData: any): void {
+    this.service.updateCourse(this.newCourse, courseData._id)
+      .subscribe(
+        response => {
+          console.log('Course created successfully:', response);
+          this.isVisible = false;
+          },
+        error => {
+          console.error('Error creating course:', error);
+        }
+      )
+  
+    this.isVisible = false;
+  }
+  handleEditCancel(): void {
+    console.log('Button cancel clicked!');
+    this.isVisible = false;
   }
 
 }

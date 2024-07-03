@@ -71,5 +71,28 @@ export class AdminClassesComponent {
     const classId = classDetail._id;
     this.router.navigate([`/admin/class-detail/${className}`], { queryParams: { id: classId } });
   }
+  showDeleteConfirm(classData: any): void {
+    this.modal.confirm({
+      nzTitle: `Are you sure delete ${classData.name}?`,
+      nzOkText: 'Yes',
+      nzOkType: 'primary',
+      nzOkDanger: true,
+      nzOnOk: () => {
+        console.log('Deleting user with ID:', classData._id);  
+
+        this.service.deleteClass(classData._id).subscribe(
+          response => {
+            console.log('User deleted successfully', response);
+            this.fetchClasses();
+          },
+          error => {
+            console.error('Error deleting user', error);
+          }
+        );
+      },
+      nzCancelText: 'No',
+      nzOnCancel: () => console.log('Cancel')
+    });
+  }
 }
 

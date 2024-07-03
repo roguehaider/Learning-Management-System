@@ -149,7 +149,7 @@ router.post('/admin/class/addCourse' , auth  , checkAuth("Admin") , handleAddCou
 
 // 15 remove course 
 
-router.post('/admin/removeCourse/:id' , auth  , checkAuth("Admin") , handleRemoveCourse)
+router.post('/admin/class/removeCourse/:id' , auth  , checkAuth("Admin") , handleRemoveCourse)
 
 // add Class teacher to class
 
@@ -169,7 +169,7 @@ router.post('/admin/createCourse' , auth  , checkAuth("Admin") , handleCreateCou
 
 // 19 update course 
 
-router.get('/admin/updateCourse/:id' , auth  , checkAuth("Admin") , handleUpdateCourse)
+router.put('/admin/updateCourse/:id' , auth  , checkAuth("Admin") , handleUpdateCourse)
 
 // 20 delete course 
 
