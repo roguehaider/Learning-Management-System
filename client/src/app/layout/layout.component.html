@@ -42,7 +42,7 @@
       </li>
       <li nz-menu-item>
         <a routerLink="/admin/class">
-          <span nz-icon nzType="user" nzTheme="outline"></span>
+          <span nz-icon nzType="group" nzTheme="outline"></span>
           <span>Class</span>
         </a>
       </li>
@@ -71,7 +71,7 @@
       <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
         (click)="isCollapsed = !isCollapsed"></span>
       <div class="logo">School Management</div>
-      <button>Logout</button>
+      <button (click)="logout()">Logout</button>
     </nz-header>
     <nz-content>
       <router-outlet></router-outlet>

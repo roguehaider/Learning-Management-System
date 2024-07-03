@@ -11,6 +11,10 @@ const annoucementSchema = new Schema(
         type: String,
         required: true
     },
+    course_id: {
+      type: Schema.Types.ObjectId,
+      ref: 'Course',
+    },
   },
   { timestamps: true }
 );

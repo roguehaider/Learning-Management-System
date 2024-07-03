@@ -3,7 +3,7 @@ import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Service } from 'src/app/services/service';
 import { AuthService } from 'src/app/services/auth/auth.service';
-
+import { DatePipe } from '@angular/common';
 export interface Students {
   _id: string;
   Fname: string;
@@ -20,7 +20,9 @@ export interface Students {
 @Component({
   selector: 'app-admin-student',
   templateUrl: './admin-student.component.html',
-  styleUrls: ['./admin-student.component.scss']
+  styleUrls: ['./admin-student.component.scss'],
+  providers: [DatePipe]
+
 })
 export class AdminStudentComponent {
   date = null;
@@ -35,7 +37,7 @@ export class AdminStudentComponent {
     DOB: ''
   }
 
-  constructor(private router: Router, private modal: NzModalService, private service: Service, private authService:AuthService) {}
+  constructor(private router: Router, private modal: NzModalService, private service: Service, private authService:AuthService, private datePipe: DatePipe) {}
 
   ngOnInit(): void {
     this.authService.refreshToken();
@@ -77,20 +79,35 @@ export class AdminStudentComponent {
     this.router.navigate(['/admin/add-student']); 
   } 
 
-  showDeleteConfirm(name: any): void {
+  showDeleteConfirm(data: any): void {
     this.modal.confirm({
-      nzTitle: `Are you sure you want to remove ${name}?`,
+      nzTitle: `Are you sure you want to remove ${data.Fname}?`,
       nzOkText: 'Yes',
       nzOkType: 'primary',
       nzOkDanger: true,
-      nzOnOk: () => console.log('OK'),
+      nzOnOk: () => {
+        console.log('Deleting user with ID:', data._id);  // Log the user ID for debugging
+
+        // Make the HTTP request to delete the user
+        this.service.deleteUser(data._id).subscribe(
+          response => {
+            console.log('User deleted successfully', response);
+            // this.userId = '';  // Reset the user ID field
+            this.fetchStudents();
+          },
+          error => {
+            console.error('Error deleting user', error);
+          }
+        );
+      },
       nzCancelText: 'No',
       nzOnCancel: () => console.log('Cancel')
     });
   }
 
+  
+
   showModal(student: any): void {
-    // Exclude 'class' field and any other fields not required for update
     const { _id, Fname, Lname, roll_No, email, DOB, phone, role, password, photo } = student;
     this.selectedStudent = { _id, Fname, Lname, roll_No, email, DOB, phone, role, password, photo };
     this.isVisible = true;
@@ -106,4 +123,8 @@ export class AdminStudentComponent {
     console.log('Button cancel clicked!');
     this.isVisible = false;
   }
+  formatTimestamp(isoDate: any): any {
+    return this.datePipe.transform(isoDate, 'mediumDate');
+  }
+
 }

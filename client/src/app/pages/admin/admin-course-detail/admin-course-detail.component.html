@@ -1,0 +1,69 @@
+<div class="buttons">
+    <Button style="background-color: #6AB187;" (click)="showEditModal()">Update Course<span nz-icon nzType="plus-circle"
+        nzTheme="fill"></span>
+    
+        <nz-modal [(nzVisible)]="isVisible" nzTitle="Add Course" (nzOnCancel)="handleEditCancel()"
+        (nzOnOk)="handleEditOk()">
+        <ng-container *nzModalContent>
+            <div class="form" style="display: flex; flex-direction: column;">
+                <div class="modal-item">
+                    <p>Course:</p>
+                    <input nz-input placeholder="{{this.newCourse.name}}" [(ngModel)]="newCourse.name"  />
+                </div>
+                <div class="modal-item">
+                    <p>Description:</p>
+                    <input nz-input value="{{this.courseDetail.description}}" [(ngModel)]="newCourse.description" />
+                </div>
+                <div class="modal-item">
+                    <p>Class:</p>
+                    <nz-select [nzMaxTagPlaceholder]="tagPlaceHolder"
+                        nzPlaceHolder="Select Classes" [(ngModel)]="newCourse.class_id" style="width: 100%;">
+                        <nz-option *ngFor="let item of listOfClasses" [nzLabel]="item.name" [nzValue]="item._id"></nz-option>
+                    </nz-select>
+                    <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
+                </div>
+                
+                <div class="modal-item">
+                    <p>Class:</p>
+                    <nz-select [nzMaxTagPlaceholder]="tagPlaceHolder"
+                        nzPlaceHolder="Select Teacher" [(ngModel)]="newCourse.teacher_id" style="width: 100%;">
+                        <nz-option *ngFor="let item of listOfTeachers" [nzLabel]="item.Fname + ' ' + item.Lname" [nzValue]="item._id"></nz-option>
+                    </nz-select>
+                    <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more selected</ng-template>
+                </div>
+
+            </div>
+        </ng-container>
+    </nz-modal>
+</Button>
+    
+  </div>
+<div class="container">
+    <h2>{{courseName}}</h2>
+    <div class="details">
+        <div class="item">
+            <span nz-icon nzType="field-time" nzTheme="outline"></span> 
+            <h3>Created At</h3>
+            <span>{{formatTimestamp(this.courseDetail.createdAt)}}</span>
+        </div>
+        <div class="item">
+            <span nz-icon nzType="file-text" nzTheme="outline"></span>
+            <h3>Description</h3>
+            <span>{{this.courseDetail.description}}</span>
+        </div>
+        <div class="item">
+            <span nz-icon nzType="group" nzTheme="outline"></span>
+            <h3>Class:</h3>
+            <span *ngIf="this.assignedClassName">{{this.assignedClassName}}</span>
+            <span *ngIf="!this.assignedClassName">No Class</span>
+        </div>
+        
+        <div class="item">
+            <span nz-icon nzType="user" nzTheme="outline"></span>
+            <h3>Teacher:</h3>
+            <span *ngIf="this.assignedTeacherName">{{this.assignedTeacherName}}</span>
+            <span *ngIf="!this.assignedTeacherName">No Assigned Teacher</span>
+
+        </div>
+    </div>
+</div>

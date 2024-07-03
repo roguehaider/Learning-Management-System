@@ -27,25 +27,7 @@ export class AdminsignupComponent {
   role = 'Admin';
 
   constructor(private authService: AuthService) {}
-  register(): void {
-    const user = {
-      email: this.email,
-      password: this.password,
-      Fname: this.fname,
-      Lname: this.lname,
-      DOB: new Date(this.dob),
-      phone: this.phone,
-      role: this.role
-    };
-    this.authService.register(user).subscribe(
-      response => {
-        console.log('User registered:', response);
-      },
-      error => {
-        console.error('Error registering user:', error);
-      }
-    );
-  }
+ 
 
 
 

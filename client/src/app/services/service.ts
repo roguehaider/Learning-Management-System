@@ -18,17 +18,9 @@ export class Service {
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
 
-    // Set tokens as cookies
     document.cookie = `accessToken=${accessToken}`;
     document.cookie = `refreshToken=${refreshToken}`;
-    // const headers = new HttpHeaders({
-    //   'accessToken': `${localStorage.getItem('accessToken')}`
-    // });
-    // const headers = new HttpHeaders({
-    //   'Content-Type': 'application/json',
-    //   // 'Authorization': `Bearer ${accessToken}`
-    // });
-    // return this.http.get<any>(`${this.apiUrl}admin/getStudents`, { headers });
+
     return this.http.get<any>(`${this.apiUrl}admin/getStudents`, { withCredentials: true });
 
   }
@@ -37,7 +29,31 @@ export class Service {
     return this.http.put<any>(`${this.apiUrl}admin/students/update`, student, { withCredentials: true });
   }
 
-  addStudents(classId: string, studentIds: string[]): Observable<any> {
+
+  // router.post('/admin/class/addStudents' , auth , checkAuth("Admin") , handleAddStudents)
+  addStudentToClass(student: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.post<any>(`${this.apiUrl}admin/class/addStudents`, student, { withCredentials: true });
+  }
+
+
+  // admin/class/addTeacher ADD TEACHER TO CLASS
+  addTeacherToClass(teacher: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.post<any>(`${this.apiUrl}admin/class/addTeacher`, teacher, { withCredentials: true });
+  }
+
+
+  // router.post('/admin/class/removeStudent/:id' , auth  , checkAuth("Admin") , handleRemoveStudent)
+  deleteStudentFromClass(id: string) {
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
 
@@ -45,13 +61,93 @@ export class Service {
     document.cookie = `accessToken=${accessToken}`;
     document.cookie = `refreshToken=${refreshToken}`;
 
+    return this.http.post<any>(`${this.apiUrl}admin/class/removeStudent/${id}`, id, { withCredentials: true });
+  }
 
-    const body = {
-      class_id: classId,
-      students: studentIds
-    };
+  // admin/class/removeCourse/:id
+  deleteCourseFromClass(id: string) {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
 
-    return this.http.post<any>(`${this.apiUrl}/admin/addStudents`, body, { withCredentials: true });
+    // Set tokens as cookies
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+
+    return this.http.post<any>(`${this.apiUrl}admin/class/removeCourse/${id}`, id, { withCredentials: true });
+  }
+
+  createClass(classData: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+
+    return this.http.post(`${this.apiUrl}admin/createClass`, classData, { withCredentials: true });
+  }
+
+
+ //create course
+  createCourse(courseData: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+
+    return this.http.post(`${this.apiUrl}admin/createCourse`, courseData, { withCredentials: true });
+  }
+
+  // /admin/updateCourse/:id
+  updateCourse(courseData: any, id: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+
+    return this.http.put(`${this.apiUrl}admin/updateCourse/${id}`, courseData, { withCredentials: true });
+  }
+  // delete class
+  deleteClass(id: string) {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+
+    return this.http.delete<any>(`${this.apiUrl}admin/deleteClass/${id}`, { withCredentials: true });
+  }
+  // delete course
+  deleteCourse(id: string) {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+
+    return this.http.delete<any>(`${this.apiUrl}deleteCourse/${id}`, { withCredentials: true });
+  }
+  //register user
+  registerUser(student: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    // Set tokens as cookies
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+
+    return this.http.post<any>(`${this.apiUrl}admin/register`, student, { withCredentials: true });
+  }
+  deleteUser(id: string) {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    // Set tokens as cookies
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+
+    return this.http.delete<any>(`${this.apiUrl}admin/removeUser/${id}`, { withCredentials: true });
   }
 
   //admin teacher
@@ -65,6 +161,7 @@ export class Service {
     return this.http.get<any>(`${this.apiUrl}admin/getTeachers`, { withCredentials: true });
 
   }
+
   updateTeacher(teacher: any): Observable<any> {
     return this.http.put<any>(`${this.apiUrl}admin/teachers/update`, teacher, { withCredentials: true });
   }
@@ -78,7 +175,9 @@ export class Service {
     document.cookie = `refreshToken=${refreshToken}`;
     return this.http.get<any>(`${this.apiUrl}admin/getClasses`, { withCredentials: true });
   }
-
+  getClassById(id: string) {
+    return this.http.get<any>(`${this.apiUrl}admin/getClass/${id}`, { withCredentials: true });
+  }
   //admin courses
   getCourses(): Observable<any> {
     const accessToken = localStorage.getItem('accessToken');
@@ -88,7 +187,25 @@ export class Service {
     document.cookie = `refreshToken=${refreshToken}`;
     return this.http.get<any>(`${this.apiUrl}admin/allCourses`, { withCredentials: true });
   }
+  // router.post('/admin/class/addCourse' , auth  , checkAuth("Admin") , handleAddCourse)
+  addCourseInClass(courseData: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
 
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+
+    return this.http.post(`${this.apiUrl}admin/class/addCourse`, courseData, { withCredentials: true });
+  }
+  //admin course by id
+  getCourseById(id: string) {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.get<any>(`${this.apiUrl}admin/getCourse/${id}`, { withCredentials: true });
+  }
 
   //admin announcements
   getAnnouncements(): Observable<any> {
@@ -180,6 +297,16 @@ export class Service {
     document.cookie = `accessToken=${accessToken}`;
     document.cookie = `refreshToken=${refreshToken}`;
     return this.http.get<any>(`${this.apiUrl}teacher/attendence`, { withCredentials: true });
+  }
+
+  //teacher leaves
+  getLeaveRequests(date: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.get<any>(`${this.apiUrl}leaves/${date}`, { withCredentials: true });
   }
 
   // student------------------------------------------------------------------------------------------------------------------------------------

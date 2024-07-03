@@ -1,10 +1,8 @@
 <div class="teachers">
     <div class="container">
         <div class="buttons">
-            <Button style="background-color: #6AB187;" (click)="navigateToAdd()">Add Student<span nz-icon nzType="plus-circle"
+            <Button style="background-color: #6AB187;" (click)="navigateToAdd()">Add Teacher<span nz-icon nzType="plus-circle"
                     nzTheme="fill"></span></Button>
-            <!-- <Button style="background-color: #f0b255a4;"(click)="navigateToApprove()">Approve Students<span nz-icon nzType="check-circle"
-                    nzTheme="fill"></span> </Button> -->
         </div>
         <div class="table">
             <h2>Teachers</h2>
@@ -14,6 +12,8 @@
                         <th>Name</th>
                         <th>Last Name</th>
                         <th>Email</th>
+                        <th>Phone No</th>
+                        <th>Date of Birth</th>
                         <th>Update</th>
                         <th>Delete</th>
                     </tr>
@@ -23,21 +23,25 @@
                         <td>{{ data.Fname }}</td>
                         <td>{{ data.Lname }}</td>
                         <td>{{ data.email }}</td>
+                        <td>{{ data.phone }}</td>
+                        <td>{{ formatTimestamp(data.DOB) }}</td>
                         <td>
                             <a style="font-size: 21px; color: green;" (click)="showModal(data)"><span nz-icon nzType="edit"
                                     nzTheme="outline"></span></a>
-                                    <nz-modal [(nzVisible)]="isVisible" nzTitle="Update Student" (nzOnCancel)="handleCancel()"  (nzOnOk)="handleOk()" >
+                                    <nz-modal [(nzVisible)]="isVisible" nzTitle="Update Teacher" (nzOnCancel)="handleCancel()"  (nzOnOk)="handleOk()" >
                                         <ng-container *nzModalContent>
                                           <div class="form" style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;" >
                                             <input type="text" [(ngModel)]="selectedTeacher.Fname" placeholder="First Name" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
                                             <input type="text" [(ngModel)]="selectedTeacher.Lname" placeholder="Last Name" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                                            <input type="text" [(ngModel)]="selectedTeacher.phone" placeholder="Phone No" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
                                              <input type="text" [(ngModel)]="selectedTeacher.email" placeholder="Email" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                                             <nz-date-picker [(ngModel)]="selectedTeacher.DOB"></nz-date-picker>
                                             </div>
                                         </ng-container>
                                       </nz-modal>
                         </td>
                         <td>   
-                            <a style="font-size: 22px; color: red;" (click)="showDeleteConfirm(data.Fname)"><span nz-icon nzType="delete"
+                            <a style="font-size: 22px; color: red;" (click)="showDeleteConfirm(data)"><span nz-icon nzType="delete"
                                     nzTheme="fill"></span></a>
                         </td>
                     </tr>

@@ -3,7 +3,7 @@ class StudentDto{
         this._id=user._id,
         this.Fname=user.Fname,
         this.Lname=user.Lname,
-        this.roll_No =user.roll_No,
+        this.roll_No=user.roll_No,
         this.email=user.email,
         this.class=user.class_id?.name
         this.DOB = user.DOB,

@@ -1,27 +1,89 @@
-.courses {
+h2 {
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #1F3F49;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 0;
+}
+.classes {
     display: grid;
     align-items: center;
     text-align: center;
 }
 
-.container {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-    margin: 5px;
+.container{
+    width: 100%;
+    margin-top: 10px;
+    .classes{
+        display: grid;
+        grid-template-columns: 24% 24% 24% 24%;
+        gap: 20px;
+        align-items: center;
+    }
+    .cards{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 180px;
+        background-color: #47555a71;
+        border-radius: 8px;
+    }
+    h3{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        height: 150px;
+        font-weight: 500;
+        color: #ffffff;
+        font-size: 22px;
+        padding: 0px;
+       
+        border-radius: 7px;
+        text-align: center;
+    }
 }
-.buttons{
+.actions {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    padding: 10px;
+    margin-top: 10px;
+}
+.actions .separator {
+    width: 2px; /* Width of the separator line */
+    height: 25px; /* Height of the separator line */
+    background-color: #ccc;
+    margin: 0 10px; /* Adjust margin as needed */
+}
+::ng-deep nz-select {
+    width: 100%;
+}
+
+// h3:hover {
+//     transform: translateY(-2px);
+//     /* Move card up on hover */
+//     box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+//     
+// }
+
+.buttons {
     display: flex;
     flex-direction: row;
     gap: 10px;
     justify-content: right;
 }
+
 Button {
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 10px 30px;
-    border-radius: 10px; 
+    border-radius: 10px;
     border: transparent;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: #ffffff;
@@ -29,41 +91,16 @@ Button {
     font-family: sans-serif;
     font-weight: bold;
     margin-bottom: 5px;
-    span{
+
+    span {
         text-align: left;
         font-size: 20px;
     }
 }
-Button:hover{
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+
+Button:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     opacity: 0.9;
 
 }
 
-
-.table {
-    width: 100%;
-    border: 1px solid #1F3F49;
-    border-radius: 5px;
-
-    h2 {
-        font-size: 16px;
-        color: #ffffff;
-        background-color: #1F3F49;
-        width: 100%;
-        text-align: center;
-        padding: 5px;
-        border-radius: 4px 4px 0 0;
-        margin-bottom: 0;
-    }
-}
-
-::ng-deep nz-table{
-    padding: 1%;
-}
-
-::ng-deep .ant-table-thead>tr>th {
-    color: black;
-    background-color: #ffffff;
-    font-size: 14px;
-}

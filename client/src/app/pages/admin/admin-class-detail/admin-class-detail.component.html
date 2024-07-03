@@ -1,0 +1,146 @@
+<div class="container">
+    <h2>{{className}}</h2>
+    <div class="details">
+        <div class="item">
+            <h3>Assigned Teacher:</h3>
+            <ng-container *ngIf="assignedTeacherName; else addTeacherTemplate">
+                <span>{{ assignedTeacherName }}</span>
+            </ng-container>
+
+            <ng-template #addTeacherTemplate>
+                <button class="add-teacher" (click)="showAddTeacher()">
+                    <span>Add Teacher</span>
+                    <span style="width: 100%" nz-icon nzType="plus" nzTheme="outline" style="color: green;"></span>
+                </button>
+                <nz-modal [(nzVisible)]="isAddTeacherVisible" nzTitle="Add Teacher To Class"
+                    (nzOnCancel)="AddTeacherCancel()" (nzOnOk)="addTeacher()">
+                    <ng-container *nzModalContent>
+                        <div class="form">
+                            <div class="modal-item">
+                                <p>Class:</p>
+                                <input nz-input placeholder="{{className}}" [disabled]="true" />
+                            </div>
+                            <div class="modal-item">
+                                <p>Teachers:</p>
+                                <nz-select [(ngModel)]="selectedTeacher" nzAllowClear nzPlaceHolder="Select Teacher"
+                                    style="width: 100%;">
+                                    <nz-option *ngFor="let item of listOfTeachers" [nzValue]="item._id"
+                                        [nzLabel]="item.Fname + ' ' + item.Lname"></nz-option>
+                                </nz-select>
+                            </div>
+                        </div>
+                    </ng-container>
+                </nz-modal>
+            </ng-template>
+
+        </div>
+        <div class="item">
+            <h3>Total Students:</h3>
+            <span>{{totalStudents}}</span>
+        </div>
+        <div class="item">
+            <h3>Total Courses:</h3>
+            <span>{{ totalCourses }}</span>
+        </div>
+
+        <div class="courses" style="width: 100%;">
+            <div class="courses-header">
+                <h3>Courses:</h3>
+                <span nz-icon nzType="plus" nzTheme="outline" class="plus-icon" (click)="addCourseModel()"></span>
+
+                <nz-modal [(nzVisible)]="isAddCourseVisible" nzTitle="Add Course" (nzOnCancel)="addCourseCancel()"
+                    (nzOnOk)="addCourse()">
+                    <ng-container *nzModalContent>
+                        <div class="form" style="display: flex; flex-direction: column;">
+                            <div class="modal-item">
+                                <p>Class:</p>
+                                <input nz-input placeholder="{{className}}" [disabled]="true" />
+                            </div>
+                            <div class="modal-item">
+                                <p>Courses:</p>
+                                <nz-select [nzMaxTagCount]="3" [nzMaxTagPlaceholder]="tagPlaceHolder" nzMode="multiple"
+                                    nzPlaceHolder="Select Courses" [(ngModel)]="selectedCourses" style="width: 100%;">
+                                    <nz-option *ngFor="let item of listOfCourses" [nzLabel]="item.label"
+                                        [nzValue]="item.value"></nz-option>
+                                </nz-select>
+                                <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more
+                                    selected</ng-template>
+                            </div>
+
+                        </div>
+                    </ng-container>
+                </nz-modal>
+
+            </div>
+            <div class="course-list">
+                <div *ngFor="let course of courseDetails">
+                    <p style="cursor: pointer; margin-bottom: 5px; font-size: 16.5px; text-align: center;"
+                       (click)="toggleCourseActions(course)">{{ course.name }}</p>
+                    <div class="line" *ngIf="course.showActions"
+                         style="background-color: rgba(201, 197, 197, 0.692); height: 2px; width: 25px;"></div>
+                    <span nz-icon nzType="close" nzTheme="outline" style="font-size: 13px; color: red;"
+                          *ngIf="course.showActions" (click)="showClassDeleteConfirm(course)"></span>
+                </div>
+            </div>
+            
+
+        </div>
+
+    </div>
+    <div class="table">
+        <div class="buttons">
+            <Button style="background-color: #6AB187;" (click)="showModal()">Add Student to Class<span nz-icon
+                    nzType="plus-circle" nzTheme="fill"></span></Button>
+            <nz-modal [(nzVisible)]="isVisible" nzTitle="Add Students to Class" (nzOnCancel)="handleCancel()"
+                (nzOnOk)="addStudent()">
+                <ng-container *nzModalContent>
+                    <div class="form">
+                        <div class="modal-item">
+                            <p>Class:</p>
+                            <input nz-input placeholder="{{className}}" [disabled]="true" />
+                        </div>
+                        <div class="modal-item">
+                            <p>Students:</p>
+                            <nz-select [nzMaxTagCount]="3" [nzMaxTagPlaceholder]="tagPlaceHolder" nzMode="multiple"
+                                nzPlaceHolder="Please select" [(ngModel)]="listOfSelectedStudents" style="width: 100%;">
+                                <nz-option *ngFor="let item of listOfStudents" [nzLabel]="item.Fname + ' ' + item.Lname"
+                                    [nzValue]="item._id"></nz-option>
+                            </nz-select>
+                            <ng-template #tagPlaceHolder let-selectedList>and {{ selectedList.length }} more
+                                selected</ng-template>
+                        </div>
+                    </div>
+                </ng-container>
+            </nz-modal>
+
+        </div>
+
+        <nz-table #basicTable [nzData]="studentDetails">
+            <thead>
+                <tr>
+                    <th>Roll No</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Phone</th>
+                    <th>Email</th>
+                    <th>DOB</th>
+                    <th>Delete</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                    <td>{{ data.roll_No }}</td>
+                    <td>{{ data.Fname }}</td>
+                    <td>{{ data.Lname }}</td>
+                    <td>{{ data.phone }}</td>
+                    <td>{{ data.email }}</td>
+                    <td>{{ formatTimestamp(data.DOB) }}</td>
+                    <td>
+                        <a style="font-size: 22px; color: red;" (click)="showDeleteConfirm(data)"><span nz-icon
+                                nzType="delete" nzTheme="fill"></span></a>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

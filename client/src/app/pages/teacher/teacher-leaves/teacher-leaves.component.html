@@ -1,5 +1,6 @@
 <div class="table">
     <h2>Leaves</h2>
+    <nz-date-picker [nzFormat]="dateFormat"  [(ngModel)]="leaveDate.date" (ngModelChange)="fetchLeaveRequests()"></nz-date-picker>
     <nz-table #basicTable [nzData]="leaves">
         <thead>
             <tr>

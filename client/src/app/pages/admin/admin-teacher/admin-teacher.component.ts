@@ -3,17 +3,23 @@ import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { Service } from 'src/app/services/service';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { DatePipe } from '@angular/common';
+
 export interface Teachers {
   key: string;
   _id: string;
   Fname: string;
   Lname: string;
   email: string;
+  phone: string;
+  DOB: string;
+  role: string;
 }
 @Component({
   selector: 'app-admin-teacher',
   templateUrl: './admin-teacher.component.html',
-  styleUrls: ['./admin-teacher.component.scss']
+  styleUrls: ['./admin-teacher.component.scss'],
+  providers: [DatePipe]
 })
 export class AdminTeacherComponent {
   isVisible = false;
@@ -23,9 +29,13 @@ export class AdminTeacherComponent {
     Fname: '',
     Lname: '',
     email: '',
+    phone: '',
+    DOB: '',
+    role: ''
+
   }
 
-  constructor(private router: Router,private modal: NzModalService, private service: Service, private authService: AuthService) {}
+  constructor(private router: Router,private modal: NzModalService, private service: Service, private authService: AuthService, private datePipe: DatePipe) {}
   ngOnInit(): void {
     this.authService.refreshToken();
 
@@ -64,26 +74,36 @@ export class AdminTeacherComponent {
   navigateToApprove() {
     this.router.navigate(['/admin/approve-teacher']); 
   }
-  navigateToAdd() {
+  navigateToAdd(): void {
     this.router.navigate(['/admin/add-teacher']); 
   }
 
-  showDeleteConfirm(name: any): void {
+  showDeleteConfirm(data: any): void {
     this.modal.confirm({
-      nzTitle: `Are you sure remove ${name}?`,
-      // nzContent: '<b style="color: red;">Some descriptions</b>',
+      nzTitle: `Are you sure remove ${data.Fname}?`,
       nzOkText: 'Yes',
       nzOkType: 'primary',
       nzOkDanger: true,
-      nzOnOk: () => console.log('OK'),
+      nzOnOk: () =>{
+        console.log('Deleting user with ID:', data._id); 
+
+        this.service.deleteUser(data._id).subscribe(
+          response => {
+            console.log('User deleted successfully', response);
+            this.fetchTeachers();
+          },
+          error => {
+            console.error('Error deleting user', error);
+          }
+        );
+      },
       nzCancelText: 'No',
       nzOnCancel: () => console.log('Cancel')
     });
   }
   showModal(teacher: any): void {
-    // Exclude 'class' field and any other fields not required for update
-    const { _id, Fname, Lname, email,} = teacher;
-    this.selectedTeacher = { _id, Fname, Lname, email};
+    const { _id, Fname, Lname, email, phone, DOB, role} = teacher;
+    this.selectedTeacher = { _id, Fname, Lname, email, phone, DOB, role};
     this.isVisible = true;
   }
 
@@ -96,5 +116,8 @@ export class AdminTeacherComponent {
   handleCancel(): void {
     console.log('Button cancel clicked!');
     this.isVisible = false;
+  }
+  formatTimestamp(isoDate: any): any {
+    return this.datePipe.transform(isoDate, 'mediumDate');
   }
 }

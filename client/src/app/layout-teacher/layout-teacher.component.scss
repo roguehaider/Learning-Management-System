@@ -1,62 +1,86 @@
+nz-sider{
+  background-color: #1F3F49;
+}
+::ng-deep .ant-menu-dark.ant-menu-inline, .ant-menu-dark.ant-menu-vertical, .ant-menu-dark.ant-menu-vertical-left, .ant-menu-dark.ant-menu-vertical-right {
+  background-color: #1F3F49;
+}
 nz-content{
-    background-color: #ffffff;
-    padding: 2%;
-  }
-  .ant-layout{
-    min-height: 100vh;
-  }
-  .trigger {
-    font-size: 18px;
-    line-height: 64px;
-    padding: 0 24px;
-    cursor: pointer;
-    transition: color 0.3s;
-  }
-  
-  .trigger:hover {
-    color: #1890ff;
-  }
-  
-  .logo {
-    display: grid;
-    height: 32px;
-    background: rgba(255, 255, 255, 0.2);
-    margin: 16px;
+  background-color: #ffffff;
+  padding: 2%;
+}
+.ant-layout{
+  min-height: 100vh;
+}
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+Button{
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  color: red;
+  font-weight: 600;
+  border: transparent;
+  background-color: #ffffff;
+  height: 50%;
+  margin-right: 16px; 
+  float: right;
+}
+
+.logo {
+  display: grid;
+  height: 32px;
+  background: rgba(255, 255, 255, 0.2);
+  margin: 16px;
+  font-size: 12px;
+  font-weight: 600;
+  color: #ffffff;
+  text-align: center;
+  align-items: center;
+}
+
+nz-header {
+  display: grid;
+  grid-template-columns: 5% 80% 25%;
+  align-items: center;
+  width: 100%;
+  background: #fff;
+  padding: 0;
+}
+
+nz-content {
+  margin: 16px;
+}
+
+.inner-content {
+  margin: 10%;
+  padding: 24px;
+  background: #fff;
+  min-height: 360px;
+}
+
+.profile{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  h2{
+    padding: 5px;
+    font-weight: 500;
     color: #ffffff;
-    text-align: center;
-    align-items: center;
   }
-  
-  nz-header {
-    background: #fff;
-    padding: 0;
+  img{
+    width: 110px;
   }
-  
-  nz-content {
-    margin: 16px;
-  }
-  
-  .inner-content {
-    margin: 10%;
-    padding: 24px;
-    background: #fff;
-    min-height: 360px;
-  }
-  
-  .profile{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    h2{
-      padding: 5px;
-      font-weight: 500;
-      color: #ffffff;
-    }
-    img{
-      width: 110px;
-    }
-  }
-  .hidden {
-    display: none;
-  }
-  
+}
+.hidden {
+  display: none;
+}

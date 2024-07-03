@@ -15,12 +15,11 @@ async function handleCreateAnnounce(req , res , next){
     if(error){
         return next(error)
     }
-
     let newAnnouncement;
     try {
         newAnnouncement = new Announcements({
             title,
-            description
+            description,
         })
 
         await newAnnouncement.save()
@@ -28,7 +27,7 @@ async function handleCreateAnnounce(req , res , next){
         return next(error)
     }
 
-    //const blogDto = new blogDTO(newBlog);
+    
 
     res.status(201).json({announcement:newAnnouncement})
 
@@ -43,7 +42,8 @@ async function getAllAnnounce(req , res , next){
         announcementsArr.push(announcements[i]);
     }
     return res.status(200).json({announcements:announcementsArr})
-    } catch (error) {
+    } 
+    catch (error) {
         return next(error)
     }
     

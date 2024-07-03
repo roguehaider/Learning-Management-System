@@ -47,6 +47,8 @@ import { LayoutStudentComponent } from "./layout-student/layout-student.componen
 import { StudentAnnouncementsComponent } from "./pages/student/student-announcements/student-announcements.component";
 import { StudentCoursesComponent } from "./pages/student/student-courses/student-courses.component";
 import { StudentGiveRemarksComponent } from "./pages/student/student-give-remarks/student-give-remarks.component";
+import { AdminClassDetailComponent } from "./pages/admin/admin-class-detail/admin-class-detail.component";
+import { AdminCourseDetailComponent } from "./pages/admin/admin-course-detail/admin-course-detail.component";
 const routes: Routes = [
   {
     path: "admin",
@@ -56,7 +58,9 @@ const routes: Routes = [
       { path: "student", component: AdminStudentComponent, canActivate: [AuthGuard], data: { expectedRole: 'Admin' }  },
       { path: "teacher", component: AdminTeacherComponent, canActivate: [AuthGuard], data: { expectedRole: 'Admin' }  },
       { path: "class", component: AdminClassesComponent, canActivate: [AuthGuard], data: { expectedRole: 'Admin' }  },
+      { path: "class-detail/:name", component: AdminClassDetailComponent, canActivate: [AuthGuard], data: { expectedRole: 'Admin' }  },
       { path: "courses", component: AdminCoursesComponent, canActivate: [AuthGuard], data: { expectedRole: 'Admin' }  },
+      { path: "course-detail/:name", component: AdminCourseDetailComponent, canActivate: [AuthGuard], data: { expectedRole: 'Admin' }  },
       { path: "announcements", component: AdminAnnouncementsComponent, canActivate: [AuthGuard], data: { expectedRole: 'Admin' }  },
       { path: "suggestions", component: AdminSuggestionsComponent, canActivate: [AuthGuard], data: { expectedRole: 'Admin' }  },
       { path: "add-teacher", component: AddTeacherComponent, canActivate: [AuthGuard], data: { expectedRole: 'Admin' }  },

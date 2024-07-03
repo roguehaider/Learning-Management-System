@@ -29,9 +29,6 @@ const auth = async(req , res , next)=>{
         return next(error)
     }
 
-    //const userDto=new userDTO(user);
-
-    //req.user=userDto
 
     req.user = user
 
