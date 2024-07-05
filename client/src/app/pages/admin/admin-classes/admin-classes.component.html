@@ -5,7 +5,7 @@
         <ng-container *nzModalContent>
             <div class="form"
             style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;">
-            <input type="text" [(ngModel)]="newClass.name" placeholder="Course Name"
+            <input type="text" [(ngModel)]="newClass.name" placeholder="Class Name"
                 style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
         </div>
         </ng-container>
@@ -15,7 +15,7 @@
 <div class="container">
     <div class="classes">
         <div class="cards" (click)="navigateToClassDetail(class)" *ngFor="let class of classes">
-            <h3 >{{ class.name }}</h3>
+            <h3>{{ class.name }}</h3>
             <span style="width: 80%; background-color: #ccc; height: 2px;"></span>
             <div class="actions">
                 <!-- <div class="edit">
@@ -23,7 +23,7 @@
                 </div>
                 <span class="separator"></span> -->
                 <div class="delete">
-                    <span style="color: red; font-size: 21px;" (click)="showDeleteConfirm(class)" nz-icon nzType="delete" nzTheme="outline"></span>
+                    <span style="color: red; font-size: 21px;" (click)="showDeleteConfirm($event, class)" nz-icon nzType="delete" nzTheme="outline"></span>
                 </div>
             </div>
         </div>
