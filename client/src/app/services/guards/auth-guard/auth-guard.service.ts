@@ -1,51 +1,3 @@
-// import { Injectable } from "@angular/core";
-// import {
-//   ActivatedRouteSnapshot,
-//   CanActivate,
-//   RouterStateSnapshot,
-//   UrlTree,
-//   Router,
-// } from "@angular/router";
-// import { Observable } from "rxjs";
-// import { AuthService } from "../../auth/auth.service";
-
-// @Injectable({
-//   providedIn: "root",
-// })
-// export class AuthGuardService implements CanActivate {
-//   constructor(public authService: AuthService, public router: Router) {}
-
-//   canActivate(
-//     next: ActivatedRouteSnapshot,
-//     state: RouterStateSnapshot
-//   ):
-//     | Observable<boolean | UrlTree>
-//     | Promise<boolean | UrlTree>
-//     | boolean
-//     | UrlTree {
-//     let url: string = state.url;
-//     return this.checkUserLogin(next, url);
-//   }
-
-//   checkUserLogin(route: ActivatedRouteSnapshot, url: any): boolean {
-
-//     if (this.authService.isLoggedIn) {
-//       const userRole = this.authService.getRole();
-//       if (route.data["role"] && route.data["role"].indexOf(userRole) === -1) {
-//         this.router.navigate(["login"]);
-//         localStorage.removeItem("user");
-//         return false;
-//       }
-//       return true;
-//     }
-
-//     this.router.navigate(["login"]);
-//     return false;
-//   }
-// }
-
-// src/app/auth.guard.ts
-
 import { Injectable } from '@angular/core';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, Router } from '@angular/router';
 import { Observable } from 'rxjs';
@@ -79,6 +31,17 @@ export class AuthGuard implements CanActivate {
         return false;
       }
 
-
+      canAttendanceActivate(
+        next: ActivatedRouteSnapshot,
+        state: RouterStateSnapshot
+      ): Observable<boolean> | Promise<boolean> | boolean {
+        const user = this.authService.getUserDetails(); // Implement getUserDetails in AuthService
+        if (user && user.IsClassTeacher) {
+          return true;
+        }
+        // Redirect to a not authorized page or login page
+        this.router.navigate(['/not-authorized']);
+        return false;
+      }
 }
 

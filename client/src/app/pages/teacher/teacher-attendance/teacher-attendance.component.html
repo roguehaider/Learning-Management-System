@@ -1,9 +1,21 @@
 <div class="container">
-    <nz-select ngModel="lucy">
-        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-        <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
-        <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
-    </nz-select>
+    <div class="top">
+        <div class="item">
+            <p>Select Course: </p>
+            <nz-select ngModel="lucy" nzPlaceHolder="Select Course">
+                <nz-option *ngFor="let item of courses" [nzValue]="item._id"
+                [nzLabel]="item.name"></nz-option>
+            </nz-select>
+        </div>
+      
+        <div class="item">
+            <p>Select Date:</p>
+            <nz-date-picker [nzFormat]="dateFormat"></nz-date-picker>
+        </div>
+
+    </div>
+  
+
     <div class="table">
         <h2>Attendance</h2>
         <nz-table #basicTable [nzData]="attendance">
@@ -11,10 +23,10 @@
                 <tr>
                     <th>Date</th>
                     <th>Name</th>
-                    <th>Class</th>
-                    <th>Reason</th>
-                    <th>Approve</th>
-                    <th>Delete</th>
+                    <th>Roll No</th>
+                    <th>P</th>
+                    <th>L</th>
+                    <th>A</th>
                 </tr>
             </thead>
             <tbody>

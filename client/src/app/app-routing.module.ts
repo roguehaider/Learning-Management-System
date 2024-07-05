@@ -49,6 +49,7 @@ import { StudentCoursesComponent } from "./pages/student/student-courses/student
 import { StudentGiveRemarksComponent } from "./pages/student/student-give-remarks/student-give-remarks.component";
 import { AdminClassDetailComponent } from "./pages/admin/admin-class-detail/admin-class-detail.component";
 import { AdminCourseDetailComponent } from "./pages/admin/admin-course-detail/admin-course-detail.component";
+import { StudentLeavesComponent } from "./pages/student/student-leaves/student-leaves.component";
 const routes: Routes = [
   {
     path: "admin",
@@ -122,6 +123,7 @@ const routes: Routes = [
       { path: "announcements", component: StudentAnnouncementsComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
       { path: "courses", component: StudentCoursesComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
       { path: "remarks", component: StudentGiveRemarksComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
+      { path: "leaves", component: StudentLeavesComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
 
     ],
   },

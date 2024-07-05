@@ -5,7 +5,7 @@ class userDto{
         this.Lname=user.Lname,
         this.roll_No=user.roll_No,
         this.role=user.role,
-        this.className = user.class_id.name,
+        this.className = user.class_id?.name,
         this.email=user.email
     }
 }

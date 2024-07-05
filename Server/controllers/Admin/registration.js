@@ -18,7 +18,7 @@ cloudinary.config({
 
 async function handleUserRegister(req, res, next) {
 
-    const { id, role, roll_No, Fname, Lname, email, password, DOB, phone, photo } = req.body;
+    const { id, role, roll_No, Fname, Lname, email, password, DOB, phone, photo ,Studentfee } = req.body;
 
     // 1 validate user input
     const userRegisterSchema = Joi.object({
@@ -31,7 +31,8 @@ async function handleUserRegister(req, res, next) {
         password: Joi.string().pattern(passwordPattern).required(),
         DOB: Joi.date().iso().required(),
         phone: Joi.string().max(15).required(),
-        photo: Joi.string()
+        photo: Joi.string(),
+        Studentfee:Joi.number()
 
     })
     const { error } = userRegisterSchema.validate(req.body)
@@ -90,7 +91,8 @@ async function handleUserRegister(req, res, next) {
                 password: hashedPassword,
                 DOB,
                 phone,
-                photoPath: response.url
+                photoPath: response.url,
+                Studentfee
             })
             user = await userToRegister.save();
 
@@ -200,7 +202,7 @@ async function handleGetTeachers(req, res, next) {
 }
 
 async function handleUpdateStudent(req, res, next) {
-    const { _id, role, roll_No, Fname, Lname, email, DOB, phone, photo } = req.body;
+    const { _id, role, roll_No, Fname, Lname, email, DOB, phone, photo,Studentfee } = req.body;
 
     // 1 validate user input
     const userRegisterSchema = Joi.object({
@@ -212,7 +214,8 @@ async function handleUpdateStudent(req, res, next) {
         email: Joi.string().email().required(),
         DOB: Joi.date().iso().required(),
         phone: Joi.string().max(15).required(),
-        photo: Joi.string()
+        photo: Joi.string(),
+        Studentfee:Joi.number()
 
     })
     const { error } = userRegisterSchema.validate(req.body)
@@ -245,7 +248,7 @@ async function handleUpdateStudent(req, res, next) {
                 email,
                 DOB,
                 phone,
-                photoPath: response.url
+                photoPath: response.url,
             })
         }
         catch (error) {
@@ -261,7 +264,9 @@ async function handleUpdateStudent(req, res, next) {
                 role,
                 email,
                 DOB,
-                phone
+                phone,
+                Studentfee
+
             })
         }
         catch (error) {
@@ -291,7 +296,6 @@ async function handleUpdateTeacher(req, res, next) {
         return next(error)
     }
 
-    // const hashedPassword = await bcrypt.hash(password, 10);
 
     // 5 user updation 
     let user;

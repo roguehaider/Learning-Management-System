@@ -187,6 +187,7 @@ async function getAttendenceByDate(req , res , next){
     return res.status(200).json({attendence:AttendenceDTO})    
     
 }
+
 module.exports={
     handleCreateAttendence,
     getAttendenceByClass,

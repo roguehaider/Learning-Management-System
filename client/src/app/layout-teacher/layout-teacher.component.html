@@ -24,7 +24,7 @@
             <span style="margin-left: 10px">Courses</span>
           </a>
         </li>
-        <li nz-menu-item>
+        <li nz-menu-item [routerLinkActive]="'active'"  *ngIf="user?.IsClassTeacher">
           <a routerLink="/teacher/attendance">
           <span nz-icon nzType="idcard" nzTheme="outline"></span>
           <span>Attendance</span>
@@ -36,7 +36,7 @@
             <span>Leave</span>
         </a>
         </li>
-        <li nz-menu-item [routerLinkActive]="'active'">
+        <li nz-menu-item [routerLinkActive]="'active'"  >
           <a routerLink="/teacher/diary">
             <span nz-icon nzType="unordered-list" nzTheme="outline"></span>
             <span style="margin-left: 10px">Diary</span>

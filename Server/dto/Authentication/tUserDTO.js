@@ -5,9 +5,9 @@ class tUserDto{
         this.Lname=user.Lname,
         this.id=user.id,
         this.role=user.role,
-        this.className = user.class_id.name,
-        this.email=user.email
-        
+        this.className = user.class_id?.name,
+        this.email=user.email,
+        this.IsClassTeacher=user.IsClassTeacher
     }
 }
 module.exports=tUserDto

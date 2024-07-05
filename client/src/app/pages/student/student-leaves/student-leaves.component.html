@@ -1,0 +1,19 @@
+<div class="container">
+    <div class="buttons">
+        <Button style="background-color: #6AB187;" (click)="showModal()">Add Leave Request<span nz-icon
+                nzType="plus-circle" nzTheme="fill"></span></Button>
+        <nz-modal [(nzVisible)]="isVisible" nzTitle="Add Leave Request" (nzOnCancel)="handleCancel()"
+            (nzOnOk)="handleOk()">
+            <ng-container *nzModalContent>
+                <div class="form"
+                    style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;">
+                    <nz-date-picker [(ngModel)]="leaveReq.date"></nz-date-picker>
+                    <input type="text" [(ngModel)]="leaveReq.description" placeholder="Description"
+                        style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                </div>
+            </ng-container>
+        </nz-modal>
+        <div class="table">
+            <nz-date-picker [(ngModel)]="viewleaveDate" (ngModelChange)="fetchLeaves()"></nz-date-picker>
+        </div>
+    </div>

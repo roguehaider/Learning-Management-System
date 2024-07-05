@@ -10,6 +10,8 @@ import { Router } from '@angular/router';
 export class LayoutTeacherComponent {
   isCollapsed = false;
   userName =this.authService.getUserName();
+  user = this.authService.getUserDetails();
+
   constructor(private authService: AuthService, private router: Router){ }
   
   logout() {

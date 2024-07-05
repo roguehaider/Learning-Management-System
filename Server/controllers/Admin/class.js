@@ -62,6 +62,14 @@ async function handleAddClassTeacher(req , res , next){
     catch (error) {
         return next(error)
     }
+    try {
+        await User.updateOne({_id:teacher_id},{
+            IsClassTeacher:true
+        })
+    }
+    catch (error) {
+        return next(error)
+    }
 
     return res.status(201).json({message:"Teacher added"})
 

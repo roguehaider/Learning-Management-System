@@ -81,6 +81,10 @@ const {getStudentAttendance ,
 
 const {getStudentAssementByCourse} = require('../controllers/Student/assesment');
 
+const {handleGetChallan} = require('../controllers/Student/challan');
+
+// const { handleResult } = require('../controllers/Student/result');
+
 const router = express.Router();
 
 router.get('/' , (req , res)=>{
@@ -230,10 +234,6 @@ router.post('/teacher/course/diary/update/:dairy_id' , auth , checkAuth("Teacher
 
 router.get('/teacher/dairies/:date' , auth , checkAuth("Teacher"),handleGetAllDiaries)
 
-// get students for attendence and others 
-
-router.get('/teacher/course/students' , auth , checkAuth("Teacher") , getStudentsOfClass)
-
 // get leaves requests 
 
 router.get('/teacher/leaves/:date' , auth , checkAuth("Teacher"), getLeaveRequests)
@@ -241,6 +241,10 @@ router.get('/teacher/leaves/:date' , auth , checkAuth("Teacher"), getLeaveReques
 //respond to leave request
 
 router.post('/teacher/leave' , auth , checkAuth("Teacher") , handleRespondLeaveRequest)
+
+// get students for attendence and others 
+
+router.get('/teacher/course/students' , auth , checkAuth("Teacher") , getStudentsOfClass)
 
 // create attendence of specific class
 
@@ -286,7 +290,6 @@ router.post('/teacher/suggestion' , auth , checkAuth("Teacher") , handleCreateSu
 
 router.get('/teacher/suggestion' , auth , checkAuth("Teacher") ,  getSuggestionsByUser)
 
-// start online meeting 
 
 
 
@@ -342,10 +345,9 @@ router.post('/student/leave' , auth , checkAuth("Student"), handlePutLeave)
 
 router.get('/student/leave/:date', auth , checkAuth("Student"),handleGetLeaveStatus)
 
+// get challan 
 
-
-
-
+router.get('/student/challan' , auth , checkAuth("Student") ,handleGetChallan)
 
 module.exports=router;
 
@@ -364,6 +366,7 @@ module.exports=router;
 // Attendence
 // chalan
 // delete data after some time 
+
 
 
 
@@ -397,3 +400,15 @@ module.exports=router;
 //9 put leave                      tick
 //10 remarks                       tick
 //11 get notes
+
+
+// result api 
+// class teacher                  tick
+// chat
+// meeting
+// challan                        tick
+
+
+
+
+
