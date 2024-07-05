@@ -1,13 +1,14 @@
-import { Component } from '@angular/core';
-import { Students } from '../admin-student/admin-student.component';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Service } from 'src/app/services/service';
-import { Router } from '@angular/router';
-import { Classes } from '../admin-attendance/admin-attendance.component';
+import { Component } from "@angular/core";
+import { Students } from "../admin-student/admin-student.component";
+import { FormBuilder, Validators } from "@angular/forms";
+import { Service } from "src/app/services/service";
+import { Router } from "@angular/router";
+import { Classes } from "../admin-attendance/admin-attendance.component";
+import { ToastService } from "src/app/utils/toast.service";
 @Component({
-  selector: 'app-add-student',
-  templateUrl: './add-student.component.html',
-  styleUrls: ['./add-student.component.scss']
+  selector: "app-add-student",
+  templateUrl: "./add-student.component.html",
+  styleUrls: ["./add-student.component.scss"],
 })
 export class AddStudentComponent {
   selectedFile: File | null = null;
@@ -18,19 +19,24 @@ export class AddStudentComponent {
 
   // studentForm: any;
   studentForm: any = {
-    roll_No: '',
-    Fname: '',
-    Lname: '',
+    roll_No: "",
+    Fname: "",
+    Lname: "",
     DOB: null,
-    email: '',
-    phone: '',
-    role:'',
-    password: '',
-    photo: ''
+    email: "",
+    phone: "",
+    role: "",
+    password: "",
+    photo: "",
   };
 
   classId: any;
-  constructor(private fb: FormBuilder, private service: Service, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private toastService: ToastService,
+    private service: Service,
+    private router: Router
+  ) {
     this.fetchClasses();
     // this.studentForm = this.fb.group({
     //   Fname: ['', [Validators.required]],
@@ -44,34 +50,36 @@ export class AddStudentComponent {
     // });
   }
   fetchClasses() {
-    this.service.getClasses()
-      .subscribe(
-        response => {
-          console.log(response)
-          this.classes = response.classes;
-          console.log(this.classes)
-        },
-        error => {
-          console.error('Error fetching classes:', error);
-        }
-
-      );
+    this.service.getClasses().subscribe(
+      (response) => {
+        console.log(response);
+        this.classes = response.classes;
+        console.log(this.classes);
+      },
+      (error) => {
+        console.error("Error fetching classes:", error);
+      }
+    );
   }
   addStudent() {
-    this.studentForm.role= 'Student'
-    console.log(this.studentForm)
-    this.service.registerUser(this.studentForm)
-      .subscribe(
-        response => {
-          console.log('Students added successfully:', response);
-          this.router.navigate(['/admin/student']);
-        },
-        error => {
-          console.error('Error adding students:', error);
-        }
-      );
+    this.studentForm.role = "Student";
+    console.log(this.studentForm);
+    this.service.registerUser(this.studentForm).subscribe(
+      (response) => {
+        console.log("Students added successfully:", response);
+        this.toastService.showToast("success", "Students Added Successfully!");
+        this.router.navigate(["/admin/student"]);
+      },
+      (error) => {
+        console.error("Error adding students:", error);
+        const errorMessage = error.message
+          ? error.message
+          : "An error occurred";
+        this.toastService.showToast("error", errorMessage);
+      }
+    );
   }
-   onFileChange(event: any): void {
+  onFileChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
       this.convertFileToBase64(file);
@@ -82,11 +90,8 @@ export class AddStudentComponent {
     const reader = new FileReader();
     reader.onload = () => {
       this.base64String = reader.result as string;
-      this.studentForm.photo = this.base64String; 
+      this.studentForm.photo = this.base64String;
     };
     reader.readAsDataURL(photo);
   }
-
 }
-
-

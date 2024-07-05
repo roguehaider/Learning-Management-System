@@ -46,9 +46,10 @@
               nzType="error"
               nzCloseable
               [nzMessage]="formatTimestamp(announcement.createdAt) + ' || ' + announcement.title"
-              nzDescription=`${announcement.description}`
+              [nzDescription]="announcement.description"
             ></nz-alert>
           </ng-container>
+          
           
     </div>
 </div>

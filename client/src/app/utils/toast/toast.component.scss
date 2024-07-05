@@ -1,0 +1,27 @@
+.toast {
+  position: fixed;
+  top: 20px; /* Adjust this value to change the distance from the top */
+  right: 20px; /* Adjust this value to change the distance from the right */
+  padding: 10px;
+  margin: 10px;
+  border-radius: 5px;
+  color: #fff;
+  opacity: 0.9;
+  z-index: 1000;
+}
+
+.toast.success {
+  background-color: #28a745;
+}
+
+.toast.error {
+  background-color: #dc3545;
+}
+
+.toast.warning {
+  background-color: #ffc107;
+}
+
+.toast.info {
+  background-color: #17a2b8;
+}

@@ -1,16 +1,16 @@
-import { Component } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
-import { Service } from 'src/app/services/service';
-import { Router } from '@angular/router';
-import { Classes } from '../admin-attendance/admin-attendance.component';
-import { Teachers } from '../admin-teacher/admin-teacher.component';
+import { Component } from "@angular/core";
+import { FormBuilder, Validators } from "@angular/forms";
+import { Service } from "src/app/services/service";
+import { Router } from "@angular/router";
+import { Classes } from "../admin-attendance/admin-attendance.component";
+import { Teachers } from "../admin-teacher/admin-teacher.component";
+import { ToastService } from "src/app/utils/toast.service";
 @Component({
-  selector: 'app-add-teacher',
-  templateUrl: './add-teacher.component.html',
-  styleUrls: ['./add-teacher.component.scss']
+  selector: "app-add-teacher",
+  templateUrl: "./add-teacher.component.html",
+  styleUrls: ["./add-teacher.component.scss"],
 })
 export class AddTeacherComponent {
-
   selectedFile: File | null = null;
   base64String: string | null = null;
 
@@ -18,50 +18,57 @@ export class AddTeacherComponent {
   classes: Classes[] = [];
 
   teacherForm: any = {
-    Fname: '',
-    Lname: '',
+    Fname: "",
+    Lname: "",
     DOB: null,
-    email: '',
-    phone: '',
-    role:'',
-    password: '',
-    photo: ''
+    email: "",
+    phone: "",
+    role: "",
+    password: "",
+    photo: "",
   };
 
   classId: any;
-  constructor(private fb: FormBuilder, private service: Service, private router: Router) {
+  constructor(
+    private fb: FormBuilder,
+    private service: Service,
+    private router: Router,
+    private toastService: ToastService
+  ) {
     this.fetchClasses();
   }
 
   fetchClasses() {
-    this.service.getClasses()
-      .subscribe(
-        response => {
-          console.log(response)
-          this.classes = response.classes;
-          console.log(this.classes)
-        },
-        error => {
-          console.error('Error fetching classes:', error);
-        }
-
-      );
+    this.service.getClasses().subscribe(
+      (response) => {
+        console.log(response);
+        this.classes = response.classes;
+        console.log(this.classes);
+      },
+      (error) => {
+        console.error("Error fetching classes:", error);
+      }
+    );
   }
-  addStudent() {
-    this.teacherForm.role= 'Teacher'
-    console.log(this.teacherForm)
-    this.service.registerUser(this.teacherForm)
-      .subscribe(
-        response => {
-          console.log('Teachers added successfully:', response);
-          this.router.navigate(['/admin/teacher']);
-        },
-        error => {
-          console.error('Error adding teacher:', error);
-        }
-      );
+  addTeacher() {
+    this.teacherForm.role = "Teacher";
+    console.log(this.teacherForm);
+    this.service.registerUser(this.teacherForm).subscribe(
+      (response) => {
+        console.log("Teachers added successfully:", response);
+        this.router.navigate(["/admin/teacher"]);
+        this.toastService.showToast("success", "Teacher Added Successfully!");
+      },
+      (error) => {
+        console.error("Error adding teacher:", error);
+        const errorMessage = error.message
+          ? error.message
+          : "An error occurred";
+        this.toastService.showToast("error", errorMessage);
+      }
+    );
   }
-   onFileChange(event: any): void {
+  onFileChange(event: any): void {
     const file = event.target.files[0];
     if (file) {
       this.convertFileToBase64(file);
@@ -72,9 +79,8 @@ export class AddTeacherComponent {
     const reader = new FileReader();
     reader.onload = () => {
       this.base64String = reader.result as string;
-      this.teacherForm.photo = this.base64String; 
+      this.teacherForm.photo = this.base64String;
     };
     reader.readAsDataURL(photo);
   }
 }
-
