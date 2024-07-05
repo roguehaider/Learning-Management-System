@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
 
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 import { AuthService } from 'src/app/services/auth/auth.service';
+import { ToastService } from 'src/app/utils/toast.service';
 
 @Component({
   selector: 'app-adminlogin',
@@ -22,7 +23,7 @@ export class AdminloginComponent {
 
   credentials = { email: '', password: '' };
   validateForm: FormGroup<{ password: FormControl<string>; email: FormControl<string>; }>;
-  constructor(private fb: NonNullableFormBuilder, private authService: AuthService, private router: Router) {
+  constructor(private fb: NonNullableFormBuilder,private toastService:ToastService, private authService: AuthService, private router: Router) {
     this.validateForm = this.fb.group({
       password: ['', [Validators.required]],
       email: ['', [Validators.required]],
@@ -55,23 +56,29 @@ export class AdminloginComponent {
           if (userRole === 'Admin') {
             console.log('User role:', userRole);
             this.router.navigate(['/admin/dashboard']);
+            this.toastService.showToast('success', 'Admin Login Successfully!');
           } 
           else if (userRole === 'Teacher') {
             console.log('User role:', userRole);
             this.router.navigate(['/teacher/dashboard']);
+            this.toastService.showToast('success', 'Teacher Login Successfully!');
           } 
           else if (userRole === 'Student') {
             console.log('User role:', userRole);
             this.router.navigate(['/student/dashboard']);
+            this.toastService.showToast('success', 'Student Login Successfully!');
           } 
           else {
             console.log('Redirecting to login due to invalid role:', userRole);
             this.router.navigate(['/login']);
+            this.toastService.showToast('warning', 'Redirecting to login due to invalid role! ');
+            
           }
         },
         error => {
           console.error('Login error:', error);
-          this.errorMessage = error.error.message || 'Unknown error';
+          const errorMessage = error.message ? error.message : 'An error occurred';
+          this.toastService.showToast('error', errorMessage);
         }
       );
   }
