@@ -34,15 +34,19 @@
         <nz-option *ngFor="let item of courses" [nzLabel]="item.name" [nzValue]="item._id"></nz-option>
     </nz-select>
 
-    <div class="assessments" *ngFor="let item of assessments" (click)="navigateToAssessmentMarks(item)">
+    <div class="assessments" *ngFor="let item of assessments" >
         <div class="left">
             <h3>{{item.type}}</h3>
             <p>Total Marks: {{item.totalMarks}}</p>
         </div>
         <div class="right">
-            <button>
-                <span nz-icon nzType="plus" nzTheme="outline"></span>
+            <button  *ngIf="!item.MarksList || item.MarksList.length === 0" (click)="navigateToAssessmentMarks(item)" >
+                <span nz-icon nzType="plus" nzTheme="outline" ></span>
                 Add Marks
+            </button>
+            <button *ngIf="item.MarksList && item.MarksList.length > 0" (click)="navigateToUpdateMarks(item)">
+                <span nz-icon nzType="folder-view" nzTheme="outline"></span>
+                View Marks
             </button>
         </div>
     </div>

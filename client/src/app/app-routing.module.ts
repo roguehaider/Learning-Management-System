@@ -53,6 +53,7 @@ import { StudentLeavesComponent } from "./pages/student/student-leaves/student-l
 import { TeacherViewAttendanceComponent } from "./pages/teacher/teacher-view-attendance/teacher-view-attendance.component";
 import { TeacherAssessmentsComponent } from "./pages/teacher/teacher-assessments/teacher-assessments.component";
 import { TeacherAssessmentMarksComponent } from "./pages/teacher/teacher-assessment-marks/teacher-assessment-marks.component";
+import { TeacherUpdateAssessmentMarksComponent } from "./pages/teacher/teacher-update-assessment-marks/teacher-update-assessment-marks.component";
 const routes: Routes = [
   {
     path: "admin",
@@ -117,7 +118,9 @@ const routes: Routes = [
       { path: "attendance", component: TeacherViewAttendanceComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
       { path: "suggestions", component: TeacherSuggestionsComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
       { path: "assessment", component: TeacherAssessmentsComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
-      { path: "assessment/:name", component: TeacherAssessmentMarksComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
+      { path: "assessment/:assessmentType", component: TeacherAssessmentMarksComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
+      { path: "assessment/marks/:assessmentType", component: TeacherUpdateAssessmentMarksComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
+
 
 
     ],
