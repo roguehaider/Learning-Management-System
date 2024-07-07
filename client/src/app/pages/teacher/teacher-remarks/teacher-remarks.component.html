@@ -1,0 +1,43 @@
+<div class="container">
+    <h2>
+        Remarks
+    </h2>
+    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a course" [(ngModel)]="courseId"  (ngModelChange)="fetchStudents()" 
+      class="course-select">
+    <nz-option *ngFor="let item of courses" [nzLabel]="item.name" [nzValue]="item._id"></nz-option>
+</nz-select>
+
+<div class="table">
+    <nz-table #basicTable [nzData]="students">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Roll No</th>
+                <th>Remarks</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of basicTable.data">
+                <td>{{ data.Fame }}</td>
+                <td>{{ data.Lname }}</td>
+                <td>{{ data.roll_No }}</td>
+                <td>
+                    <span nz-icon nzType="plus" nzTheme="outline"  (click)="showModal(data)" ></span>
+                    <nz-modal [(nzVisible)]="isVisible" nzTitle="'Give Remark to {{data.roll_No}}"  (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                        <ng-container *nzModalContent>
+                         <div class="form">
+                            <input type="text" placeholder="{{selectedData.Fame}}" disabled style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                            <input type="text" placeholder="{{selectedData.Lname}}" disabled style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                            <input type="text" placeholder="Title" [(ngModel)]="newRemark.title" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                            <input type="text" placeholder="Description" [(ngModel)]="newRemark.description" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                         </div>
+                        </ng-container>
+                      </nz-modal>
+                </td>
+               
+            </tr>
+        </tbody>
+    </nz-table>
+</div>
+</div>

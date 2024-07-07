@@ -8,7 +8,12 @@ import { AuthService } from '../services/auth/auth.service';
 })
 export class LayoutStudentComponent {
   isCollapsed = false;
+  photo: string | null = null;
+
   userName =this.authservice.getUserName();
   constructor(private authservice: AuthService){ }
-
+  ngOnInit(): void {
+    this.photo = localStorage.getItem('photo');
+    console.log(this.photo)
+  }
 }

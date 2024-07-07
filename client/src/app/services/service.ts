@@ -254,6 +254,16 @@ export class Service {
     document.cookie = `refreshToken=${refreshToken}`;
     return this.http.get<any>(`${this.apiUrl}teacher/courses`, { withCredentials: true });
   }
+  // teacher/course/:id GET COURSE BY ID
+  getTeacherCourseById(id: string) {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.get<any>(`${this.apiUrl}teacher/course/${id}`, { withCredentials: true });
+  }
+
   getTeacherSuggestions(): Observable<any> {
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
@@ -401,6 +411,17 @@ export class Service {
     document.cookie = `refreshToken=${refreshToken}`;
     return this.http.put<any>(`${this.apiUrl}teacher/course/assesments/update`, data, { withCredentials: true });
   }
+
+  // teacher/course/student/remarks POST REMARKS
+  putRemarks(data: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.post<any>(`${this.apiUrl}teacher/course/student/remarks`, data, { withCredentials: true });
+  }
+
 
   // student------------------------------------------------------------------------------------------------------------------------------------
   getStudentCourses(): Observable<any> {

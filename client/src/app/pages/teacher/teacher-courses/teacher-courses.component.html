@@ -4,7 +4,7 @@
             <Button style="background-color: #6AB187;" (click)="navigateToAdd()">Add Course<span nz-icon nzType="plus-circle"
                     nzTheme="fill"></span></Button>
         </div> -->
-        <div class="table">
+        <!-- <div class="table">
             <h2>Courses</h2>
             <nz-table #basicTable [nzData]="courses">
                 <thead>
@@ -37,6 +37,23 @@
                     </tr>
                 </tbody>
             </nz-table>
-        </div>
+        </div> -->
+        <h2>Courses</h2>
+
+        <div class="container">
+            <div class="classes">
+              <div (click)="navigateToCourseDetail(course)" class="cards" *ngFor="let course of courses">
+                <h3>{{ course.name }}</h3>
+                <span style="width: 80%; background-color: #ccc; height: 2px;"></span>
+                <!-- <div class="actions">
+                  <div class="delete">
+                    <span style="color: red; font-size: 21px;" nz-icon nzType="delete"
+                      nzTheme="outline"></span>
+                  </div>
+                </div> -->
+              </div>
+            </div>
+          
+          </div>
     </div>
 </div>

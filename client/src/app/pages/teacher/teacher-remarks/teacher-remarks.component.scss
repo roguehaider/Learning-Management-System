@@ -1,0 +1,24 @@
+h2 {
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #1F3F49;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 0;
+}
+.form{
+    display: grid;
+    grid-template-columns: 49% 49%;
+    gap: 10px;
+}
+nz-select{
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+::ng-deep .ant-table-container, .ant-table-container table>thead>tr th{
+    background-color: #ffffff;
+    color: #1F3F49;
+}

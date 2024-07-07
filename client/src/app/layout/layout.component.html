@@ -1,24 +1,8 @@
-<!-- <nz-layout class="layout">
-  <app-sidebar></app-sidebar>
-  <nz-layout class="right-layout">
-     <nz-header>
-      <span
-        class="trigger"
-        nz-icon
-        [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
-        (click)="isCollapsed = !isCollapsed"
-      ></span>
-    </nz-header>
-    <nz-content>
-      <router-outlet></router-outlet>
-    </nz-content>
-  </nz-layout>
-</nz-layout> -->
-
 <nz-layout>
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="profile" [ngClass]="{'hidden': isCollapsed}">
-      <img src="../../assets/images/admin.jpg" alt="">
+      <!-- <img src="../../assets/images/admin.jpg" alt=""> -->
+      <img *ngIf="photo" [src]="photo" alt="Profile Photo">
       <h2>{{userName}}</h2>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">

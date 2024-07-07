@@ -12,8 +12,15 @@ export class LayoutTeacherComponent {
   userName =this.authService.getUserName();
   user = this.authService.getUserDetails();
 
+  photo: string | null = null;
+
   constructor(private authService: AuthService, private router: Router){ }
   
+  ngOnInit(): void {
+    this.photo = localStorage.getItem('photo');
+    console.log(this.photo)
+  }
+
   logout() {
     const user = this.authService.getUser()
     this.authService.logout(user).subscribe(

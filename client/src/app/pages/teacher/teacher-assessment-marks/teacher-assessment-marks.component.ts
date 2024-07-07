@@ -40,7 +40,6 @@ export class TeacherAssessmentMarksComponent {
     this.fetchStudents();
   }
 
-  // Function to add student marks to the array
   addStudentMarks(studentId: string, obtained_marks: number) {
     // Check if studentId already exists in studentMarks array
     const existingStudentIndex = this.studentMarks.findIndex(mark => mark.student === studentId);

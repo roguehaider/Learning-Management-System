@@ -10,12 +10,20 @@ import { ToastService } from "../utils/toast.service";
 })
 export class LayoutComponent {
   isCollapsed = false;
+  photo: string | null = null;
+
   userName = this.authService.getUserName();
   constructor(
     private authService: AuthService,
     private router: Router,
     private toastService: ToastService
   ) {}
+
+   
+  ngOnInit(): void {
+    this.photo = localStorage.getItem('photo');
+    console.log(this.photo)
+  }
 
   logout() {
     const user = this.authService.getUser();
