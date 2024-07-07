@@ -331,6 +331,15 @@ export class Service {
   
     return this.http.get<any>(`${this.apiUrl}teacher/attendence`, {withCredentials: true});
   }
+  getAttendanceByDate(date: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+  
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+  
+    return this.http.get<any>(`${this.apiUrl}teacher/attendence/${date}`, {withCredentials: true});
+  }
 
   // teacher/course/students  get courses for attendance
   getStudentsOfClass(): Observable<any> {
