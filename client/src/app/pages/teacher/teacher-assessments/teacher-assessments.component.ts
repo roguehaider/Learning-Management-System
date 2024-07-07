@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { Service } from 'src/app/services/service';
 
 @Component({
@@ -14,7 +15,7 @@ export class TeacherAssessmentsComponent {
   courses: any;
   courseId: any;
 
-  constructor(private service: Service){}
+  constructor(private service: Service, private router: Router){}
   
   ngOnInit(): void {
     this.fetchCourses();
@@ -51,6 +52,7 @@ export class TeacherAssessmentsComponent {
       );
   }
 
+
   createAssessment(): void {
     // if (this.diaryForm.valid) {
     // this.newDiary.date = this.formatTimestamp(this.newDiary.date)
@@ -70,5 +72,12 @@ export class TeacherAssessmentsComponent {
   }
   handleCancel(){
     this.isAddVisible = false;
+  }
+  navigateToAssessmentMarks(assessment: any): void {
+    const assessmentType = encodeURIComponent(assessment.type);
+    const assessmentId = assessment._id;
+    this.router.navigate([`/admin/assessment/${assessmentType}`], {
+      queryParams: { id: assessmentId },
+    });
   }
 }

@@ -34,7 +34,7 @@
         <nz-option *ngFor="let item of courses" [nzLabel]="item.name" [nzValue]="item._id"></nz-option>
     </nz-select>
 
-    <div class="assessments" *ngFor="let item of assessments">
+    <div class="assessments" *ngFor="let item of assessments" (click)="navigateToAssessmentMarks(item)">
         <div class="left">
             <h3>{{item.type}}</h3>
             <p>Total Marks: {{item.totalMarks}}</p>
