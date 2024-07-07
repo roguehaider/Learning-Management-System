@@ -30,6 +30,12 @@
           <span>Attendance</span>
         </a>
         </li>
+        <li nz-menu-item [routerLinkActive]="'active'"  *ngIf="user?.IsClassTeacher">
+          <a routerLink="/teacher/assessment">
+            <span nz-icon nzType="file-protect" nzTheme="outline"></span>
+          <span>Assessment</span>
+        </a>
+        </li>
         <li nz-menu-item>
           <a routerLink="/teacher/leaves">
             <span nz-icon nzType="audit" nzTheme="outline"></span>

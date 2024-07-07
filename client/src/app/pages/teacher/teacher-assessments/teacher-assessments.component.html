@@ -1,0 +1,50 @@
+<div class="container">
+    <div class="buttons">
+        <Button style="background-color: #6AB187;" (click)="showModal()">Add Assessment<span nz-icon
+                nzType="plus-circle" nzTheme="fill"></span></Button>
+        <nz-modal [(nzVisible)]="isAddVisible" nzTitle="Add Assessment" (nzOnCancel)="handleCancel()"
+            (nzOnOk)="createAssessment()">
+            <ng-container *nzModalContent>
+                <div class="form"
+                    style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;">
+
+                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a course"
+                        [(ngModel)]="newAssessment.course_id">
+                        <nz-option *ngFor="let item of courses" [nzLabel]="item.name" [nzValue]="item._id"></nz-option>
+                    </nz-select>
+
+                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Tpe" [(ngModel)]="newAssessment.type">
+                        <nz-option nzValue="Quiz" nzLabel="Quiz"></nz-option>
+                        <nz-option nzValue="Mid-Term" nzLabel="Mid-Term"></nz-option>
+                        <nz-option nzValue="Finals" nzLabel="Finals"></nz-option>
+                        <nz-option nzValue="Assignment" nzLabel="Assignment"></nz-option>
+                    </nz-select>
+
+                    <input type="number" [(ngModel)]="newAssessment.TotalMarks" placeholder="Total Marks"
+                        style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                </div>
+            </ng-container>
+        </nz-modal>
+    </div>
+    <h2>
+        Assessments
+    </h2>
+    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a course" [(ngModel)]="courseId"
+        (ngModelChange)="fetchAssessmentByCourse()" class="course-select">
+        <nz-option *ngFor="let item of courses" [nzLabel]="item.name" [nzValue]="item._id"></nz-option>
+    </nz-select>
+
+    <div class="assessments" *ngFor="let item of assessments">
+        <div class="left">
+            <h3>{{item.type}}</h3>
+            <p>Total Marks: {{item.totalMarks}}</p>
+        </div>
+        <div class="right">
+            <button>
+                <span nz-icon nzType="plus" nzTheme="outline"></span>
+                Add Marks
+            </button>
+        </div>
+    </div>
+
+</div>

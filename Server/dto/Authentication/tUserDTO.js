@@ -7,7 +7,10 @@ class tUserDto{
         this.role=user.role,
         this.className = user.class_id?.name,
         this.email=user.email,
-        this.IsClassTeacher=user.IsClassTeacher
+        this.IsClassTeacher=user.IsClassTeacher;
+        if (user.photoPath) {
+            this.photo = user.photoPath;
+        }
     }
 }
 module.exports=tUserDto
