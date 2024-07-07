@@ -6,7 +6,10 @@ class userDto{
         this.roll_No=user.roll_No,
         this.role=user.role,
         this.className = user.class_id?.name,
-        this.email=user.email
+        this.email=user.email;
+        if (user.photoPath) {
+            this.photo = user.photoPath;
+        }
     }
 }
 module.exports=userDto

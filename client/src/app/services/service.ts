@@ -363,6 +363,26 @@ export class Service {
     return this.http.get<any>(`${this.apiUrl}teacher/leaves/${date}`, { withCredentials: true });
   }
 
+  // teacher/course/assesment
+  createAssessment(data: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.post<any>(`${this.apiUrl}teacher/course/assesment`, data, { withCredentials: true });
+  }
+
+  // teacher/course/assesments/:id
+ getAssessmentByCourse(courseID: string): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.get<any>(`${this.apiUrl}teacher/course/assesments/${courseID}`, { withCredentials: true });
+  }
+
   // student------------------------------------------------------------------------------------------------------------------------------------
   getStudentCourses(): Observable<any> {
     const accessToken = localStorage.getItem('accessToken');
