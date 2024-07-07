@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { Service } from 'src/app/services/service';
-// import { Courses } from '../../admin/admin-courses/admin-courses.component';
+import { Courses } from '../../admin/admin-courses/admin-courses.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { AnimationQueryMetadata } from '@angular/animations';
 
 export interface Diary {
   _id: string;
@@ -14,79 +16,109 @@ export interface Diary {
 @Component({
   selector: 'app-teacher-diary',
   templateUrl: './teacher-diary.component.html',
-  styleUrls: ['./teacher-diary.component.scss']
+  styleUrls: ['./teacher-diary.component.scss'],
+  providers: [DatePipe]
 })
 export class TeacherDiaryComponent {
   isVisible = false;
-   diary: Diary[] = [];
-  // courses: Courses[] = [ ];
-  diaryForm: FormGroup;
+  isEditVisible = false;
+  
+  courses: any[] = []; 
+  getDate: any
+
+  newDiary: { date?: string | null; course_id?: string, description?: string } = {};
+  diaryData: any;
+  editDiary: { diary_id?: string; description?: string; } = {}
+  
 
 
-  constructor(private router: Router, private service: Service, private fb: FormBuilder,
-  ) {
-    this.diaryForm = this.fb.group({
-      course_id: ['', [Validators.required]],
-      description: ['', [Validators.required]],
-      date: ['', [Validators.required]]
-    });
+  constructor(private router: Router, private service: Service, private fb: FormBuilder, private datePipe: DatePipe) {
+
   }
   ngOnInit(): void {
-    // this.fetchCourses();
-    this.fetchDiaries();
+    this.fetchCourses();
+    // this.fetchDiaries();
   }
   fetchDiaries(): void {
-    this.service.getTeacherDiaries().subscribe(
+    const formattedDate = this.formatTimestamp(this.getDate);
+    if (formattedDate) {
+      this.service.getTeacherDiaries(formattedDate).subscribe(
+        (response: any) => {
+          const diaryData = response;
+          this.diaryData = diaryData.diaries
+          console.log('diaryData', this.diaryData);
+        },
+        error => {
+          console.error('Error fetching diaries:', error);
+        }
+      );
+    }
+  }
+
+  fetchCourses(): void {
+    this.service.getTeacherCourses()
+      .subscribe(
+        response => {
+          this.courses = response.course;
+          console.log(response, this.courses);
+        },
+        error => {
+          console.error('Error fetching classes:', error);
+          // Handle error, show error message, etc.
+        }
+
+      );
+  }
+  postDiary(): void {
+    // if (this.diaryForm.valid) {
+    this.newDiary.date = this.formatTimestamp(this.newDiary.date)
+    console.log("nd",this.newDiary.date)
+    this.service.postDiary(this.newDiary).subscribe(
       response => {
-        this.diary = response.diaries;
-        console.log(response)
+        this.diaryData= response
+        console.log(response, this.diaryData)
       },
       error => {
-        console.error('Error fetching diaries:', error);
+        console.error('Error posting diary entry:', error);
       }
     );
   }
-  // fetchCourses(): void {
-  //   this.service.getTeacherCourses()
-  //     .subscribe(
-  //       response => {
-  //         this.courses = response.course;
-  //         console.log(response, this.courses);
-  //       },
-  //       error => {
-  //         console.error('Error fetching classes:', error);
-  //         // Handle error, show error message, etc.
-  //       }
-        
-  //     );
-  // }
-  submitDiary(id:any): void {
-    this.diaryForm.value.course_id = id;
-    // if (this.diaryForm.valid) {
-      this.service.postDiary(this.diaryForm.value).subscribe(
-        response => {
-          console.log(response)
-        },
-        error => {
-          console.error('Error posting diary entry:', error);
-        }
-      );
+  updateDiary(){
+    console.log(this.editDiary)
+    this.service.updateTeacherDiary(this.editDiary).subscribe(
+      response => {
+        this.diaryData= response
+        console.log(response, this.diaryData)
+      },
+      error => {
+        console.error('Error posting diary entry:', error);
+      }
+    );
+    this.fetchDiaries();
+    this.isEditVisible = false
+  }
+  formatTimestamp(date: any) {
+    return this.datePipe.transform(date, 'yyyy-MM-dd'); 
   }
   showModal(): void {
     this.isVisible = true;
   }
-
-  handleOk(data: any): void {
-    console.log('Button ok clicked!',data);
-    this.submitDiary(data._id);
-    this.isVisible = false;
+  showEditModal(data: any): void {
+    this.editDiary= {description: data.description, diary_id: data._id }
+    console.log(this.editDiary)
+    this.isEditVisible = true;
   }
+
 
   handleCancel(): void {
     console.log('Button cancel clicked!');
     this.isVisible = false;
   }
-  navigateToView(){
+  handleEditCancel(): void {
+    console.log('Button cancel clicked!');
+    this.isEditVisible = false;
+  }
+  navigateToView() {
     this.router.navigate(['/teacher/view-diary']);
   }
 }

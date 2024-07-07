@@ -1,37 +1,48 @@
 <div class="container">
-    <nz-select ngModel="lucy">
-        <nz-option nzValue="jack" nzLabel="Jack"></nz-option>
-        <nz-option nzValue="lucy" nzLabel="Lucy"></nz-option>
-        <nz-option nzValue="disabled" nzLabel="Disabled" nzDisabled></nz-option>
-    </nz-select>
+    <div class="top">
+        <!-- <div class="item">
+            <p>Select Course: </p>
+            <nz-select ngModel="lucy" nzPlaceHolder="Select Course">
+                <nz-option *ngFor="let item of courses" [nzValue]="item._id" [nzLabel]="item.name"></nz-option>
+            </nz-select>
+        </div> -->
+
+        <div class="item">
+            <p>Select Date:</p>
+            <nz-date-picker [nzFormat]="dateFormat" [(ngModel)]="studentAttendance.date" ></nz-date-picker>
+        </div>
+
+    </div>
+
+
     <div class="table">
         <h2>Attendance</h2>
-        <nz-table #basicTable [nzData]="attendance">
+        <nz-table #basicTable [nzData]="students">
             <thead>
                 <tr>
-                    <th>Date</th>
-                    <th>Name</th>
-                    <th>Class</th>
-                    <th>Reason</th>
-                    <th>Approve</th>
-                    <th>Delete</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Roll No</th>
+                    <th>Attendance</th>
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let data of basicTable.data">
-                    <td>{{ data.date }}</td>
-                    <!-- <td>{{ data.name }}</td>                        
-                    <td>{{ data.class }}</td>
-                    <td>{{ data.reason }}</td> -->
-                    <td>
-                        <a style="font-size: 21px; color: green;"><span nz-icon nzType="check" nzTheme="outline"></span></a>
-                    </td>
-                    <td>
-                        <a style="font-size: 22px; color: red;"><span nz-icon nzType="delete"
-                                nzTheme="fill"></span></a>
+                <tr *ngFor="let data of basicTable.data; let i = index">
+                    <td>{{ data.Fame }}</td>
+                    <td>{{ data.Lname }}</td>
+                    <td>{{ data.roll_No }}</td>
+                    <td style="display: flex; flex-direction: row; gap:20px">
+                        <div class="checkboxes" *ngFor="let attendance of attendanceOptions"
+                            style="display: flex; gap: 10px;">
+                            <label for="checkbox">{{attendance.label}}</label>
+                            <input type="checkbox" [value]="attendance.value" [(ngModel)]="attendance.checked"
+                                (change)="onCheckBoxChange(data,attendance)">
+                        </div>
                     </td>
                 </tr>
             </tbody>
         </nz-table>
     </div>
+    <button (click)="submitAttendance()" class="attendanceButton">Submit</button>
+
 </div>

@@ -16,10 +16,7 @@ export class TeacherSuggestionsComponent {
   suggestions: Suggestions[] = [];
   newSuggestion: any = {
     title: '',
-    description: '',
-    Fame: '',  
-    Lname: '', 
-    role: ''   
+    description: '', 
   };
 
   constructor(private service: Service, private router: Router, private modal: NzModalService, private authService: AuthService) { 
@@ -55,9 +52,7 @@ export class TeacherSuggestionsComponent {
     // this.resetForm();
   }
   handleOk(): void {
-    // this.newSuggestion.Fame=this.user.Fame;
-    // this.newSuggestion.Lname=this.user.Lname;
-    // this.newSuggestion.role= this.user.role;
+    
     this.service.postTeacherSuggestion(this.newSuggestion).subscribe(
       response => {
         console.log('Suggestion posted successfully:', response);
@@ -68,6 +63,8 @@ export class TeacherSuggestionsComponent {
         console.error('Failed to post suggestion:', error);
       }
     );
+
+    this.fetchSuggestions();
   }
 
 

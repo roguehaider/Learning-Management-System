@@ -48,6 +48,13 @@ const userSchema =new Schema({
     photoPath:{
         type:String,
     },
+    Studentfee:{
+        type:Number
+    },
+    IsClassTeacher:{
+        type:Boolean,
+        default:false
+    }
 },{timestamps:true});
 
 

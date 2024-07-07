@@ -3,6 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 import { AuthService } from './auth/auth.service';
+import { Diary } from '../pages/teacher/teacher-diary/teacher-diary.component';
+import { map } from 'rxjs/operators';
 
 
 @Injectable({
@@ -73,7 +75,7 @@ export class Service {
     document.cookie = `accessToken=${accessToken}`;
     document.cookie = `refreshToken=${refreshToken}`;
 
-    return this.http.post<any>(`${this.apiUrl}admin/class/removeCourse/${id}`, id, { withCredentials: true });
+    return this.http.post<any>(`${this.apiUrl}admin/removeCourse/${id}`, id, { withCredentials: true });
   }
 
   createClass(classData: any): Observable<any> {
@@ -87,7 +89,7 @@ export class Service {
   }
 
 
- //create course
+  //create course
   createCourse(courseData: any): Observable<any> {
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
@@ -280,33 +282,76 @@ export class Service {
     document.cookie = `refreshToken=${refreshToken}`;
     return this.http.post<any>(`${this.apiUrl}teacher/course/diary`, diary, { withCredentials: true });
   }
-  getTeacherDiaries(): Observable<{ diaries: any }> {
+  getTeacherDiaries(date: string): Observable<Diary[]> {
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
-    const user = localStorage.getItem(`user`)
+    const user = localStorage.getItem('user');
 
     document.cookie = `accessToken=${accessToken}`;
     document.cookie = `refreshToken=${refreshToken}`;
-    return this.http.get<{ diaries: any }>(`${this.apiUrl}teacher/diaries`, { withCredentials: true });
+
+    return this.http.get<any>(`${this.apiUrl}teacher/dairies/${date}`, { withCredentials: true });
   }
 
-  getTeacherAttendance(): Observable<any> {
+  // /teacher/course/diary/update/:dairy_id
+  updateTeacherDiary(data: any): Observable<any> {
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
 
     document.cookie = `accessToken=${accessToken}`;
     document.cookie = `refreshToken=${refreshToken}`;
-    return this.http.get<any>(`${this.apiUrl}teacher/attendence`, { withCredentials: true });
+
+    return this.http.post(`${this.apiUrl}teacher/course/diary/update/${data._id}`, data, { withCredentials: true });
   }
+  // getTeacherAttendance(): Observable<any> {
+  //   const accessToken = localStorage.getItem('accessToken');
+  //   const refreshToken = localStorage.getItem('refreshToken');
+
+  //   document.cookie = `accessToken=${accessToken}`;
+  //   document.cookie = `refreshToken=${refreshToken}`;
+  //   return this.http.get<any>(`${this.apiUrl}teacher/attendence`, { withCredentials: true });
+  // }
+
+  //mark attendance
+  createTeacherAttendance(data: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.post<any>(`${this.apiUrl}teacher/attendence`, data, { withCredentials: true });
+  }
+
+  getAttendanceByClass(): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+  
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+  
+    return this.http.get<any>(`${this.apiUrl}teacher/attendence`, {withCredentials: true});
+  }
+
+  // teacher/course/students  get courses for attendance
+  getStudentsOfClass(): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+  
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+  
+    return this.http.get<any>(`${this.apiUrl}teacher/class/students`, { withCredentials: true });
+  }
+  
 
   //teacher leaves
-  getLeaveRequests(date: any): Observable<any> {
+  getLeaveRequests(date: string): Observable<any> {
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
 
     document.cookie = `accessToken=${accessToken}`;
     document.cookie = `refreshToken=${refreshToken}`;
-    return this.http.get<any>(`${this.apiUrl}leaves/${date}`, { withCredentials: true });
+    return this.http.get<any>(`${this.apiUrl}teacher/leaves/${date}`, { withCredentials: true });
   }
 
   // student------------------------------------------------------------------------------------------------------------------------------------
@@ -327,6 +372,24 @@ export class Service {
     document.cookie = `accessToken=${accessToken}`;
     document.cookie = `refreshToken=${refreshToken}`;
     return this.http.post<any>(`${this.apiUrl}student/remarks`, remarkData, { withCredentials: true });
+  }
+  // student/leave
+  postStudentLeave(leaveData: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.post<any>(`${this.apiUrl}student/leave`, leaveData, { withCredentials: true });
+  }
+  // student/leave/:date
+  getStudentLeaves(date: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.get<any>(`${this.apiUrl}student/leave/${date}`, { withCredentials: true });
   }
 }
 

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { Service } from 'src/app/services/service';
+import { DatePipe } from '@angular/common';
 export interface Leaves {
   key: string;
   name: string;
@@ -11,7 +12,8 @@ export interface Leaves {
 @Component({
   selector: 'app-teacher-leaves',
   templateUrl: './teacher-leaves.component.html',
-  styleUrls: ['./teacher-leaves.component.scss']
+  styleUrls: ['./teacher-leaves.component.scss'],
+  providers: [DatePipe]
 })
 export class TeacherLeavesComponent {
 
@@ -19,27 +21,30 @@ export class TeacherLeavesComponent {
   confirmModal?: NzModalRef;
   dateFormat = 'yyyy/MM/dd';
 
-  leaves: Leaves[] = [];
-  leaveDate: Partial<Leaves> = {
-  date:''
+  
+
+  selectedDate: string = '';
+  leaveRequests: any[] = [];
+
+  constructor(private modal: NzModalService, private service: Service, private datePipe: DatePipe) {}
+
+  fetchLeaveRequests() {
+    this.selectedDate = this.formatTimestamp(this.selectedDate)
+    if (this.selectedDate) {
+      this.service.getLeaveRequests(this.selectedDate).subscribe(
+        response => {
+          this.leaveRequests = response.leaves;
+          console.log("lrq",this.leaveRequests);
+        },
+        error => {
+          console.error('Error fetching leave requests:', error);
+        }
+      );
+    }
   }
-
-  constructor(private modal: NzModalService, private service: Service) {}
-
-
-  fetchLeaveRequests(): void {
-    console.log(this.leaveDate)
-    this.service.getLeaveRequests(this.leaveDate.date).subscribe(
-      response => {
-        this.leaves = response.leaves;
-        console.log(response)
-      },
-      error => {
-        console.error('Error fetching leave requests:', error);
-      }
-    );
-  }
-
+  formatTimestamp(isoDate: any): any {
+    return this.datePipe.transform(isoDate, 'yyyy-MM-ddTHH:mm:ss.sssZ');
+    }
   showConfirm(): void {
     this.confirmModal = this.modal.confirm({
       nzTitle: `Do you Want to approve this leave?`,
