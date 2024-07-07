@@ -4,6 +4,7 @@ import { Service } from 'src/app/services/service';
 import { Courses } from '../../admin/admin-courses/admin-courses.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
+import { AnimationQueryMetadata } from '@angular/animations';
 
 export interface Diary {
   _id: string;
@@ -20,11 +21,15 @@ export interface Diary {
 })
 export class TeacherDiaryComponent {
   isVisible = false;
-  diary: any[] = [];
+  isEditVisible = false;
+  
   courses: any[] = []; 
   getDate: any
 
   newDiary: { date?: string | null; course_id?: string, description?: string } = {};
+  diaryData: any;
+  editDiary: { diary_id?: string; description?: string; } = {}
+  
 
 
   constructor(private router: Router, private service: Service, private fb: FormBuilder, private datePipe: DatePipe) {
@@ -35,16 +40,21 @@ export class TeacherDiaryComponent {
     // this.fetchDiaries();
   }
   fetchDiaries(): void {
-    this.getDate = this.formatTimestamp(this.getDate)
-    this.service.getTeacherDiaries(this.getDate).subscribe(
-      response => {
-        console.log(response)
-      },
-      error => {
-        console.error('Error fetching diaries:', error);
-      }
-    );
+    const formattedDate = this.formatTimestamp(this.getDate);
+    if (formattedDate) {
+      this.service.getTeacherDiaries(formattedDate).subscribe(
+        (response: any) => {
+          const diaryData = response;
+          this.diaryData = diaryData.diaries
+          console.log('diaryData', this.diaryData);
+        },
+        error => {
+          console.error('Error fetching diaries:', error);
+        }
+      );
+    }
   }
+
   fetchCourses(): void {
     this.service.getTeacherCourses()
       .subscribe(
@@ -65,13 +75,27 @@ export class TeacherDiaryComponent {
     console.log("nd",this.newDiary.date)
     this.service.postDiary(this.newDiary).subscribe(
       response => {
-        this.diary= response.diaries
-        console.log(response)
+        this.diaryData= response
+        console.log(response, this.diaryData)
       },
       error => {
         console.error('Error posting diary entry:', error);
       }
     );
+  }
+  updateDiary(){
+    console.log(this.editDiary)
+    this.service.updateTeacherDiary(this.editDiary).subscribe(
+      response => {
+        this.diaryData= response
+        console.log(response, this.diaryData)
+      },
+      error => {
+        console.error('Error posting diary entry:', error);
+      }
+    );
+    this.fetchDiaries();
+    this.isEditVisible = false
   }
   formatTimestamp(date: any) {
     return this.datePipe.transform(date, 'yyyy-MM-dd'); 
@@ -79,11 +103,20 @@ export class TeacherDiaryComponent {
   showModal(): void {
     this.isVisible = true;
   }
+  showEditModal(data: any): void {
+    this.editDiary= {description: data.description, diary_id: data._id }
+    console.log(this.editDiary)
+    this.isEditVisible = true;
+  }
 
 
   handleCancel(): void {
     console.log('Button cancel clicked!');
     this.isVisible = false;
+  }
+  handleEditCancel(): void {
+    console.log('Button cancel clicked!');
+    this.isEditVisible = false;
   }
   navigateToView() {
     this.router.navigate(['/teacher/view-diary']);

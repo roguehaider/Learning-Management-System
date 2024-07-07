@@ -88,9 +88,8 @@ async function handleDeleteCourse(req, res, next) {
            const  clas_id = await Class.findOne({_id:course.class_id})
            await Class.updateOne({_id:clas_id}, { $pull: { courses:course_id } })
         }
-        else{
-            await Course.deleteOne({_id:course_id})
-        }
+        
+        await Course.deleteOne({_id:course_id})
     }
     catch (error) {
         return next(error)

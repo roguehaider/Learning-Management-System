@@ -83,7 +83,7 @@ const {getStudentAssementByCourse} = require('../controllers/Student/assesment')
 
 const {handleGetChallan} = require('../controllers/Student/challan');
 
-// const { handleResult } = require('../controllers/Student/result');
+
 
 const router = express.Router();
 
@@ -153,7 +153,7 @@ router.post('/admin/class/addCourse' , auth  , checkAuth("Admin") , handleAddCou
 
 // 15 remove course 
 
-router.post('/admin/class/removeCourse/:id' , auth  , checkAuth("Admin") , handleRemoveCourse)
+router.post('/admin/removeCourse/:id' , auth  , checkAuth("Admin") , handleRemoveCourse)
 
 // add Class teacher to class
 
@@ -244,7 +244,7 @@ router.post('/teacher/leave' , auth , checkAuth("Teacher") , handleRespondLeaveR
 
 // get students for attendence and others 
 
-router.get('/teacher/course/students' , auth , checkAuth("Teacher") , getStudentsOfClass)
+router.get('/teacher/class/students' , auth , checkAuth("Teacher") , getStudentsOfClass)
 
 // create attendence of specific class
 
@@ -348,6 +348,8 @@ router.get('/student/leave/:date', auth , checkAuth("Student"),handleGetLeaveSta
 // get challan 
 
 router.get('/student/challan' , auth , checkAuth("Student") ,handleGetChallan)
+
+
 
 module.exports=router;
 

@@ -2,7 +2,7 @@
   <div class="buttons">
     <Button style="background-color: #6AB187;" (click)="showModal()">Add Diary<span nz-icon nzType="plus-circle"
         nzTheme="fill"></span></Button>
-    <nz-modal [(nzVisible)]="isVisible" nzTitle="Add Leave Request" (nzOnCancel)="handleCancel()"
+    <nz-modal [(nzVisible)]="isVisible" nzTitle="Add Diary" (nzOnCancel)="handleCancel()"
       (nzOnOk)="postDiary()">
       <ng-container *nzModalContent>
         <div class="form"
@@ -21,26 +21,42 @@
     </nz-modal>
   </div>
     <div class="table">
+      <h2>Diary</h2>      
+      
       <nz-date-picker [(ngModel)]="getDate" (ngModelChange)="fetchDiaries()"></nz-date-picker>
 
-      <h2>Diary</h2>
-      <nz-table #basicTable [nzData]="diary">
+      <nz-table #basicTable [nzData]="diaryData">
         <thead>
           <tr>
             <th>Date</th>
             <th>Course</th>
             <th>Diary</th>
+            <th>Edit</th>
           </tr>
         </thead>
         <tbody>
           <tr *ngFor="let data of basicTable.data">
-            <td>{{ data.date }}</td>
-            <td>{{ data.course }}</td>
-            <td>{{ data.diary }}</td>
-            <td>
-              <a style="font-size: 22px;" (click)="navigateToView()"><span nz-icon nzType="eye"
-                  nzTheme="fill"></span></a>
-            </td>
+            <td>{{ formatTimestamp(data.date) }}</td>
+            <td>{{ data.courseName }}</td>
+            <td>{{ data.description }}</td>
+            <td><span nz-icon nzType="edit" nzTheme="outline" (click)="showEditModal(data)"></span>
+              <nz-modal [(nzVisible)]="isEditVisible" nzTitle="Edit Diary" (nzOnCancel)="handleEditCancel()"
+              (nzOnOk)="updateDiary()">
+              <ng-container *nzModalContent>
+                <div class="form"
+                  style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;">
+                  <nz-date-picker [(ngModel)]="data.date" [nzDisabled]="true"></nz-date-picker>
+        
+                  <nz-select nzShowSearch nzAllowClear [(ngModel)]="data.courseName" [nzDisabled]="true">
+                    <nz-option *ngFor="let item of courses" [nzLabel]="item.name" [nzValue]="item.name"></nz-option>
+                  </nz-select>                
+        
+                  <input type="text" [(ngModel)]="editDiary.description" placeholder="Description"
+                    style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                </div>
+              </ng-container>
+            </nz-modal>
+          </td>
           </tr>
         </tbody>
       </nz-table>

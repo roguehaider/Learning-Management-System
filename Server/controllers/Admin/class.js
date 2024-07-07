@@ -49,6 +49,20 @@ async function handleAddClassTeacher(req , res , next){
         return next(error);
     }
 
+
+    try {
+        const teacher = await User.findById({_id:teacher_id})
+        if(teacher.class_id){
+            const error ={
+                message:`teacher ${teacher.Fname} ${teacher.Lname} already added in another class`
+            }
+           return res.json(error) 
+        }        
+    }
+    catch (error) {
+        return next(error)
+    }
+
     try {
         await Class.updateOne(  
             {_id:class_id},

@@ -15,58 +15,97 @@ export interface Attendance {
 export class TeacherAttendanceComponent {
 
   dateFormat = 'yyyy/MM/dd';
-  attendance: Attendance[] = []
+  // attendance: Attendance[] = []
   //all courses for attendance
   courses: any;
-  selectCourseId: any
+  students: any
+  // selectCourseId: any
 
-  constructor(private service: Service, private authService: AuthService) { }
+  attendanceOptions = [
+    { label: 'P', value: 'Present', checked: false },
+    { label: 'A', value: 'Absent', checked: false },
+    { label: 'L', value: 'Leave', checked: false }
+  ];
+
+  studentAttendance: { date: string, attendanceList: any } = {
+    date: '',
+    attendanceList: [] as any[]
+  };
+
+  constructor(private service: Service, private authService: AuthService, private datePipe: DatePipe) { }
   ngOnInit(): void {
     this.authService.refreshToken();
     this.fetchCourses();
-    // this.fetchStudentsForCourse();
+    this.fetchStudentsForCourse();
     // this.fetchAttendance();
   }
 
-  fetchStudentsForCourse(){
-    this.service.getCoursesForAttendance()
-    .subscribe(
-      response => {
-        this.courses = response.course;
-        console.log(response, this.courses);
-      },
-      error => {
-        console.error('Error fetching classes:', error);
-        // Handle error, show error message, etc.
-      }
-      
-    );
+  fetchStudentsForCourse() {
+    this.service.getStudentsOfClass()
+      .subscribe(
+        response => {
+          this.students = response.students
+          console.log(response);
+        },
+        error => {
+          console.error('Error fetching classes:', error);
+          // Handle error, show error message, etc.
+        }
+
+      );
   }
 
 
-  fetchCourses(){
+  fetchCourses() {
     this.service.getTeacherCourses()
-    .subscribe(
-      response => {
-        this.courses = response.course;
-        console.log(response, this.courses);
-      },
-      error => {
-        console.error('Error fetching classes:', error);
-        // Handle error, show error message, etc.
-      }
-      
-    );
+      .subscribe(
+        response => {
+          this.courses = response.course;
+          console.log(response, this.courses);
+        },
+        error => {
+          console.error('Error fetching classes:', error);
+          // Handle error, show error message, etc.
+        }
+
+      );
   }
-  // fetchAttendance(): void {
-  //   this.service.creareTeacherAttendance().subscribe(
-  //     (response: any) => {
-  //       console.log(response)
-  //       this.attendance = response.attendance; // Assuming your API returns { attendance: [] }
-  //     },
-  //     (error: any) => {
-  //       console.error('Error fetching attendance:', error);
-  //     }
-  //   );
-  // }
+
+  onCheckBoxChange(data: any, selectedAttendance: any) {
+    this.attendanceOptions.forEach(attendance => {
+      attendance.checked = (attendance === selectedAttendance);
+    });
+  
+    let found = false;
+  
+    this.studentAttendance.attendanceList.forEach((item: any) => {
+      if (item.student === data._id) {
+        item.status = selectedAttendance.value;
+        found = true;
+      }
+    });
+  
+    if (!found) {
+      this.studentAttendance.attendanceList.push({ student: data._id, status: selectedAttendance.value });
+    }
+  
+    console.log(this.studentAttendance);
+  }
+  
+  formatTimestamp(isoDate: any): any {
+    return this.datePipe.transform(isoDate, "YYYY-MM-dd");
+  }
+
+  submitAttendance() {
+    this.studentAttendance.date = this.formatTimestamp(this.studentAttendance.date)
+    console.log(this.studentAttendance)
+    this.service.createTeacherAttendance(this.studentAttendance)
+      .subscribe(response => {
+        console.log('Attendance posted:', response);
+      }, error => {
+        console.error('Error posting attendance:', error);
+      });
+  }
+
 }
+

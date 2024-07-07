@@ -178,6 +178,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     StudentGiveRemarksComponent,
     AdminClassDetailComponent,
     AdminCourseDetailComponent,
+    StudentLeavesComponent,
+    ToastComponent,
   ],
   imports: [
     BrowserModule,
