@@ -11,6 +11,7 @@ import { DatePipe } from '@angular/common';
 })
 export class TeacherViewAttendanceComponent {
   attendances: any[] = [];
+  date: any;
 
   constructor(private service: Service,private router: Router, private datePipe: DatePipe) {
     console.log("att")
@@ -23,7 +24,6 @@ export class TeacherViewAttendanceComponent {
   }
 
   fetchAttendance(): void {
-    console.log("attendance")
     this.service.getAttendanceByClass().subscribe(
       response => {
         this.attendances = response.attendence;
@@ -33,6 +33,23 @@ export class TeacherViewAttendanceComponent {
         console.error('Error fetching attendance:', error);
       }
     );
+  }
+  fetchAttendanceByDate(){
+    if(!this.date){
+      this.fetchAttendance();
+    }
+    else{
+      this.date = this.formatTimestamp(this.date)
+      this.service.getAttendanceByDate(this.date).subscribe(
+        response => {
+          this.attendances = response.attendence;
+          console.log(this.attendances);
+        },
+        error => {
+          console.error('Error fetching attendance:', error);
+        }
+      );
+    }
   }
 
   navigateToAdd(): void {

@@ -6,6 +6,7 @@
         </div>
         <div class="table">
             <h2>Attendance</h2>
+            <nz-date-picker [(ngModel)]="date" (ngModelChange)="fetchAttendanceByDate()"></nz-date-picker>
             <nz-table #basicTable [nzData]="attendances">
                 <thead>
                     <tr>
