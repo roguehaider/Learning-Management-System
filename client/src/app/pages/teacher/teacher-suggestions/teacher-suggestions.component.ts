@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Suggestions } from '../../admin/admin-suggestions/admin-suggestions.component';
+import { ToastService } from 'src/app/utils/toast.service';
 @Component({
   selector: 'app-teacher-suggestions',
   templateUrl: './teacher-suggestions.component.html',
@@ -19,7 +20,7 @@ export class TeacherSuggestionsComponent {
     description: '', 
   };
 
-  constructor(private service: Service, private router: Router, private modal: NzModalService, private authService: AuthService) { 
+  constructor(private service: Service, private router: Router, private modal: NzModalService, private authService: AuthService, private toastService:ToastService) { 
     this.user= this.authService.getUser();
   }
 
@@ -57,10 +58,13 @@ export class TeacherSuggestionsComponent {
       response => {
         console.log('Suggestion posted successfully:', response);
         this.isVisible = false;
+        this.toastService.showToast('success', 'Suggesstion Added Successfully!');
         // this.resetForm();
       },
       error => {
         console.error('Failed to post suggestion:', error);
+        const errorMessage = error.message ? error.message : 'An error occurred';
+    this.toastService.showToast('error', errorMessage);
       }
     );
 
