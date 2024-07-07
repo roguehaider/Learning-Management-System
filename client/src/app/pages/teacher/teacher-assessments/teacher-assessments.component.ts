@@ -54,8 +54,6 @@ export class TeacherAssessmentsComponent {
 
 
   createAssessment(): void {
-    // if (this.diaryForm.valid) {
-    // this.newDiary.date = this.formatTimestamp(this.newDiary.date)
     console.log("assessment",this.newAssessment)
     this.service.createAssessment(this.newAssessment).subscribe(
       response => {
@@ -73,11 +71,25 @@ export class TeacherAssessmentsComponent {
   handleCancel(){
     this.isAddVisible = false;
   }
+ 
   navigateToAssessmentMarks(assessment: any): void {
     const assessmentType = encodeURIComponent(assessment.type);
     const assessmentId = assessment._id;
-    this.router.navigate([`/admin/assessment/${assessmentType}`], {
-      queryParams: { id: assessmentId },
+    const courseName = assessment.coursename;
+    const totalMarks = assessment.totalMarks;
+
+    this.router.navigate([`/teacher/assessment/${assessmentType}`], {
+      queryParams: { id: assessmentId, courseName: courseName, totalMarks: totalMarks },
+    });
+  }
+  navigateToUpdateMarks(assessment: any): void {
+    const assessmentType = encodeURIComponent(assessment.type);
+    const assessmentId = assessment._id;
+    const courseName = assessment.coursename;
+    const totalMarks = assessment.totalMarks;
+    const MarksListString = JSON.stringify(assessment.MarksList);
+    this.router.navigate([`/teacher/assessment/marks/${assessmentType}`], {
+      queryParams: { id: assessmentId, courseName: courseName, totalMarks: totalMarks, MarksList: MarksListString },
     });
   }
 }

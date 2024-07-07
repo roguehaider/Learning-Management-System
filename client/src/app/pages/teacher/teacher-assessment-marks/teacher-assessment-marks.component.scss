@@ -1,0 +1,38 @@
+h2 {
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #1F3F49;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 0;
+}
+.assessmentButton{
+    padding: 10px;
+    width: 130px;
+    color: #ffffff;
+    border-radius: 7px;
+    border: transparent;
+    background-color: #1F3F49;
+    align-items: center;
+
+  }
+ .top{
+    display: grid;
+    grid-template-columns: 30% 30% 30%;
+    gap: 20px;
+    padding: 10px;
+    h3{
+        display: flex;
+        flex-direction: row;
+        gap: 15px;
+        font-size: 16px;
+        font-weight: 600;
+        color: #1f3f499a;
+        p{
+            color: #1f3f49a9;
+            font-weight: 500;
+        }
+    }
+ } 
