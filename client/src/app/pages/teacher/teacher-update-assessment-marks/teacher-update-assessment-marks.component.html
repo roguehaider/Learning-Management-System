@@ -1,0 +1,56 @@
+<div class="container">
+    <div class="top">
+        <h3>
+            Course Name:
+            <p>{{courseName}}</p>
+        </h3>
+        <h3>
+            Total Marks:
+            <p>{{totalMarks}}</p>
+        </h3>
+        <h3>
+            Assessment Type:
+            <p>{{assessmentType}}</p>
+        </h3>
+    </div>
+    <div class="table">
+        <nz-table #basicTable [nzData]="MarksList">
+            <thead>
+                <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Roll No</th>
+                    <th>Total Marks</th>
+                    <th>Obtained Marks</th>
+                    <th>Update</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                    <td>{{ data.student.Fname }}</td>
+                    <td>{{ data.student.Lname }}</td>
+                    <td>{{ data.student.roll_No }}</td>
+                    <td>
+                        {{totalMarks}}
+                    </td>
+                    <td>
+                        {{data.obtained_marks}}
+                    </td>
+                    <td>
+                        <span nz-icon nzType="edit" nzTheme="outline" (click)="showModal(data)"></span>
+                        <nz-modal [(nzVisible)]="isVisible" nzTitle="Update Marks" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+                            <ng-container *nzModalContent>
+                              <div class="form">
+                                <input nz-input placeholder="{{selectedData.student.Fname}}" disabled="true"/>
+                                <input nz-input placeholder=" {{selectedData.student.Lname}}" disabled="true"/>
+                                <input nz-input placeholder="{{selectedData.student.roll_No}}" disabled="true"/>
+                                <input nz-input type="number" min="0" [max]="totalMarks" placeholder="Obtained Marks"  [(ngModel)]="selectedData.obtained_marks" />
+                              </div>
+                            </ng-container>
+                          </nz-modal>
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

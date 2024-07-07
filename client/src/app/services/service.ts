@@ -383,6 +383,25 @@ export class Service {
     return this.http.get<any>(`${this.apiUrl}teacher/course/assesments/${courseID}`, { withCredentials: true });
   }
 
+  // teacher/course/assesment/marks
+  putAssessmentMarks(data: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.post<any>(`${this.apiUrl}teacher/course/assesment/marks`, data, { withCredentials: true });
+  }
+  // teacher/course/assesments/update
+  updateAssessmentMarks(data: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.put<any>(`${this.apiUrl}teacher/course/assesments/update`, data, { withCredentials: true });
+  }
+
   // student------------------------------------------------------------------------------------------------------------------------------------
   getStudentCourses(): Observable<any> {
     const accessToken = localStorage.getItem('accessToken');

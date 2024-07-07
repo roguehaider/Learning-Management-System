@@ -102,6 +102,8 @@ import { AdminCourseDetailComponent } from './pages/admin/admin-course-detail/ad
 import { StudentLeavesComponent } from './pages/student/student-leaves/student-leaves.component';
 import { ToastComponent } from './utils/toast/toast.component';
 import { TeacherAssessmentsComponent } from './pages/teacher/teacher-assessments/teacher-assessments.component';
+import { TeacherAssessmentMarksComponent } from './pages/teacher/teacher-assessment-marks/teacher-assessment-marks.component';
+import { TeacherUpdateAssessmentMarksComponent } from './pages/teacher/teacher-update-assessment-marks/teacher-update-assessment-marks.component';
 
 
 // const icons: IconDefinition[] = [
@@ -182,6 +184,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     StudentLeavesComponent,
     ToastComponent,
     TeacherAssessmentsComponent,
+    TeacherAssessmentMarksComponent,
+    TeacherUpdateAssessmentMarksComponent,
   ],
   imports: [
     BrowserModule,

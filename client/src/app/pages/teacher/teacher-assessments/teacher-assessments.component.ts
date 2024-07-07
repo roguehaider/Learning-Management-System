@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Service } from 'src/app/services/service';
 import { ToastService } from 'src/app/utils/toast.service';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-teacher-assessments',
@@ -18,7 +19,8 @@ export class TeacherAssessmentsComponent implements OnInit {
   constructor(
     private service: Service,
     private fb: FormBuilder,
-    private toastService: ToastService
+    private toastService: ToastService,
+    private router:Router
   ) {
     // Initialize the form
     this.newAssessmentForm = this.fb.group({
@@ -60,6 +62,7 @@ export class TeacherAssessmentsComponent implements OnInit {
       );
   }
 
+
   createAssessment(): void {
     if (this.newAssessmentForm.valid) {
       console.log('assessment', this.newAssessmentForm.value);
@@ -86,5 +89,26 @@ export class TeacherAssessmentsComponent implements OnInit {
 
   handleCancel(): void {
     this.isAddVisible = false;
+  }
+ 
+  navigateToAssessmentMarks(assessment: any): void {
+    const assessmentType = encodeURIComponent(assessment.type);
+    const assessmentId = assessment._id;
+    const courseName = assessment.coursename;
+    const totalMarks = assessment.totalMarks;
+
+    this.router.navigate([`/teacher/assessment/${assessmentType}`], {
+      queryParams: { id: assessmentId, courseName: courseName, totalMarks: totalMarks },
+    });
+  }
+  navigateToUpdateMarks(assessment: any): void {
+    const assessmentType = encodeURIComponent(assessment.type);
+    const assessmentId = assessment._id;
+    const courseName = assessment.coursename;
+    const totalMarks = assessment.totalMarks;
+    const MarksListString = JSON.stringify(assessment.MarksList);
+    this.router.navigate([`/teacher/assessment/marks/${assessmentType}`], {
+      queryParams: { id: assessmentId, courseName: courseName, totalMarks: totalMarks, MarksList: MarksListString },
+    });
   }
 }
