@@ -1,1 +1,35 @@
-<p>teacher-course-detail works!</p>
+<div class="container">
+    <!-- <h2>{{this.courseName}}</h2> -->
+    <div class="details">
+        <div class="item">
+            <span nz-icon nzType="file-text" nzTheme="outline"></span>
+            <h3>Course Name:</h3>
+            <span>{{courseName}}</span>
+        </div>
+        <div class="item">
+            <span nz-icon nzType="user" nzTheme="outline"></span>
+            <h3>Total Students</h3>
+            <span>{{this.totalStudents}}</span>
+        </div>
+    </div>
+    <div class="table">
+        <nz-table #basicTable [nzData]="students">
+            <thead>
+                <tr>
+                    <th>Roll No</th>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Roll No</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                    <td>{{ data.roll_No }}</td>
+                    <td>{{ data.Fname }}</td>
+                    <td>{{ data.Lname }}</td>
+                    <td>{{ data.roll_No }}</td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

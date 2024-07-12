@@ -121,10 +121,7 @@
                     <th>Roll No</th>
                     <th>First Name</th>
                     <th>Last Name</th>
-                    <th>Phone</th>
-                    <th>Email</th>
-                    <th>DOB</th>
-                    <th>Delete</th>
+                    <th>Remove</th>
                 </tr>
             </thead>
             <tbody>
@@ -132,9 +129,6 @@
                     <td>{{ data.roll_No }}</td>
                     <td>{{ data.Fname }}</td>
                     <td>{{ data.Lname }}</td>
-                    <td>{{ data.phone }}</td>
-                    <td>{{ data.email }}</td>
-                    <td>{{ formatTimestamp(data.DOB) }}</td>
                     <td>
                         <a style="font-size: 22px; color: red;" (click)="showDeleteConfirm(data)"><span nz-icon
                                 nzType="delete" nzTheme="fill"></span></a>

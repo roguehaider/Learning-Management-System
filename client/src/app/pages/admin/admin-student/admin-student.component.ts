@@ -164,6 +164,7 @@ export class AdminStudentComponent {
     console.log("Button cancel clicked!");
     this.isVisible = false;
   }
+  
   formatTimestamp(isoDate: any): any {
     return this.datePipe.transform(isoDate, "mediumDate");
   }

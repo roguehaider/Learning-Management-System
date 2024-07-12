@@ -31,9 +31,21 @@
         </a>
       </li>
       <li nz-menu-item [routerLinkActive]="'active'">
+        <a routerLink="/student/attendance">
+        <span nz-icon nzType="idcard" nzTheme="outline"></span>
+        <span>Attendance</span>
+      </a>
+      </li>
+      <li nz-menu-item [routerLinkActive]="'active'">
         <a routerLink="/student/leaves">
           <span nz-icon nzType="audit" nzTheme="outline"></span>
           <span style="margin-left: 10px">Leave</span>
+        </a>
+      </li>
+      <li nz-menu-item>
+        <a routerLink="/student/suggestions">
+          <span nz-icon nzType="info-circle" nzTheme="outline"></span>
+          <span>Suggestions</span>
         </a>
       </li>
     </ul>
@@ -43,7 +55,7 @@
       <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
         (click)="isCollapsed = !isCollapsed"></span>
       <div class="logo">School Management</div>
-      <button>Logout</button>
+      <button (click)="logout()">Logout</button>
     </nz-header>
     <nz-content>
       <router-outlet></router-outlet>

@@ -1,55 +1,59 @@
 <div class="dashboard">
     <div class="container">
-        <a [routerLink]="['/admin/teacher']" routerLinkActive="router-link-active"><div class="card" style="background-color: #6494edaf;">
-            <div class="card-title">Total Teacher</div>
-            <div class="card-icon">
-                <span nz-icon nzType="audit" nzTheme="outline"></span>
-                <div class="card-value">{{this.teachers}}</div>
+        <a [routerLink]="['/admin/teacher']" routerLinkActive="router-link-active">
+            <div class="card" style="background-color: #6494edaf;">
+                <div class="card-title">Total Teacher</div>
+                <div class="card-icon">
+                    <span nz-icon nzType="audit" nzTheme="outline"></span>
+                    <div class="card-value">{{this.teachers}}</div>
+                </div>
+                <!-- <div class="card-info">Pending Teacher 0</div> -->
             </div>
-            <!-- <div class="card-info">Pending Teacher 0</div> -->
-        </div></a>
+        </a>
 
-        <a [routerLink]="['/admin/student']" routerLinkActive="router-link-active"><div class="card" style="background-color: #4caf4fc2;">
-            <div class="card-title">Total Student</div>
-            <div class="card-icon">
-                <span nz-icon nzType="user" nzTheme="outline"></span>
-                <div class="card-value">{{this.students}}</div>
+        <a [routerLink]="['/admin/student']" routerLinkActive="router-link-active">
+            <div class="card" style="background-color: #4caf4fc2;">
+                <div class="card-title">Total Student</div>
+                <div class="card-icon">
+                    <span nz-icon nzType="user" nzTheme="outline"></span>
+                    <div class="card-value">{{this.students}}</div>
+                </div>
+                <!-- <div class="card-info">Pending Students 0</div> -->
             </div>
-            <!-- <div class="card-info">Pending Students 0</div> -->
-        </div></a>
+        </a>
 
-        <div class="card" style="background-color: #f0b255a4;">
-            <div class="card-title">Total Classes</div>
-            <div class="card-icon">
-                <span nz-icon nzType="group" nzTheme="outline"></span>
-                <div class="card-value">{{this.classes}}</div>
+        <a [routerLink]="['/admin/class']" routerLinkActive="router-link-active">
+            <div class="card" style="background-color: #f0b255a4;">
+                <div class="card-title">Total Classes</div>
+                <div class="card-icon">
+                    <span nz-icon nzType="group" nzTheme="outline"></span>
+                    <div class="card-value">{{this.classes}}</div>
+                </div>
+                <!-- <div class="card-info">Pending Salary None</div> -->
             </div>
-            <!-- <div class="card-info">Pending Salary None</div> -->
-        </div>
+        </a>
 
-        <div class="card" style="background-color: #d165c891;">
-            <div class="card-title">Total Courses</div>
-            <div class="card-icon">
-                <span nz-icon nzType="money-collect" nzTheme="outline"></span>
-                <div class="card-value">{{this.courses}}</div>
+        <a [routerLink]="['/admin/courses']" routerLinkActive="router-link-active">
+            <div class="card" style="background-color: #d165c891;">
+                <div class="card-title">Total Courses</div>
+                <div class="card-icon">
+                    <span nz-icon nzType="money-collect" nzTheme="outline"></span>
+                    <div class="card-value">{{this.courses}}</div>
+                </div>
+                <!-- <div class="card-info">Pending Dues None</div> -->
             </div>
-            <!-- <div class="card-info">Pending Dues None</div> -->
-        </div>
+        </a>
     </div>
     <div class="notice-board">
         <h3>Announcements Board</h3>
     </div>
     <div class="announcements">
         <ng-container *ngFor="let announcement of announcements">
-            <nz-alert
-              class="custom-alert"
-              nzType="error"
-              nzCloseable
-              [nzMessage]="formatTimestamp(announcement.createdAt) + ' || ' + announcement.title"
-              [nzDescription]="announcement.description"
-            ></nz-alert>
-          </ng-container>
-          
-          
+            <nz-alert class="custom-alert" nzType="error" nzCloseable
+                [nzMessage]="formatTimestamp(announcement.createdAt) + ' || ' + announcement.title"
+                [nzDescription]="announcement.description"></nz-alert>
+        </ng-container>
+
+
     </div>
 </div>

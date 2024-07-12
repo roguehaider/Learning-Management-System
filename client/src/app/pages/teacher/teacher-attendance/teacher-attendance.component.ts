@@ -3,6 +3,7 @@ import { Service } from 'src/app/services/service';
 import { Classes } from '../../admin/admin-attendance/admin-attendance.component';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DatePipe } from '@angular/common';
+import { Router } from '@angular/router';
 export interface Attendance {
   date: string
 }
@@ -19,7 +20,7 @@ export class TeacherAttendanceComponent {
   //all courses for attendance
   courses: any;
   students: any
-  // selectCourseId: any
+  selectedOption!: string;
 
   attendanceOptions = [
     { label: 'P', value: 'Present', checked: false },
@@ -32,7 +33,7 @@ export class TeacherAttendanceComponent {
     attendanceList: [] as any[]
   };
 
-  constructor(private service: Service, private authService: AuthService, private datePipe: DatePipe) { }
+  constructor(private service: Service, private authService: AuthService, private datePipe: DatePipe, private router: Router) { }
   ngOnInit(): void {
     this.authService.refreshToken();
     this.fetchCourses();
@@ -40,11 +41,23 @@ export class TeacherAttendanceComponent {
     // this.fetchAttendance();
   }
 
+  updateSelection(option: string) {
+    this.selectedOption = option;
+  }
+
   fetchStudentsForCourse() {
     this.service.getStudentsOfClass()
       .subscribe(
         response => {
-          this.students = response.students
+          this.students = response.students.map((student: any) => {
+            student.attendanceOptions = [
+              { label: 'P', value: 'Present', checked: false },
+              { label: 'A', value: 'Absent', checked: false },
+              { label: 'L', value: 'Leave', checked: false }
+            ];
+            return student;
+          });
+          console.log(this.students);
           console.log(response);
         },
         error => {
@@ -75,23 +88,23 @@ export class TeacherAttendanceComponent {
     this.attendanceOptions.forEach(attendance => {
       attendance.checked = (attendance === selectedAttendance);
     });
-  
+
     let found = false;
-  
+
     this.studentAttendance.attendanceList.forEach((item: any) => {
       if (item.student === data._id) {
         item.status = selectedAttendance.value;
         found = true;
       }
     });
-  
+
     if (!found) {
       this.studentAttendance.attendanceList.push({ student: data._id, status: selectedAttendance.value });
     }
-  
+
     console.log(this.studentAttendance);
   }
-  
+
   formatTimestamp(isoDate: any): any {
     return this.datePipe.transform(isoDate, "YYYY-MM-dd");
   }
@@ -102,6 +115,8 @@ export class TeacherAttendanceComponent {
     this.service.createTeacherAttendance(this.studentAttendance)
       .subscribe(response => {
         console.log('Attendance posted:', response);
+        this.router.navigate(["/teacher/attendance"]);
+
       }, error => {
         console.error('Error posting attendance:', error);
       });

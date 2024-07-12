@@ -32,12 +32,20 @@
                     <td>{{ data.Lname }}</td>
                     <td>{{ data.roll_No }}</td>
                     <td style="display: flex; flex-direction: row; gap:20px">
-                        <div class="checkboxes" *ngFor="let attendance of attendanceOptions"
+                        <!-- <div class="checkboxes" *ngFor="let attendance of attendanceOptions"
                             style="display: flex; gap: 10px;">
                             <label for="checkbox">{{attendance.label}}</label>
                             <input type="checkbox" [value]="attendance.value" [(ngModel)]="attendance.checked"
                                 (change)="onCheckBoxChange(data,attendance)">
-                        </div>
+                        </div> -->
+
+                        <div class="checkboxes" *ngFor="let attendance of data.attendanceOptions"
+                        style="display: flex; gap: 10px;">
+                     <label for="checkbox">{{attendance.label}}</label>
+                     <input type="checkbox" [value]="attendance.value" [(ngModel)]="attendance.checked"
+                            (change)="onCheckBoxChange(data, attendance)">
+                   </div>
+
                     </td>
                 </tr>
             </tbody>

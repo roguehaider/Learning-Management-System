@@ -34,6 +34,8 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzListModule } from 'ng-zorro-antd/list';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 
 
 import {
@@ -106,6 +108,9 @@ import { TeacherAssessmentMarksComponent } from './pages/teacher/teacher-assessm
 import { TeacherUpdateAssessmentMarksComponent } from './pages/teacher/teacher-update-assessment-marks/teacher-update-assessment-marks.component';
 import { TeacherRemarksComponent } from './pages/teacher/teacher-remarks/teacher-remarks.component';
 import { TeacherCourseDetailComponent } from './pages/teacher/teacher-course-detail/teacher-course-detail.component';
+import { StudentAttendanceComponent } from './pages/student/student-attendance/student-attendance.component';
+import { StudentCourseDetailComponent } from './pages/student/student-course-detail/student-course-detail.component';
+import { StudentSuggestionsComponent } from './pages/student/student-suggestions/student-suggestions.component';
 
 
 // const icons: IconDefinition[] = [
@@ -190,6 +195,9 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     TeacherUpdateAssessmentMarksComponent,
     TeacherRemarksComponent,
     TeacherCourseDetailComponent,
+    StudentAttendanceComponent,
+    StudentCourseDetailComponent,
+    StudentSuggestionsComponent,
   ],
   imports: [
     BrowserModule,
@@ -215,6 +223,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzAlertModule,
     NzDatePickerModule,
     NzListModule,
+    NzProgressModule,
+    NzStatisticModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US } ,{provide: NZ_ICONS, useValue: icons},  AuthService,
     {

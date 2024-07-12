@@ -86,7 +86,7 @@ async function handleRespondLeaveRequest(req , res , next){
         return next(error)
     }
 
-    return res.status(200).json({message:"Responded"})
+    return res.status(200).json({message: status})
 
 }
 

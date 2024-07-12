@@ -1,1 +1,48 @@
-<p>student-dashboard works!</p>
+<div class="dashboard">
+    <div class="container">
+        <a routerLinkActive="router-link-active">
+            <div class="card" style="background-color: #6494edaf;">
+                <div class="card-title">Name:</div>
+                <div class="card-icon">
+                    <span nz-icon nzType="user" nzTheme="outline"></span>
+                    <div class="card-value">{{userName}}</div>
+                </div>
+            </div>
+        </a>
+
+        <a [routerLink]="['/student/courses']" routerLinkActive="router-link-active">
+            <div class="card" style="background-color: #4caf4fc2;">
+                <div class="card-title">Total Courses</div>
+                <div class="card-icon">
+                    <span nz-icon nzType="audit" nzTheme="outline"></span>
+                    <div class="card-value">{{courses}}</div>
+                </div>
+            </div>
+        </a>
+
+        <a [routerLink]="['/student/assessment']" routerLinkActive="router-link-active">
+            <div class="card" style="background-color: #f0b255a4;">
+                <div class="card-title">Add Assessment</div>
+                <span nz-icon nzType="appstore-add" nzTheme="outline" style="font-size: 22px;"></span>
+            </div>
+        </a>
+        <a [routerLink]="['/student/diary']" routerLinkActive="router-link-active">
+            <div class="card" style="background-color: #d165c891;">
+                <div class="card-title">Add Diary</div>
+                <span nz-icon nzType="plus-square" nzTheme="outline" style="font-size: 22px;"></span>
+            </div>
+        </a>
+    </div>
+    <div class="notice-board">
+        <h3>Announcements Board</h3>
+    </div>
+    <div class="announcements">
+        <ng-container *ngFor="let announcement of announcements">
+            <nz-alert class="custom-alert" nzType="error" nzCloseable
+                [nzMessage]="formatTimestamp(announcement.createdAt) + ' || ' + announcement.title"
+                [nzDescription]="announcement.description"></nz-alert>
+        </ng-container>
+
+
+    </div>
+</div>

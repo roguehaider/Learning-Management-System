@@ -1,9 +1,9 @@
 <nz-layout>
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="profile" [ngClass]="{'hidden': isCollapsed}">
-      <!-- <img src="../../assets/images/admin.jpg" alt=""> -->
-      <img *ngIf="photo" [src]="photo" alt="Profile Photo">
-      <h2>{{userName}}</h2>
+      <img src="../../assets/images/admin.jpg" alt="">
+      <!-- <img *ngIf="photo" [src]="photo" alt="Profile Photo"> -->
+      <h2>Admin</h2>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
       <li nz-menu-item [routerLinkActive]="'active'">
