@@ -103,6 +103,15 @@ async function handleAddStudents(req, res, next) {
         return next(error);
     }
 
+    let student
+
+    try {
+
+    }
+    catch (error) {
+        
+    }
+
     try {
 
         await Class.updateOne(
@@ -183,7 +192,7 @@ async function handleAddCourse(req, res, next) {
 
         await Class.updateOne(
             { _id: class_id },
-            { $push: { courses: { $each: courses } } } // Use $push to add students to the existing array
+            { $push: { courses: { $each: courses } } } 
         );
 
         await Promise.all(courses.map(async (course_id) => {

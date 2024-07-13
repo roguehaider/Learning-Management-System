@@ -70,7 +70,7 @@ export class TeacherDiaryComponent {
       );
   }
   postDiary(): void {
-    // if (this.diaryForm.valid) {
+    this.diaryData= '';
     this.newDiary.date = this.formatTimestamp(this.newDiary.date)
     console.log("nd",this.newDiary.date)
     this.service.postDiary(this.newDiary).subscribe(
@@ -82,6 +82,7 @@ export class TeacherDiaryComponent {
         console.error('Error posting diary entry:', error);
       }
     );
+    this.isVisible = false
   }
   updateDiary(){
     console.log(this.editDiary)

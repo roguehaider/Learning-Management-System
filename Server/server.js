@@ -4,7 +4,13 @@ const cookieParser=require('cookie-parser')
 const {PORT} =  require('./config/index')
 const router = require('./routes/index');
 const errorHandler=require('./middleware/errorHandler')
+const http = require('http');
+
+
 const app = express();
+const server = http.createServer(app);
+
+
 const cors = require('cors')
 
 const corsOption={
@@ -26,4 +32,4 @@ app.use(router);
 
 app.use(errorHandler);
 
-app.listen(PORT , console.log(`server started at port : ${PORT}`));
+server.listen(PORT , console.log(`server started at port : ${PORT}`));

@@ -13,6 +13,7 @@ export class StudentDashboardComponent {
   announcements: Announcements[] = [];
   courses!: number; 
   userName: any;
+  rollNo: any
 
   constructor(private service: Service, private datePipe: DatePipe) {
     this.fetchCourses();
@@ -21,7 +22,7 @@ export class StudentDashboardComponent {
 
     if (userJson) {
         const user = JSON.parse(userJson);
-        
+        this.rollNo = user.roll_No
         const firstName = user.Fame;
         const lastName = user.Lname;
         this.userName = `${firstName} ${lastName}`;

@@ -526,6 +526,16 @@ export class Service {
     return this.http.post(`${this.apiUrl}suggestion`, suggestion, { withCredentials: true });
   }
 
+  // student/diary/:date 
+  getStudentDiary(date: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.get<any>(`${this.apiUrl}student/diary/${date}`, { withCredentials: true });
+  }
+
   // student/challan
   getStudentChallan(): Observable<any> {
     const accessToken = localStorage.getItem('accessToken');
@@ -535,6 +545,25 @@ export class Service {
     document.cookie = `refreshToken=${refreshToken}`;
 
     return this.http.get(`${this.apiUrl}student/challan`, { withCredentials: true });
+  }
+
+  // student/remaks/:course_id
+  getStudentRemarks(course_id: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.get<any>(`${this.apiUrl}student/remaks/${course_id}`, { withCredentials: true });
+  }
+  // /student/remarks  Post Remark
+  postTeacherRemarks(remark: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.post<any>(`${this.apiUrl}student/remarks`, remark, { withCredentials: true });
   }
 }
 

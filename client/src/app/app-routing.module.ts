@@ -46,7 +46,6 @@ import { StudentDashboardComponent } from "./pages/student/student-dashboard/stu
 import { LayoutStudentComponent } from "./layout-student/layout-student.component";
 import { StudentAnnouncementsComponent } from "./pages/student/student-announcements/student-announcements.component";
 import { StudentCoursesComponent } from "./pages/student/student-courses/student-courses.component";
-import { StudentGiveRemarksComponent } from "./pages/student/student-give-remarks/student-give-remarks.component";
 import { AdminClassDetailComponent } from "./pages/admin/admin-class-detail/admin-class-detail.component";
 import { AdminCourseDetailComponent } from "./pages/admin/admin-course-detail/admin-course-detail.component";
 import { StudentLeavesComponent } from "./pages/student/student-leaves/student-leaves.component";
@@ -59,6 +58,7 @@ import { TeacherCourseDetailComponent } from "./pages/teacher/teacher-course-det
 import { StudentAttendanceComponent } from "./pages/student/student-attendance/student-attendance.component";
 import { StudentCourseDetailComponent } from "./pages/student/student-course-detail/student-course-detail.component";
 import { StudentSuggestionsComponent } from "./pages/student/student-suggestions/student-suggestions.component";
+import { StudentDiaryComponent } from "./pages/student/student-diary/student-diary.component";
 const routes: Routes = [
   {
     path: "admin",
@@ -136,11 +136,11 @@ const routes: Routes = [
       { path: "dashboard", component: StudentDashboardComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
       { path: "announcements", component: StudentAnnouncementsComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
       { path: "courses", component: StudentCoursesComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
-      { path: "course-detail/:name", component: StudentCourseDetailComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
-      { path: "remarks", component: StudentGiveRemarksComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
-      { path: "leaves", component: StudentLeavesComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
+      { path: "course-detail/:name", component: StudentCourseDetailComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },      { path: "leaves", component: StudentLeavesComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
       { path: "attendance", component: StudentAttendanceComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
       { path: "suggestions", component: StudentSuggestionsComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
+      { path: "diary", component: StudentDiaryComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
+
 
     ],
   },

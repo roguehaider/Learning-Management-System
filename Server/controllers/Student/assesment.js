@@ -1,7 +1,8 @@
 const Assesments = require('../../models/assesment');
 const Joi = require('joi');
 const mongoDbIdPattern = /^[0-9a-fA-F]{24}$/;
-const AssesmentDTO = require('../../dto/Student/assesmentDTO')
+const AssesmentDTO = require('../../dto/Student/assesmentDTO');
+const assesment = require('../../models/assesment');
 
 async function getStudentAssementByCourse(req, res, next) {
 
@@ -39,7 +40,7 @@ async function getStudentAssementByCourse(req, res, next) {
         AssesmentRecords.push(assesmentDto);
     }
 
-    return res.status(200).json({ attendance: AssesmentRecords });
+    return res.status(200).json({ assesment: AssesmentRecords });
 }
 
 module.exports = {

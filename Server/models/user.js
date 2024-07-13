@@ -53,7 +53,6 @@ const userSchema =new Schema({
     },
     IsClassTeacher:{
         type:Boolean,
-        default:false
     }
 },{timestamps:true});
 

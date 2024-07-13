@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { NzModalService } from 'ng-zorro-antd/modal';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Suggestions } from '../../admin/admin-suggestions/admin-suggestions.component';
+import { ToastService } from 'src/app/utils/toast.service';
 
 @Component({
   selector: 'app-student-suggestions',
@@ -20,7 +21,7 @@ export class StudentSuggestionsComponent {
     description: '', 
   };
 
-  constructor(private service: Service, private router: Router, private modal: NzModalService, private authService: AuthService) { 
+  constructor(private service: Service, private router: Router, private modal: NzModalService, private authService: AuthService, private toastService: ToastService) { 
     this.user= this.authService.getUser();
   }
 
@@ -56,6 +57,7 @@ export class StudentSuggestionsComponent {
     this.service.postStudentSuggestion(this.newSuggestion).subscribe(
       response => {
         console.log('Suggestion posted successfully:', response);
+        this.toastService.showToast("success", response.message);
         this.isVisible = false;
         // this.resetForm();
       },

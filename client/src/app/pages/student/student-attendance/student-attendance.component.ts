@@ -40,9 +40,9 @@ export class StudentAttendanceComponent {
         this.totalCount = this.presentCount + this.absentCount + this.leaveCount;
 
         if (this.totalCount > 0) {
-          this.presentPercent = (this.presentCount / this.totalCount) * 100;
-          this.absentPercent = (this.absentCount / this.totalCount) * 100;
-          this.leavePercent = (this.leaveCount / this.totalCount) * 100;
+          this.presentPercent = parseFloat(((this.presentCount / this.totalCount) * 100).toFixed(2));
+          this.absentPercent = parseFloat(((this.absentCount / this.totalCount) * 100).toFixed(2));
+          this.leavePercent = parseFloat(((this.leaveCount / this.totalCount) * 100).toFixed(2));
         }
       },
       error => {

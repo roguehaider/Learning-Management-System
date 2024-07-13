@@ -2,10 +2,12 @@
     <div class="container">
         <a routerLinkActive="router-link-active">
             <div class="card" style="background-color: #6494edaf;">
-                <div class="card-title">Name:</div>
-                <div class="card-icon">
-                    <span nz-icon nzType="user" nzTheme="outline"></span>
+                <span nz-icon nzType="user" nzTheme="outline"></span>
+                <div style="text-align: center;">
                     <div class="card-value">{{userName}}</div>
+                </div>
+                <div style="text-align: center;">
+                    <div class="card-value">{{rollNo}}</div>
                 </div>
             </div>
         </a>
@@ -20,15 +22,15 @@
             </div>
         </a>
 
-        <a [routerLink]="['/student/assessment']" routerLinkActive="router-link-active">
+        <a [routerLink]="['/student/attendance']" routerLinkActive="router-link-active">
             <div class="card" style="background-color: #f0b255a4;">
-                <div class="card-title">Add Assessment</div>
-                <span nz-icon nzType="appstore-add" nzTheme="outline" style="font-size: 22px;"></span>
+                <div class="card-title">View Attendance</div>
+                <span nz-icon nzType="idcard" nzTheme="outline" style="font-size: 22px;"></span>
             </div>
         </a>
         <a [routerLink]="['/student/diary']" routerLinkActive="router-link-active">
             <div class="card" style="background-color: #d165c891;">
-                <div class="card-title">Add Diary</div>
+                <div class="card-title">View Diary</div>
                 <span nz-icon nzType="plus-square" nzTheme="outline" style="font-size: 22px;"></span>
             </div>
         </a>

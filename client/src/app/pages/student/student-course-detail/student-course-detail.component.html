@@ -1,3 +1,71 @@
 <div class="container">
-    <h2>{{courseName}}</h2>
+ <div class="course-detail">
+  <div class="item">
+    <p>Course Title: </p>
+    {{courseName}}
+  </div>
+  <div style="width: 2px; height: 35px; background-color: rgb(219, 216, 216);"></div>
+  <div class="item">
+    <p>Course Teacher: </p>
+    {{courseTeacher}}
+  </div>
+ </div>
+
+  <!-- Remarks  -->
+  <div class="heading">
+    <h3>Remarks</h3>
+    <div class="button">
+      <button (click)="showModal()">Give Remark</button>
+      <nz-modal [(nzVisible)]="isVisible" nzTitle="Give Remark" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+        <ng-container *nzModalContent>
+        <div class="form">
+          <input type="text" placeholder="Title" [(ngModel)]="newRemark.title">
+          <input type="text" placeholder="Description" [(ngModel)]="newRemark.description">
+        </div>
+        </ng-container>
+      </nz-modal>
+    </div>
+  </div>
+  <div style="border: 1px solid #1f3f496b; margin-top: 10px; border-radius: 7px;">
+    <div class="remarks-headers">
+      <h3>Title</h3>
+      <h3>Description</h3>
+    </div>
+    <div *ngIf="remarks.length === 0">
+      <p style="text-align: center; color: gray; padding: 10px;">NO REMARKS</p>
+    </div>
+    <div class="remarks" *ngFor="let remark of remarks">
+      <p>{{remark.title}}</p>
+      <p>{{remark.description}}</p>
+    </div>
+    
+  </div>
+
+ <!-- Assessment  -->
+  <div class="heading">
+    <h3>Assessments</h3>
+  </div>
+  <div style="border: 1px solid #1f3f496b; margin-top: 10px; border-radius: 7px;">
+    <div class="headers">
+      <h3>Type</h3>
+      <h3>Total Marks</h3>
+      <h3>Obtained Marks</h3>
+    </div>
+
+    <div *ngIf="assessments.length === 0">
+      <p style="text-align: center; color: gray; padding: 10px;">NO ASSESSMENT</p>
+    </div>
+    <div class="assessments" *ngFor="let assessment of assessments">
+      <div class="item">
+        <p style="font-weight:700 ;">{{ assessment.type }}</p>
+      </div>
+      <div class="item">
+        <p>{{ assessment.TotalMarks }}</p>
+      </div>
+      <div class="item">
+        <p>{{ assessment.ObtainedMarks }}</p>
+      </div>
+    </div>
+
+  </div>
 </div>
