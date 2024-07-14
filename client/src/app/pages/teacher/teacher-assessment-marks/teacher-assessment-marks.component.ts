@@ -64,7 +64,7 @@ export class TeacherAssessmentMarksComponent {
       response => {
         console.log(response)
 
-        this.router.navigate(["/teacher/assessment"]);
+        this.router.navigate(["/teacher/course-detail"]);
       },
       error => {
         console.error('Error posting diary entry:', error);

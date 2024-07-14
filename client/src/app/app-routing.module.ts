@@ -59,6 +59,7 @@ import { StudentAttendanceComponent } from "./pages/student/student-attendance/s
 import { StudentCourseDetailComponent } from "./pages/student/student-course-detail/student-course-detail.component";
 import { StudentSuggestionsComponent } from "./pages/student/student-suggestions/student-suggestions.component";
 import { StudentDiaryComponent } from "./pages/student/student-diary/student-diary.component";
+import { StudentChallanComponent } from "./pages/student/student-challan/student-challan.component";
 const routes: Routes = [
   {
     path: "admin",
@@ -140,7 +141,7 @@ const routes: Routes = [
       { path: "attendance", component: StudentAttendanceComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
       { path: "suggestions", component: StudentSuggestionsComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
       { path: "diary", component: StudentDiaryComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
-
+      { path: "challan", component: StudentChallanComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
 
     ],
   },

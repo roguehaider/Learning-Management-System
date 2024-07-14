@@ -565,5 +565,14 @@ export class Service {
     document.cookie = `refreshToken=${refreshToken}`;
     return this.http.post<any>(`${this.apiUrl}student/remarks`, remark, { withCredentials: true });
   }
+
+  getChallan(year: number, month: number): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.get(`${this.apiUrl}student/challan`,  { withCredentials: true });  
+  }
 }
 

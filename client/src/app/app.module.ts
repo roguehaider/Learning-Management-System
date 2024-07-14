@@ -111,6 +111,7 @@ import { StudentAttendanceComponent } from './pages/student/student-attendance/s
 import { StudentCourseDetailComponent } from './pages/student/student-course-detail/student-course-detail.component';
 import { StudentSuggestionsComponent } from './pages/student/student-suggestions/student-suggestions.component';
 import { StudentDiaryComponent } from './pages/student/student-diary/student-diary.component';
+import { StudentChallanComponent } from './pages/student/student-challan/student-challan.component';
 
 
 // const icons: IconDefinition[] = [
@@ -198,6 +199,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     StudentCourseDetailComponent,
     StudentSuggestionsComponent,
     StudentDiaryComponent,
+    StudentChallanComponent,
   ],
   imports: [
     BrowserModule,
