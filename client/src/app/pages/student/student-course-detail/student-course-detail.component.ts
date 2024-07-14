@@ -52,6 +52,9 @@ export class StudentCourseDetailComponent {
     description: ''
   }
 
+  assessmentVisible =  true;
+  remarkVisible = false;
+
   constructor(
     private route: ActivatedRoute,
     private service: Service,
@@ -138,5 +141,13 @@ export class StudentCourseDetailComponent {
 
   handleCancel(): void {
     this.isVisible = false;
+  }
+
+  toggleAssessmentVisibility(): void {
+    this.assessmentVisible = !this.assessmentVisible;
+  }
+
+  toggleRemarkVisibility(): void {
+    this.remarkVisible = !this.remarkVisible;
   }
 }

@@ -15,7 +15,7 @@
             </thead>
             <tbody>
                 <tr *ngFor="let data of basicTable.data">
-                    <td>{{ data.date }}</td>
+                    <td>{{ formatTimestamp(data.date) }}</td>
                     <td>{{ data.courseName }}</td>
                     <td>{{ data.description }}</td>
                 </tr>

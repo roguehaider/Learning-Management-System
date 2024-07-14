@@ -20,15 +20,19 @@ export class TeacherCourseDetailComponent {
   totalStudents= 0
 
   isVisible = false;
+  viewRemarks = false;
   newRemark: { title?: string; description?: string, reciever?: string } = {}
  selectedData: any
 
  studentTableVisible = false;  // Property to track table visibilit
- assessmentVisible =  false;
+ assessmentVisible =  true;
+ studentRemarkVisible = false
 
  assessments: { _id?: string; type?: string | null; coursename?: string; totalMarks?: number; MarksList?: any[] }[] = [];
  newAssessment: { type?: string | null; course_id?: string, TotalMarks?: number } = {}
  isAddVisible = false;
+
+ studentRemarks: any
 
   
   constructor(
@@ -48,6 +52,7 @@ export class TeacherCourseDetailComponent {
       this.courseId = params["id"];
       this.fetchCourseDetail();
       this.fetchAssessmentByCourse();
+      this.fetchRemarks();
     });
   }
 
@@ -68,6 +73,7 @@ export class TeacherCourseDetailComponent {
     );
   }
   
+
   formatTimestamp(isoDate: any): any {
     return this.datePipe.transform(isoDate, "mediumDate");
   }
@@ -96,9 +102,25 @@ export class TeacherCourseDetailComponent {
     this.isVisible = false;
   }
 
+  fetchRemarks(){
+    this.service.getRemarks().subscribe(
+      response => {
+        console.log(response)
+        this.studentRemarks = response.remarks
+      },
+      error => {
+        console.error('Error posting diary entry:', error);
+      }
+    );
+  }
+
   handleCancel(): void {
     console.log('Button cancel clicked!');
     this.isVisible = false;
+  }
+
+  viewRemarkCancel(){
+    this.viewRemarks = false;
   }
 
   toggleStudentVisibility(): void {
@@ -106,6 +128,9 @@ export class TeacherCourseDetailComponent {
   }
   toggleAssessmentVisibility(): void {
     this.assessmentVisible = !this.assessmentVisible;
+  }
+  toggleRemarksVisibility(){
+    this.studentRemarkVisible = !this.studentRemarkVisible;
   }
 
 
@@ -131,11 +156,13 @@ export class TeacherCourseDetailComponent {
     const assessmentId = assessment._id;
     const courseName = assessment.coursename;
     const totalMarks = assessment.totalMarks;
+    const courseId = this.courseId
 
     this.router.navigate([`/teacher/assessment/${assessmentType}`], {
-      queryParams: { id: assessmentId, courseName: courseName, totalMarks: totalMarks },
+      queryParams: { id: assessmentId, courseName: courseName, totalMarks: totalMarks,course_id: courseId  },
     });
   }
+
   navigateToUpdateMarks(assessment: any): void {
     const assessmentType = encodeURIComponent(assessment.type);
     const assessmentId = assessment._id;
@@ -143,7 +170,7 @@ export class TeacherCourseDetailComponent {
     const totalMarks = assessment.totalMarks;
     const MarksListString = JSON.stringify(assessment.MarksList);
     this.router.navigate([`/teacher/assessment/marks/${assessmentType}`], {
-      queryParams: { id: assessmentId, courseName: courseName, totalMarks: totalMarks, MarksList: MarksListString },
+      queryParams: { id: assessmentId, courseName: courseName, totalMarks: totalMarks, MarksList: MarksListString},
     });
   }
 

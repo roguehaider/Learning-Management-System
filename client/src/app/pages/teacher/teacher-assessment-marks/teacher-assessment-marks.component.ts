@@ -13,7 +13,8 @@ export class TeacherAssessmentMarksComponent {
   assessmentId: string | null = null;
   assessmentType: string | null = null;
   students: any;
-  courseName: string | null = null;
+  courseName: any;
+  courseId: any
   totalMarks: string | null = null;
   studentMarks: { student: string, obtained_marks: number }[] = [];
 
@@ -36,6 +37,7 @@ export class TeacherAssessmentMarksComponent {
       this.assessmentId = params.get('id');
       this.courseName = params.get('courseName');
       this.totalMarks = params.get('totalMarks');
+      this.courseId = params.get('course_id')
     });
     this.fetchStudents();
   }
@@ -64,7 +66,11 @@ export class TeacherAssessmentMarksComponent {
       response => {
         console.log(response)
 
-        this.router.navigate(["/teacher/course-detail"]);
+        const courseName =  encodeURIComponent(this.courseName);
+        const courseId = this.courseId;
+        this.router.navigate([`/teacher/course-detail/${courseName}`], {
+          queryParams: { id: courseId },
+        });
       },
       error => {
         console.error('Error posting diary entry:', error);

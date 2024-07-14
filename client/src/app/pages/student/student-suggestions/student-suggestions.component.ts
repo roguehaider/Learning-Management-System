@@ -59,14 +59,13 @@ export class StudentSuggestionsComponent {
         console.log('Suggestion posted successfully:', response);
         this.toastService.showToast("success", response.message);
         this.isVisible = false;
-        // this.resetForm();
+        this.fetchSuggestions();
       },
       error => {
         console.error('Failed to post suggestion:', error);
       }
     );
 
-    this.fetchSuggestions();
   }
 
 

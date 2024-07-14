@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NzModalRef, NzModalService } from 'ng-zorro-antd/modal';
 import { Service } from 'src/app/services/service';
 import { DatePipe } from '@angular/common';
+import { ToastService } from 'src/app/utils/toast.service';
 export interface Leaves {
   key: string;
   name: string;
@@ -26,7 +27,7 @@ export class TeacherLeavesComponent {
   selectedDate: string = '';
   leaveRequests: any[] = [];
 
-  constructor(private modal: NzModalService, private service: Service, private datePipe: DatePipe) { }
+  constructor(private modal: NzModalService, private service: Service, private datePipe: DatePipe, private toastService: ToastService) { }
 
   fetchLeaveRequests() {
     this.selectedDate = this.formatTimestamp(this.selectedDate)
@@ -57,6 +58,8 @@ export class TeacherLeavesComponent {
         this.service.leaveResponse(this.leaveResponse).subscribe(
           response => {
             console.log(response)
+            this.toastService.showToast("success", response.message);
+
           },
           error => {
             console.error('Error posting leave response entry:', error);
@@ -80,6 +83,7 @@ export class TeacherLeavesComponent {
         this.service.leaveResponse(this.leaveResponse).subscribe(
           response => {
             console.log(response)
+            this.toastService.showToast("success", response.message);
           },
           error => {
             console.error('Error posting leave response entry:', error);

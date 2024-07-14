@@ -10,7 +10,6 @@ import { Announcements } from '../../admin/admin-announcements/admin-announcemen
   styleUrls: ['./teacher-announcements.component.scss']
 })
 export class TeacherAnnouncementsComponent {
-  isVisible = false;
   announcements: Announcements[] = [];
   newAnnouncement: Partial<Announcements> = {
     title: '',
@@ -35,35 +34,6 @@ export class TeacherAnnouncementsComponent {
         }
         
       );
-  }
-
-  createAnnouncement(): void {
-    this.service.createAnnouncement(this.newAnnouncement)
-      .subscribe(
-        response => {
-          console.log('Announcement created successfully:', response);
-          this.isVisible = false;
-          this.fetchAnnouncements();
-          // this.resetForm();
-        },
-        error => {
-          console.error('Error creating announcement:', error);
-        }
-      );
-  }
-
-  showModal(): void {
-    this.isVisible = true;
-  }
-
-  handleCancel(): void {
-    this.isVisible = false;
-    // this.resetForm();
-  }
-  handleOk(): void {
-    console.log('Button ok clicked!');
-    this.createAnnouncement();
-    this.isVisible = false;
   }
 
   trackByFn(index: number, item: any): any {

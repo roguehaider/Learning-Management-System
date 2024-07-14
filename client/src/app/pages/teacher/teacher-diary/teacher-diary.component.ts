@@ -5,6 +5,7 @@ import { Courses } from '../../admin/admin-courses/admin-courses.component';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { DatePipe } from '@angular/common';
 import { AnimationQueryMetadata } from '@angular/animations';
+import { ToastService } from 'src/app/utils/toast.service';
 
 export interface Diary {
   _id: string;
@@ -32,7 +33,7 @@ export class TeacherDiaryComponent {
   
 
 
-  constructor(private router: Router, private service: Service, private fb: FormBuilder, private datePipe: DatePipe) {
+  constructor(private router: Router, private service: Service, private fb: FormBuilder, private datePipe: DatePipe, private toastService: ToastService) {
 
   }
   ngOnInit(): void {
@@ -77,6 +78,7 @@ export class TeacherDiaryComponent {
       response => {
         this.diaryData= response
         console.log(response, this.diaryData)
+        this.toastService.showToast("success", response.message);
       },
       error => {
         console.error('Error posting diary entry:', error);
@@ -90,11 +92,13 @@ export class TeacherDiaryComponent {
       response => {
         this.diaryData= response
         console.log(response, this.diaryData)
+        this.toastService.showToast("success", response.message);
       },
       error => {
         console.error('Error posting diary entry:', error);
       }
     );
+    this.getDate= ""
     this.fetchDiaries();
     this.isEditVisible = false
   }

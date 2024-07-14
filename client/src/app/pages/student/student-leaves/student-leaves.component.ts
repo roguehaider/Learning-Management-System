@@ -20,7 +20,6 @@ export class StudentLeavesComponent {
   constructor(private datePipe: DatePipe, private service: Service, private toastService: ToastService){}
 
   fetchLeaves(){
-    // this.viewleaveDate = this.formatTimestamp(this.viewleaveDate)
     this.viewleaveDate = this.datePipe.transform(this.viewleaveDate, 'yyyy-MM-dd');
     console.log(this.viewleaveDate)
     this.service.getStudentLeaves(this.viewleaveDate).subscribe(

@@ -1,22 +1,4 @@
 <div class="container">
-    <div class="buttons">
-        <Button style="background-color: #6AB187;" (click)="showModal()">Add Announcement<span nz-icon
-                nzType="plus-circle" nzTheme="fill"></span></Button>
-        <nz-modal [(nzVisible)]="isVisible" nzTitle="The first Modal" (nzOnCancel)="handleCancel()"
-            (nzOnOk)="handleOk()">
-            <ng-container *nzModalContent>
-                <div class="form"
-                    style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;">
-                    <input type="text" [(ngModel)]="newAnnouncement.title" placeholder="Title"
-                        style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
-                        
-                    <input type="text" [(ngModel)]="newAnnouncement.description" placeholder="Description"
-                        style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
-                    <!-- <nz-date-picker [(ngModel)]="selectedStudent.DOB"></nz-date-picker> -->
-                </div>
-            </ng-container>
-        </nz-modal>
-    </div>
     <div class="list">
         <h2>Annoucements</h2>
         <nz-list nzItemLayout="horizontal" [nzLoading]="loading">

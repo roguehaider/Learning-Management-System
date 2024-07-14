@@ -27,4 +27,8 @@ export class StudentDiaryComponent {
       }
     );
   }
+
+  formatTimestamp(date: any): any {
+    return this.datePipe.transform(date, "dd-MM-YYY");
+  }
 }
