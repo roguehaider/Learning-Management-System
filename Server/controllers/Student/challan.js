@@ -11,7 +11,7 @@ async function handleGetChallan(req, res, next) {
         return next(error);
     }
 
-    const { year, month } = req.body;
+    const { year, month } = req.params;
 
     const startDate = new Date(year, month - 1, 1);
     const endDate = new Date(year, month, 0, 23, 59, 59, 999);

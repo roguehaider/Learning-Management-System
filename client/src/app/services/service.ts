@@ -576,14 +576,14 @@ export class Service {
     return this.http.post<any>(`${this.apiUrl}student/remarks`, remark, { withCredentials: true });
   }
 
-  getChallan(data: any): Observable<any> {
+  getChallan(year: any, month: any): Observable<any> {
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
 
     document.cookie = `accessToken=${accessToken}`;
     document.cookie = `refreshToken=${refreshToken}`;
     
-    return this.http.get(`${this.apiUrl}student/challan`, data);  
+    return this.http.get(`${this.apiUrl}student/challan/${year}/${month}`, { withCredentials: true });  
   }
 }
 

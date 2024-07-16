@@ -354,7 +354,7 @@ router.get('/student/leave/:date', auth , checkAuth("Student"),handleGetLeaveSta
 
 // get challan 
 
-router.get('/student/challan' , auth , checkAuth("Student") ,handleGetChallan)
+router.get('/student/challan/:year/:month' , auth , checkAuth("Student") ,handleGetChallan)
 
 // meeting
 
