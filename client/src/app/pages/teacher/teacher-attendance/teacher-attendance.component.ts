@@ -4,6 +4,8 @@ import { Classes } from '../../admin/admin-attendance/admin-attendance.component
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import { ToastService } from 'src/app/utils/toast.service';
+
 export interface Attendance {
   date: string
 }
@@ -33,7 +35,9 @@ export class TeacherAttendanceComponent {
     attendanceList: [] as any[]
   };
 
+
   constructor(private service: Service, private authService: AuthService, private datePipe: DatePipe, private router: Router) { }
+
   ngOnInit(): void {
     this.authService.refreshToken();
     this.fetchCourses();
@@ -115,10 +119,17 @@ export class TeacherAttendanceComponent {
     this.service.createTeacherAttendance(this.studentAttendance)
       .subscribe(response => {
         console.log('Attendance posted:', response);
+
         this.router.navigate(["/teacher/attendance"]);
+
+
+       
+        this.toastService.showToast('success', 'Attendence Submitted');
 
       }, error => {
         console.error('Error posting attendance:', error);
+        const errorMessage = error.message ? error.message : 'An error occurred';
+    this.toastService.showToast('error', errorMessage);
       });
   }
 
