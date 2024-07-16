@@ -1,36 +1,32 @@
 <div class="container">
     <div class="buttons">
-        <Button style="background-color: #6AB187;" (click)="showModal()">Add Assessment<span nz-icon
-                nzType="plus-circle" nzTheme="fill"></span></Button>
-        <nz-modal [(nzVisible)]="isAddVisible" nzTitle="Add Assessment" (nzOnCancel)="handleCancel()"
-            (nzOnOk)="createAssessment()">
+        <button style="background-color: #6AB187;" (click)="showModal()">Add Assessment
+            <span nz-icon nzType="plus-circle" nzTheme="fill"></span>
+        </button>
+        <nz-modal [(nzVisible)]="isAddVisible" nzTitle="Add Assessment" (nzOnCancel)="handleCancel()" (nzOnOk)="createAssessment()">
             <ng-container *nzModalContent>
-                <div class="form"
+                <form [formGroup]="newAssessmentForm" class="form"
                     style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;">
-
-                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a course"
-                        [(ngModel)]="newAssessment.course_id">
+                    
+                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a course" formControlName="course_id">
                         <nz-option *ngFor="let item of courses" [nzLabel]="item.name" [nzValue]="item._id"></nz-option>
                     </nz-select>
 
-                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Tpe" [(ngModel)]="newAssessment.type">
+                    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Type" formControlName="type">
                         <nz-option nzValue="Quiz" nzLabel="Quiz"></nz-option>
                         <nz-option nzValue="Mid-Term" nzLabel="Mid-Term"></nz-option>
                         <nz-option nzValue="Finals" nzLabel="Finals"></nz-option>
                         <nz-option nzValue="Assignment" nzLabel="Assignment"></nz-option>
                     </nz-select>
 
-                    <input type="number" [(ngModel)]="newAssessment.TotalMarks" placeholder="Total Marks"
+                    <input type="number" formControlName="TotalMarks" placeholder="Total Marks"
                         style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
-                </div>
+                </form>
             </ng-container>
         </nz-modal>
     </div>
-    <h2>
-        Assessments
-    </h2>
-    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a course" [(ngModel)]="courseId"
-        (ngModelChange)="fetchAssessmentByCourse()" class="course-select">
+    <h2>Assessments</h2>
+    <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select a course" [(ngModel)]="courseId" (ngModelChange)="fetchAssessmentByCourse()" class="course-select">
         <nz-option *ngFor="let item of courses" [nzLabel]="item.name" [nzValue]="item._id"></nz-option>
     </nz-select>
 
@@ -50,5 +46,4 @@
             </button>
         </div>
     </div>
-
 </div>

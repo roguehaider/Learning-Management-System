@@ -9,6 +9,7 @@ import {
 } from '@angular/forms';
 
 import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
+import { ToastService} from '../../utils/toast.service'
 @Component({
   selector: 'app-teacherlogin',
   templateUrl: './teacherlogin.component.html',
@@ -16,6 +17,8 @@ import { NzFormTooltipIcon } from 'ng-zorro-antd/form';
 })
 export class TeacherloginComponent {
 
+
+ 
   validateForm: FormGroup<{
     password: FormControl<string>;
     nickname: FormControl<string>;
@@ -28,6 +31,7 @@ export class TeacherloginComponent {
   submitForm(): void {
     if (this.validateForm.valid) {
       console.log('submit', this.validateForm.value);
+      this.toastService.showToast('success', 'Teacher Login Successfully!');
     } else {
       Object.values(this.validateForm.controls).forEach(control => {
         if (control.invalid) {
@@ -35,6 +39,7 @@ export class TeacherloginComponent {
           control.updateValueAndValidity({ onlySelf: true });
         }
       });
+      
     }
   }
 
@@ -51,7 +56,7 @@ export class TeacherloginComponent {
     e.preventDefault();
   }
 
-  constructor(private fb: NonNullableFormBuilder) {
+  constructor(private fb: NonNullableFormBuilder, private toastService:ToastService ) {
     this.validateForm = this.fb.group({
       password: ['', [Validators.required]],
       nickname: ['', [Validators.required]],
