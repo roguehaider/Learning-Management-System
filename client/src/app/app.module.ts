@@ -34,6 +34,8 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { NzAlertModule } from 'ng-zorro-antd/alert';
 import { NzDatePickerModule } from 'ng-zorro-antd/date-picker';
 import { NzListModule } from 'ng-zorro-antd/list';
+import { NzProgressModule } from 'ng-zorro-antd/progress';
+import { NzStatisticModule } from 'ng-zorro-antd/statistic';
 
 
 import {
@@ -96,7 +98,6 @@ import { LayoutStudentComponent } from './layout-student/layout-student.componen
 import { StudentDashboardComponent } from './pages/student/student-dashboard/student-dashboard.component';
 import { StudentAnnouncementsComponent } from './pages/student/student-announcements/student-announcements.component';
 import { StudentCoursesComponent } from './pages/student/student-courses/student-courses.component';
-import { StudentGiveRemarksComponent } from './pages/student/student-give-remarks/student-give-remarks.component';
 import { AdminClassDetailComponent } from './pages/admin/admin-class-detail/admin-class-detail.component';
 import { AdminCourseDetailComponent } from './pages/admin/admin-course-detail/admin-course-detail.component';
 import { StudentLeavesComponent } from './pages/student/student-leaves/student-leaves.component';
@@ -104,6 +105,13 @@ import { ToastComponent } from './utils/toast/toast.component';
 import { TeacherAssessmentsComponent } from './pages/teacher/teacher-assessments/teacher-assessments.component';
 import { TeacherAssessmentMarksComponent } from './pages/teacher/teacher-assessment-marks/teacher-assessment-marks.component';
 import { TeacherUpdateAssessmentMarksComponent } from './pages/teacher/teacher-update-assessment-marks/teacher-update-assessment-marks.component';
+import { TeacherRemarksComponent } from './pages/teacher/teacher-remarks/teacher-remarks.component';
+import { TeacherCourseDetailComponent } from './pages/teacher/teacher-course-detail/teacher-course-detail.component';
+import { StudentAttendanceComponent } from './pages/student/student-attendance/student-attendance.component';
+import { StudentCourseDetailComponent } from './pages/student/student-course-detail/student-course-detail.component';
+import { StudentSuggestionsComponent } from './pages/student/student-suggestions/student-suggestions.component';
+import { StudentDiaryComponent } from './pages/student/student-diary/student-diary.component';
+import { StudentChallanComponent } from './pages/student/student-challan/student-challan.component';
 
 
 // const icons: IconDefinition[] = [
@@ -178,7 +186,6 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     StudentDashboardComponent,
     StudentAnnouncementsComponent,
     StudentCoursesComponent,
-    StudentGiveRemarksComponent,
     AdminClassDetailComponent,
     AdminCourseDetailComponent,
     StudentLeavesComponent,
@@ -186,6 +193,13 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     TeacherAssessmentsComponent,
     TeacherAssessmentMarksComponent,
     TeacherUpdateAssessmentMarksComponent,
+    TeacherRemarksComponent,
+    TeacherCourseDetailComponent,
+    StudentAttendanceComponent,
+    StudentCourseDetailComponent,
+    StudentSuggestionsComponent,
+    StudentDiaryComponent,
+    StudentChallanComponent,
   ],
   imports: [
     BrowserModule,
@@ -211,6 +225,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzAlertModule,
     NzDatePickerModule,
     NzListModule,
+    NzProgressModule,
+    NzStatisticModule
   ],
   providers: [{ provide: NZ_I18N, useValue: en_US } ,{provide: NZ_ICONS, useValue: icons},  AuthService,
     {

@@ -33,5 +33,12 @@ export class StudentCoursesComponent {
         
       );
   }
+  navigateToCourseDetail(courseDetail: any): void {
+    const courseName = encodeURIComponent(courseDetail.name);
+    const courseId = courseDetail._id;
+    this.router.navigate([`/student/course-detail/${courseName}`], {
+      queryParams: { id: courseId },
+    });
+  }
 
 }

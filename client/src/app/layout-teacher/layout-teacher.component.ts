@@ -13,11 +13,14 @@ export class LayoutTeacherComponent {
   userName = this.authService.getUserName();
   user = this.authService.getUserDetails();
 
-  constructor(
-    private authService: AuthService,
-    private toastService: ToastService,
-    private router: Router
-  ) {}
+ photo: string | null = null;
+
+  constructor(private authService: AuthService, private router: Router){ }
+  
+  ngOnInit(): void {
+    this.photo = localStorage.getItem('photo');
+    console.log(this.photo)
+  }
 
   logout() {
     const user = this.authService.getUser();

@@ -1,0 +1,25 @@
+<div class="container">
+    <h2>
+        Diary
+    </h2>
+    <nz-date-picker [(ngModel)]="viewDiaryDate" (ngModelChange)="fetchDiary()"></nz-date-picker>
+
+    <div class="table">
+        <nz-table #basicTable [nzData]="diary">
+            <thead>
+                <tr>
+                    <th  class="header">Date</th>
+                    <th  class="header">Course</th>
+                    <th  class="header">Diary</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                    <td>{{ formatTimestamp(data.date) }}</td>
+                    <td>{{ data.courseName }}</td>
+                    <td>{{ data.description }}</td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

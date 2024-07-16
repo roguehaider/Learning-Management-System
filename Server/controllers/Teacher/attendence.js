@@ -32,10 +32,13 @@ async function getStudentsOfClass(req , res , next){
     return res.status(200).json({students:StudentDto})
 
 }
+
+
+
 async function getLeaveRequests(req , res , next){
     
     const { date }=req.params;
-    const class_id = req.user.class_id
+    const id = req.user.class_id
     const schema = Joi.object({
         date: Joi.date().iso().required(),
     })
@@ -46,20 +49,21 @@ async function getLeaveRequests(req , res , next){
 
     let leaves;
     let leaveDto = [];
+    
 
     try {
-        leaves = await Leave.find({date:date,class_id:class_id}).populate("student_id")    
+        leaves = await Leave.find({class_id:id , date:date}).populate("student_id")    
     }
     catch (error) {
         return next(error)
     }
+
     for(let leave of leaves){
         const dto = new LeaveDTO(leave)
         leaveDto.push(dto)
     }
 
     return res.status(200).json({leaves:leaveDto})
-
 }
 
 async function handleRespondLeaveRequest(req , res , next){
@@ -86,7 +90,7 @@ async function handleRespondLeaveRequest(req , res , next){
         return next(error)
     }
 
-    return res.status(200).json({message:"Responded"})
+    return res.status(200).json({message:status})
 
 }
 
@@ -194,5 +198,5 @@ module.exports={
     getAttendenceByDate,
     getStudentsOfClass,
     getLeaveRequests,
-    handleRespondLeaveRequest
+    handleRespondLeaveRequest,
 }

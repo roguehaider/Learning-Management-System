@@ -65,6 +65,10 @@ const {handleCreateAssessment,
     getAssesmentsByCourse,
     updateMarksByStudent}= require('../controllers/Teacher/assessment')
 
+const {handleGetStudentsOfCourse} = require('../controllers/Teacher/course')    
+ 
+const {handleMeetingRequest} = require('../controllers/Teacher/meeting')    
+
 // student side
 
 const {handleGetStudentCourses,
@@ -83,7 +87,7 @@ const {getStudentAssementByCourse} = require('../controllers/Student/assesment')
 
 const {handleGetChallan} = require('../controllers/Student/challan');
 
-
+const {handleGetMeeting} = require('../controllers/Student/meeting')
 
 const router = express.Router();
 
@@ -262,6 +266,10 @@ router.get('/teacher/attendence/:date' , auth , checkAuth("Teacher") , getAttend
 
 router.post('/teacher/course/assesment' , auth , checkAuth("Teacher"),handleCreateAssessment)
 
+// get students in course for assesment marks
+
+router.get('/teacher/course/assesment/:id' , auth , checkAuth('Teacher') ,handleGetStudentsOfCourse)
+
 // put marks of student in assesment
 
 router.post('/teacher/course/assesment/marks',auth,checkAuth("Teacher"),handleAddAssesmentMarks)
@@ -290,10 +298,9 @@ router.post('/teacher/suggestion' , auth , checkAuth("Teacher") , handleCreateSu
 
 router.get('/teacher/suggestion' , auth , checkAuth("Teacher") ,  getSuggestionsByUser)
 
+// meeting api's
 
-
-
-
+router.post('/meetings' , auth , checkAuth('Teacher'), handleMeetingRequest)
 
 
 
@@ -349,9 +356,11 @@ router.get('/student/leave/:date', auth , checkAuth("Student"),handleGetLeaveSta
 
 router.get('/student/challan' , auth , checkAuth("Student") ,handleGetChallan)
 
+// meeting
 
+router.get('/meeting' , auth , checkAuth("Student") , handleGetMeeting)
 
-module.exports=router;
+module.exports = router;
 
 
 // Admin side
@@ -375,7 +384,7 @@ module.exports=router;
 // teacher side 
 
 // 1 Suggestion                    tick
-// 2 Live meeting                           pending
+// 2 Live meeting                  tick
 // 3 Remarks                       tick
 // 4 Announcement                  tick
 // 5 Attendence                    tick      
@@ -383,7 +392,6 @@ module.exports=router;
 // 7 get All courses               tick 
 // 8 chat                                   pending
 // 9 post diary                    tick
-//10 share notes                            pending
 //11 approve leave                 tick        
 
 
@@ -395,20 +403,18 @@ module.exports=router;
 //2 get all courses                tick
 //3 attendence                     tick 
 //4 grades                         tick 
-//5 chat
-//6 live meeting
+//5 chat                                    pending
+//6 live meeting                   tick 
 //7 diary                          tick 
 //8 put suggestion                 tick
 //9 put leave                      tick
 //10 remarks                       tick
-//11 get notes
+
 
 
 // result api 
-// class teacher                  tick
 // chat
-// meeting
-// challan                        tick
+
 
 
 

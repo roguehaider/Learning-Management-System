@@ -1,11 +1,14 @@
-import { Component } from "@angular/core";
-import { Router } from "@angular/router";
-import { Service } from "src/app/services/service";
-import { Courses } from "../../admin/admin-courses/admin-courses.component";
-import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { DatePipe } from "@angular/common";
-import { AnimationQueryMetadata } from "@angular/animations";
-import { ToastService } from "src/app/utils/toast.service";
+
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { Service } from 'src/app/services/service';
+import { Courses } from '../../admin/admin-courses/admin-courses.component';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { DatePipe } from '@angular/common';
+import { AnimationQueryMetadata } from '@angular/animations';
+import { ToastService } from 'src/app/utils/toast.service';
+
+
 
 export interface Diary {
   _id: string;
@@ -27,10 +30,14 @@ export class TeacherDiaryComponent {
   courses: any[] = [];
   getDate: any;
 
+
+  constructor(private router: Router, private service: Service, private fb: FormBuilder, private datePipe: DatePipe, private toastService: ToastService) {
+
   newDiary: { date?: string | null; course_id?: string; description?: string } =
     {};
   diaryData: any;
   editDiary: { diary_id?: string; description?: string } = {};
+
 
   constructor(
     private router: Router,
@@ -72,15 +79,16 @@ export class TeacherDiaryComponent {
     );
   }
   postDiary(): void {
-    // if (this.diaryForm.valid) {
-    this.newDiary.date = this.formatTimestamp(this.newDiary.date);
-    console.log("nd", this.newDiary.date);
+
+    this.diaryData= '';
+    this.newDiary.date = this.formatTimestamp(this.newDiary.date)
+    console.log("nd",this.newDiary.date)
     this.service.postDiary(this.newDiary).subscribe(
-      (response) => {
-        this.diaryData = response;
-        console.log(response, this.diaryData);
-        this.toastService.showToast("success", "Diary Added Successfully!");
-        this.isVisible = false;
+      response => {
+        this.diaryData= response
+        console.log(response, this.diaryData)
+        this.toastService.showToast("success", response.message);
+
       },
       (error) => {
         console.error("Error posting diary entry:", error);
@@ -90,14 +98,17 @@ export class TeacherDiaryComponent {
         this.toastService.showToast("error", errorMessage);
       }
     );
+    this.isVisible = false
   }
   updateDiary() {
     console.log(this.editDiary);
     this.service.updateTeacherDiary(this.editDiary).subscribe(
-      (response) => {
-        this.diaryData = response;
-        console.log(response, this.diaryData);
-        this.toastService.showToast("success", "Diary Updated Successfully!");
+
+      response => {
+        this.diaryData= response
+        console.log(response, this.diaryData)
+        this.toastService.showToast("success", response.message);
+
       },
       (error) => {
         console.error("Error posting diary entry:", error);
@@ -107,6 +118,7 @@ export class TeacherDiaryComponent {
         this.toastService.showToast("error", errorMessage);
       }
     );
+    this.getDate= ""
     this.fetchDiaries();
     this.isEditVisible = false;
   }

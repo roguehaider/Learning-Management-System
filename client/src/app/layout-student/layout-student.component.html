@@ -1,7 +1,8 @@
 <nz-layout>
   <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
     <div class="profile" [ngClass]="{'hidden': isCollapsed}">
-      <img src="../../assets/images/admin.jpg" alt="">
+      <!-- <img src="../../assets/images/admin.jpg" alt=""> -->
+      <img *ngIf="photo" [src]="photo" alt="Profile Photo">
       <h2>{{userName}}</h2>
     </div>
     <ul nz-menu nzTheme="dark" nzMode="inline">
@@ -24,15 +25,33 @@
         </a>
       </li>
       <li nz-menu-item [routerLinkActive]="'active'">
-        <a routerLink="/student/remarks">
-          <span nz-icon nzType="message" nzTheme="outline"></span>
-          <span style="margin-left: 10px">Remarks</span>
+        <a routerLink="/student/attendance">
+        <span nz-icon nzType="idcard" nzTheme="outline"></span>
+        <span>Attendance</span>
+      </a>
+      </li>
+      <li nz-menu-item [routerLinkActive]="'active'"  >
+        <a routerLink="/student/diary">
+          <span nz-icon nzType="unordered-list" nzTheme="outline"></span>
+          <span style="margin-left: 10px">Diary</span>
         </a>
       </li>
       <li nz-menu-item [routerLinkActive]="'active'">
         <a routerLink="/student/leaves">
           <span nz-icon nzType="audit" nzTheme="outline"></span>
           <span style="margin-left: 10px">Leave</span>
+        </a>
+      </li>
+      <li nz-menu-item>
+        <a routerLink="/student/suggestions">
+          <span nz-icon nzType="info-circle" nzTheme="outline"></span>
+          <span>Suggestions</span>
+        </a>
+      </li>
+      <li nz-menu-item>
+        <a routerLink="/student/challan">
+          <span nz-icon nzType="money-collect" nzTheme="outline"></span>
+          <span>Challan</span>
         </a>
       </li>
     </ul>
@@ -42,7 +61,7 @@
       <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'"
         (click)="isCollapsed = !isCollapsed"></span>
       <div class="logo">School Management</div>
-      <button>Logout</button>
+      <button (click)="logout()">Logout</button>
     </nz-header>
     <nz-content>
       <router-outlet></router-outlet>

@@ -7,8 +7,10 @@ class StudentDto{
         this.email=user.email,
         this.class=user.class_id?.name
         this.DOB = user.DOB,
-        this.phone=user.phone,
-        this.photo=user.photopath
+        this.phone=user.phone;
+        if (user.photoPath) {
+            this.photo = user.photoPath;
+        }
 
     }
 }

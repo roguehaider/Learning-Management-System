@@ -57,4 +57,12 @@ export class TeacherCoursesComponent {
     this.isVisible = false;
   }
 
+  navigateToCourseDetail(courseDetail: any){
+    const courseName = encodeURIComponent(courseDetail.name);
+    const courseId = courseDetail._id;
+    this.router.navigate([`/teacher/course-detail/${courseName}`], {
+      queryParams: { id: courseId },
+    });
+  }
+
 }

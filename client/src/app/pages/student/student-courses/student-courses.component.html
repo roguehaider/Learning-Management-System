@@ -1,38 +1,8 @@
-<div class="courses">
-    <div class="container">
-        <div class="table">
-            <h2>Courses</h2>
-            <nz-table #basicTable [nzData]="courses">
-                <thead>
-                    <tr>
-                        <th>Name</th>
-                        <th>Edit</th>
-                        <th>Delete</th>
-
-
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr *ngFor="let data of basicTable.data">
-                        <td>{{ data.name }}</td>
-                        <!-- <td>
-                            <a style="font-size: 21px; color: green;" (click)="showModal()"><span nz-icon nzType="edit"
-                                    nzTheme="outline"></span></a>
-                                    <nz-modal [(nzVisible)]="isVisible" nzTitle="Update Teacher" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
-                                        <ng-container *nzModalContent>
-                                          <div class="form" style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;">
-                                            <input type="text" [(ngModel)]="data.name" placeholder="First Name" style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
-                                          </div>
-                                        </ng-container>
-                                      </nz-modal>
-                        </td>
-                        <td>   
-                            <a style="font-size: 22px; color: red;" (click)="showDeleteConfirm(data.name)"><span nz-icon nzType="delete"
-                                    nzTheme="fill"></span></a>
-                        </td> -->
-                    </tr>
-                </tbody>
-            </nz-table>
+<h2>Courses</h2>
+<div class="container">
+    <div class="classes">
+        <div (click)="navigateToCourseDetail(course)" class="cards" *ngFor="let course of courses">
+            <h3>{{ course.name }}</h3>
         </div>
     </div>
 </div>

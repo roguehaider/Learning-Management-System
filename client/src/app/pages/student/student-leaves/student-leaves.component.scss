@@ -1,18 +1,23 @@
-.buttons{
+.container {
+    display: flex;
+    flex-direction: column;
+}
+
+.buttons {
     display: flex;
     flex-direction: row;
     float: right;
     gap: 10px;
     justify-content: right;
 }
+
 Button {
     display: flex;
     align-items: center;
     gap: 10px;
     padding: 10px 30px;
-    border-radius: 10px; 
+    border-radius: 10px;
     width: 230px;
-
     border: transparent;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     color: #ffffff;
@@ -20,13 +25,72 @@ Button {
     font-family: sans-serif;
     font-weight: bold;
     margin-bottom: 5px;
-    span{
+
+    span {
         text-align: left;
         font-size: 20px;
     }
 }
-Button:hover{
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2); 
+
+Button:hover {
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
     opacity: 0.9;
 
 }
+
+h2 {
+    font-size: 16px;
+    color: #ffffff;
+    background-color: #1F3F49;
+    width: 100%;
+    text-align: center;
+    padding: 5px;
+    border-radius: 4px 4px 0 0;
+    margin-bottom: 0;
+}
+
+nz-date-picker {
+    width: 100%;
+    padding: 10px;
+}
+
+.header {
+    background-color: white !important;
+    color: black !important;
+}
+
+.status {
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #1f3f49a2;
+    border-radius: 5px;
+    margin-top: 15px;
+
+    .headers {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        color: #ffffff;
+        background-color: #1f3f49a2;
+       
+    }
+
+    .item {
+        display: grid;
+        grid-template-columns: 50% 50%;
+        align-items: center;
+    }
+
+    p {
+        text-align: center;
+        font-size: 15px;
+        padding: 10px;
+    }
+}
+
+.accepted {
+    color: green;
+  }
+  
+  .rejected {
+    color: red;
+  }

@@ -1,0 +1,151 @@
+<div class="container">
+    <!-- <h2>{{this.courseName}}</h2> -->
+    <div class="details">
+        <div class="item">
+            <span nz-icon nzType="file-text" nzTheme="outline"></span>
+            <h3>Course Name:</h3>
+            <span>{{courseName}}</span>
+        </div>
+        <div class="item">
+            <span nz-icon nzType="user" nzTheme="outline"></span>
+            <h3>Total Students</h3>
+            <span>{{this.totalStudents}}</span>
+        </div>
+    </div>
+
+    <div class="assessment">
+        <div class="heading" (click)="toggleAssessmentVisibility()" style="cursor: pointer;">
+            <h3>Assessments</h3>
+            <button style="background: none; border: none; cursor: pointer;">
+                <span nz-icon [nzType]="assessmentVisible ? 'up' : 'down'" nzTheme="outline"></span>
+            </button>
+        </div>
+
+        <div *ngIf="assessmentVisible" style="display: flex; flex-direction: column;">
+            <div class="add-button">
+                <Button style="background-color: #6AB187;" (click)="showAssessmentModal()">Add Assessment<span nz-icon
+                        nzType="plus-circle" nzTheme="fill"></span></Button>
+                <nz-modal [(nzVisible)]="isAddVisible" nzTitle="Add Assessment" (nzOnCancel)="handleAssessmentCancel()"
+                    (nzOnOk)="createAssessment()">
+                    <ng-container *nzModalContent>
+                        <div class="form"
+                            style="display: grid; grid-template-columns: 50% 50%; gap: 15px; align-items: center; justify-content: center;">
+
+                            <input style="border: 1px solid gray; padding: 6px; border-radius: 7px;" type="text"
+                                placeholder="{{courseName}}" disabled>
+
+                            <nz-select nzShowSearch nzAllowClear nzPlaceHolder="Select Tpe"
+                                [(ngModel)]="newAssessment.type">
+                                <nz-option nzValue="Quiz" nzLabel="Quiz"></nz-option>
+                                <nz-option nzValue="Mid-Term" nzLabel="Mid-Term"></nz-option>
+                                <nz-option nzValue="Finals" nzLabel="Finals"></nz-option>
+                                <nz-option nzValue="Assignment" nzLabel="Assignment"></nz-option>
+                            </nz-select>
+
+                            <input type="number" [(ngModel)]="newAssessment.TotalMarks" placeholder="Total Marks"
+                                style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                        </div>
+                    </ng-container>
+                </nz-modal>
+            </div>
+            <div class="assessments" *ngFor="let item of assessments">
+                <div class="left">
+                    <h3>{{item.type}}</h3>
+                    <p>Total Marks: {{item.totalMarks}}</p>
+                </div>
+                <div class="right">
+                    <button *ngIf="!item.MarksList || item.MarksList.length === 0"
+                        (click)="navigateToAssessmentMarks(item)">
+                        <span nz-icon nzType="plus" nzTheme="outline"></span>
+                        Add Marks
+                    </button>
+                    <button *ngIf="item.MarksList && item.MarksList.length > 0" (click)="navigateToUpdateMarks(item)">
+                        <span nz-icon nzType="folder-view" nzTheme="outline"></span>
+                        View Marks
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="table">
+        <div class="heading" (click)="toggleStudentVisibility()" style="cursor: pointer;">
+            <h3>Students</h3>
+            <button style="background: none; border: none; cursor: pointer;">
+                <span nz-icon [nzType]="studentTableVisible ? 'up' : 'down'" nzTheme="outline"></span>
+            </button>
+        </div>
+        <div *ngIf="studentTableVisible">
+            <nz-table #basicTable [nzData]="students">
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Roll No</th>
+                        <th>Give Remark</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of basicTable.data">
+                        <td>{{ data.roll_No }}</td>
+                        <td>{{ data.Fname }}</td>
+                        <td>{{ data.Lname }}</td>
+                        <td>{{ data.roll_No }}</td>
+                        <td>
+                            <span nz-icon nzType="plus" nzTheme="outline" (click)="showModal(data)"></span>
+                            <nz-modal [(nzVisible)]="isVisible" nzTitle="Give Remark" (nzOnCancel)="handleCancel()"
+                                (nzOnOk)="handleOk()">
+                                <ng-container *nzModalContent>
+                                    <div class="form">
+                                        <input type="text" placeholder="{{selectedData.Fname}}" disabled
+                                            style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                                        <input type="text" placeholder="{{selectedData.Lname}}" disabled
+                                            style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                                        <input type="text" placeholder="Title" [(ngModel)]="newRemark.title"
+                                            style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                                        <input type="text" placeholder="Description" [(ngModel)]="newRemark.description"
+                                            style="border: 1px solid gray; padding: 6px; border-radius: 7px;">
+                                    </div>
+                                </ng-container>
+                            </nz-modal>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+
+    <div class="student-remarks">
+        <div class="heading" (click)="toggleRemarksVisibility()" style="cursor: pointer;">
+            <h3>Student Remarks</h3>
+            <button style="background: none; border: none; cursor: pointer;">
+                <span nz-icon [nzType]="studentRemarkVisible ? 'up' : 'down'" nzTheme="outline"></span>
+            </button>
+        </div>
+        <div *ngIf="studentRemarkVisible">
+            <nz-table #basicTable [nzData]="studentRemarks">
+                <thead>
+                    <tr>
+                        <th>Roll No</th>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Title</th>
+                        <th>Description</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of basicTable.data">
+                        <td>{{ data.sender.roll_No }}</td>
+                        <td>{{ data.sender.Fname }}</td>
+                        <td>{{ data.sender.Lname }}</td>
+                        <td>{{ data.title }}</td>
+                        <td>{{ data.description }}</td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+</div>

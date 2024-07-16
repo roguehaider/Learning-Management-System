@@ -2,7 +2,9 @@
     <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" [nzTrigger]="null">
       <div class="logo">School Management</div>
       <div class="profile" [ngClass]="{'hidden': isCollapsed}">
-        <img src="../../assets/images/admin.jpg" alt="">
+        <!-- <img src="../../assets/images/admin.jpg" alt=""> -->
+        
+        <img *ngIf="photo" [src]="photo" alt="Profile Photo">
         <h2>{{userName}}</h2>
       </div>
       <ul nz-menu nzTheme="dark" nzMode="inline">
@@ -30,12 +32,12 @@
           <span>Attendance</span>
         </a>
         </li>
-        <li nz-menu-item [routerLinkActive]="'active'"  *ngIf="user?.IsClassTeacher">
+        <!-- <li nz-menu-item [routerLinkActive]="'active'"  *ngIf="user?.IsClassTeacher">
           <a routerLink="/teacher/assessment">
             <span nz-icon nzType="file-protect" nzTheme="outline"></span>
           <span>Assessment</span>
         </a>
-        </li>
+        </li> -->
         <li nz-menu-item>
           <a routerLink="/teacher/leaves">
             <span nz-icon nzType="audit" nzTheme="outline"></span>
@@ -48,6 +50,12 @@
             <span style="margin-left: 10px">Diary</span>
           </a>
         </li>
+        <!-- <li nz-menu-item [routerLinkActive]="'active'">
+          <a routerLink="/teacher/remarks">
+            <span nz-icon nzType="file-text" nzTheme="outline"></span>
+            <span style="margin-left: 10px">Remarks</span>
+          </a>
+        </li> -->
         <li nz-menu-item>
           <a routerLink="/teacher/suggestions">
             <span nz-icon nzType="info-circle" nzTheme="outline"></span>

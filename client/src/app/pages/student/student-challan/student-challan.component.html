@@ -1,0 +1,26 @@
+<!-- student-challan.component.html -->
+<div>
+    <h2>Generate Challan</h2>
+    <div>
+      <label for="year">Year:</label>
+      <input type="number" id="year" [(ngModel)]="date.year" min="2000" max="2100">
+    </div>
+    <div>
+      <label for="month">Month:</label>
+      <input type="number" id="month" [(ngModel)]="date.month" min="1" max="12">
+    </div>
+    <button (click)="fetchChallan()">Generate Challan</button>
+  </div>
+  
+  <div *ngIf="challanData">
+    <h2>Challan for {{ date.month }}/{{ date.year }}</h2>
+    <p><strong>Name:</strong> {{ challanData.FName }} {{ challanData.LName }}</p>
+    <p><strong>Class:</strong> {{ challanData.class }}</p>
+    <p><strong>Roll No:</strong> {{ challanData.roll_No }}</p>
+    <p><strong>Tuition Fee:</strong> {{ challanData.TutionFee }}</p>
+    <p><strong>Absentees:</strong> {{ challanData.Absentees }}</p>
+    <p><strong>Fine:</strong> {{ challanData.fine }}</p>
+    <p><strong>Due Date:</strong> {{ challanData.DueDate }}</p>
+    <p><strong>Total Fee:</strong> {{ challanData.total }}</p>
+  </div>
+  

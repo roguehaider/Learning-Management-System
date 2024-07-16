@@ -27,6 +27,7 @@ export class AddStudentComponent {
     phone: "",
     role: "",
     password: "",
+    Studentfee : "",
     photo: "",
   };
 

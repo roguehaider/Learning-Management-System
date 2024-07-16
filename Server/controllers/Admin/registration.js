@@ -18,6 +18,7 @@ cloudinary.config({
 
 async function handleUserRegister(req, res, next) {
 
+
     const { id, role, roll_No, Fname, Lname, email, password, DOB, phone, photo ,Studentfee } = req.body;
 
     // 1 validate user input
@@ -117,6 +118,7 @@ async function handleUserRegister(req, res, next) {
             user = await userToRegister.save();
 
         } catch (error) {
+            
             return next(error)
         }
     }

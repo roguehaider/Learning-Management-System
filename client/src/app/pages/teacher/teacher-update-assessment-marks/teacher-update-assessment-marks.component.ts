@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ActivatedRoute } from '@angular/router';
 import { Service } from 'src/app/services/service';
+import { ToastService } from 'src/app/utils/toast.service';
 
 @Component({
   selector: 'app-teacher-update-assessment-marks',
@@ -11,7 +12,8 @@ import { Service } from 'src/app/services/service';
 export class TeacherUpdateAssessmentMarksComponent {
   assessmentType!: string | null;
   assessmentId!: string | null;
-  courseName!: string | null;
+  courseName: any;
+  courseId: any
   totalMarks!: string | null;
   MarksList: any;
 
@@ -19,7 +21,7 @@ export class TeacherUpdateAssessmentMarksComponent {
 
   selectedData: any; // Variable to store the selected row's data
 
-  constructor(private route: ActivatedRoute, private service: Service){}
+  constructor(private route: ActivatedRoute, private service: Service, private toastService: ToastService, private router: Router){}
 
   ngOnInit(): void {
     // Retrieve the route parameter
@@ -50,7 +52,7 @@ export class TeacherUpdateAssessmentMarksComponent {
     this.service.updateAssessmentMarks(data).subscribe(
       response => {
         console.log(response)
-
+        this.toastService.showToast("success", response.message);
       },
       error => {
         console.error('Error posting diary entry:', error);

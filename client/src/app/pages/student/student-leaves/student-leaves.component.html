@@ -13,7 +13,19 @@
                 </div>
             </ng-container>
         </nz-modal>
-        <div class="table">
-            <nz-date-picker [(ngModel)]="viewleaveDate" (ngModelChange)="fetchLeaves()"></nz-date-picker>
+    </div>
+    <h2>Leaves</h2>
+    <div class="table">
+        <nz-date-picker [(ngModel)]="viewleaveDate" (ngModelChange)="fetchLeaves()"></nz-date-picker>
+        <div class="status">
+            <div class="headers">
+                <p> Date</p>
+                <p> Status</p>
+            </div>
+            <div class="item">
+                <p [ngClass]="getLeaveStatusClass(leavestatus)">{{viewleaveDate}}</p>
+                <p [ngClass]="getLeaveStatusClass(leavestatus)">{{ leavestatus }}</p>
+            </div>
         </div>
     </div>
+</div>
