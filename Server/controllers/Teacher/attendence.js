@@ -64,6 +64,7 @@ async function getLeaveRequests(req , res , next){
     }
 
     return res.status(200).json({leaves:leaveDto})
+
 }
 
 async function handleRespondLeaveRequest(req , res , next){

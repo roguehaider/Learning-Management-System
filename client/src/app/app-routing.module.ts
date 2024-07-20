@@ -60,6 +60,7 @@ import { StudentCourseDetailComponent } from "./pages/student/student-course-det
 import { StudentSuggestionsComponent } from "./pages/student/student-suggestions/student-suggestions.component";
 import { StudentDiaryComponent } from "./pages/student/student-diary/student-diary.component";
 import { StudentChallanComponent } from "./pages/student/student-challan/student-challan.component";
+import { StudentResultComponent } from "./pages/student/student-result/student-result.component";
 const routes: Routes = [
   {
     path: "admin",
@@ -142,6 +143,7 @@ const routes: Routes = [
       { path: "suggestions", component: StudentSuggestionsComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
       { path: "diary", component: StudentDiaryComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
       { path: "challan", component: StudentChallanComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
+      { path: "result", component: StudentResultComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
 
     ],
   },

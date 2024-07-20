@@ -87,6 +87,8 @@ const {getStudentAssementByCourse} = require('../controllers/Student/assesment')
 
 const {handleGetChallan} = require('../controllers/Student/challan');
 
+const { handleResult } = require('../controllers/Student/result');
+
 const {handleGetMeeting} = require('../controllers/Student/meeting')
 
 const router = express.Router();
@@ -355,6 +357,10 @@ router.get('/student/leave/:date', auth , checkAuth("Student"),handleGetLeaveSta
 // get challan 
 
 router.get('/student/challan/:year/:month' , auth , checkAuth("Student") ,handleGetChallan)
+
+// get result
+
+router.get('/student/result' , auth , checkAuth("Student") , handleResult)
 
 // meeting
 

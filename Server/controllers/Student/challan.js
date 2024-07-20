@@ -1,6 +1,7 @@
 const User = require("../../models/user");
 const Attendance = require('../../models/attendence');
 
+
 async function handleGetChallan(req, res, next) {
     let user;
     let id = req.user._id;
@@ -13,8 +14,10 @@ async function handleGetChallan(req, res, next) {
 
     const { year, month } = req.params;
 
-    const startDate = new Date(year, month - 1, 1);
+
+    const startDate = new Date(year, month-1, 1);
     const endDate = new Date(year, month, 0, 23, 59, 59, 999);
+    
 
     let attendance;
 
@@ -34,6 +37,8 @@ async function handleGetChallan(req, res, next) {
         return next(error);
     }
 
+    
+
     let fine = 0;
     let Absentees=0;
     attendance.forEach(record => {
@@ -43,6 +48,7 @@ async function handleGetChallan(req, res, next) {
         }
     });
 
+    
     let TutionFee=user.Studentfee
     let totalFee = TutionFee+fine
     const challanData ={
@@ -54,7 +60,7 @@ async function handleGetChallan(req, res, next) {
         Absentees:Absentees,
         fine:fine,
         month:month,
-        DueDate:`10-${month+1}-${year}`,
+        DueDate:`10-${month}-${year}`,
         total:totalFee
     }
 

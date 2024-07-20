@@ -585,5 +585,16 @@ export class Service {
     
     return this.http.get(`${this.apiUrl}student/challan/${year}/${month}`, { withCredentials: true });  
   }
+
+  // student/result
+  getResult(): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    
+    return this.http.get(`${this.apiUrl}student/result`, { withCredentials: true });  
+  }
 }
 
