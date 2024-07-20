@@ -3,6 +3,7 @@ const mongoDbIdPattern = /^[0-9a-fA-F]{24}$/;
 const Meeting = require('../../models/meeting')
 const nodemailer = require('nodemailer')
 const Course = require('../../models/course')
+const APP_PASSWORD = require('../../config/index')
 
 
 
@@ -10,7 +11,7 @@ let transporter = nodemailer.createTransport({
   service: 'gmail', // Use 'gmail' for Gmail or specify SMTP server details
   auth: {
     user: 'chusmanmunir786@gmail.com', // Your email address
-    //pass:    // Your email password or app password
+    pass: 'lywq erff aqhc asgr'  // Your email password or app password
   }
 });
 

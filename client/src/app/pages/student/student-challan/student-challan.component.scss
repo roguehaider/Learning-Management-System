@@ -1,17 +1,43 @@
-/* student-challan.component.scss */
 h2 {
-    margin-bottom: 20px;
+  font-size: 16px;
+  color: #ffffff;
+  background-color: #1F3F49;
+  width: 100%;
+  text-align: center;
+  padding: 5px;
+  border-radius: 4px 4px 0 0;
+  margin-bottom: 0;
+}
+.item{
+  display: grid;
+  grid-template-columns: 5% 50%;
+  justify-content: center;
+  padding: 15px;
+  align-items: center;
+  label{
+    color: #1F3F49;
+    font-weight: 700;
+    font-size: 17px;
   }
-  
-  div {
-    margin: 10px 0;
+  input{
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #1f3f4985
   }
-  
-  button {
-    margin-top: 10px;
+  nz-select{
+    width: 100%;
   }
-  
-  strong {
-    font-weight: bold;
-  }
+}
+.btn{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+button{
+  padding: 10px;
+  color: #ffffff;
+  background-color: #1f3f49a6;
+  border: transparent;
+  border-radius: 7px;
+}
   

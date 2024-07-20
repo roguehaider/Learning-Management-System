@@ -1,0 +1,24 @@
+<div class="container">
+    <h2>Result</h2>
+
+    <div class="table">
+        <nz-table #basicTable [nzData]="resultData">
+            <thead>
+                <tr>
+                    <th>Course</th>
+                    <th>Type</th>
+                    <th>Total Marks</th>
+                    <th>Obtained Marks</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of basicTable.data">
+                    <td>{{ data.courseName }}</td>
+                    <td>{{ data.type }}</td>
+                    <td>{{ data.TotalMarks }}</td>
+                    <td>{{ data.obtained_marks }}</td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>

@@ -7,6 +7,7 @@ const REFRESH_TOKEN_SECRET=process.env.REFRESH_TOKEN_SECRET
 const CLOUD_NAME=process.env.CLOUD_NAME
 const API_SECRET=process.env.API_SECRET
 const API_KEY=process.env.API_KEY
+const APP_PASSWORD = process.env.APP_PASSWORD
 
 module.exports={
     PORT,
@@ -15,5 +16,6 @@ module.exports={
     REFRESH_TOKEN_SECRET,
     CLOUD_NAME,
     API_SECRET,
-    API_KEY
+    API_KEY,
+    APP_PASSWORD
 }
