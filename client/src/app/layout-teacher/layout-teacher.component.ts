@@ -15,7 +15,7 @@ export class LayoutTeacherComponent {
 
  photo: string | null = null;
 
-  constructor(private authService: AuthService, private router: Router){ }
+  constructor(private authService: AuthService, private router: Router, private toastService: ToastService){ }
   
   ngOnInit(): void {
     this.photo = localStorage.getItem('photo');
