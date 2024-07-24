@@ -364,7 +364,7 @@ router.get('/student/result' , auth , checkAuth("Student") , handleResult)
 
 // meeting
 
-router.get('/meeting' , auth , checkAuth("Student") , handleGetMeeting)
+router.get('/meeting/:teacher_id/:date' , auth , checkAuth("Student") , handleGetMeeting)
 
 module.exports = router;
 

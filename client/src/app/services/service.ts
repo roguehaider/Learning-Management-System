@@ -606,15 +606,14 @@ export class Service {
     return this.http.get(`${this.apiUrl}student/result`, { withCredentials: true });  
   }
   // meeting
-  getMeetingLink(data: any): Observable<any> {
-
+  getMeetingLink(teacher_id: any, date: any): Observable<any> {
     const accessToken = localStorage.getItem('accessToken');
     const refreshToken = localStorage.getItem('refreshToken');
 
     document.cookie = `accessToken=${accessToken}`;
     document.cookie = `refreshToken=${refreshToken}`;
     
-    return this.http.get<any>(`${this.apiUrl}meeting`, data);
+    return this.http.get(`${this.apiUrl}meeting/${teacher_id}/${date}`, { withCredentials: true });  
   }
 }
 

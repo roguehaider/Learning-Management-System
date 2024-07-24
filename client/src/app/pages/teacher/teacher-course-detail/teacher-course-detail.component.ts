@@ -236,8 +236,8 @@ export class TeacherCourseDetailComponent {
           console.log('Meeting link generated:', response.link);
           this.meetingPopup = false;
 
-          // this.toastService.showToast("success", response.message);
-
+          const fullUrl = response.link.startsWith('http') ? response.link : `http://${response.link}`;
+          window.location.href = fullUrl;
           alert(`Meeting link generated: ${response.link}`);
         },
         (error) => {
