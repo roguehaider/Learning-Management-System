@@ -1,6 +1,8 @@
 import { DatePipe } from '@angular/common';
 import { Component } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute } from '@angular/router';
+import { AuthService } from 'src/app/services/auth/auth.service';
 import { Service } from 'src/app/services/service';
 import { ToastService } from 'src/app/utils/toast.service';
 export interface Assessment {
@@ -15,7 +17,7 @@ export interface Remarks {
   title: string;
   description: string;
 }
-export interface CourseDetail{
+export interface CourseDetail {
   _id: string;
   name: string;
   teacher_id: string;
@@ -52,15 +54,27 @@ export class StudentCourseDetailComponent {
     description: ''
   }
 
-  assessmentVisible =  true;
+  assessmentVisible = true;
   remarkVisible = false;
+
+  meetingDetails: any;
+  meetingLinkForm: FormGroup;
 
   constructor(
     private route: ActivatedRoute,
     private service: Service,
     private datePipe: DatePipe,
-    private toastService: ToastService
-  ) {}
+    private toastService: ToastService,
+    private authService: AuthService,
+    private fb: FormBuilder
+  ) {
+    const today = this.datePipe.transform(new Date(), 'yyyy-MM-dd');
+
+    this.meetingLinkForm = this.fb.group({
+      teacher_id: ['', Validators.required],
+      date: [today, Validators.required],
+    });
+  }
 
   ngOnInit(): void {
     this.route.params.subscribe((params) => {
@@ -70,7 +84,19 @@ export class StudentCourseDetailComponent {
     this.route.queryParams.subscribe((params) => {
       this.courseId = params["id"];
     });
-    this.fetchCourseDetail()  
+    this.refreshToken();
+    this.fetchCourseDetail()
+  }
+
+  refreshToken() {
+    this.authService.refreshToken().subscribe(
+      (response) => {
+        console.log(response)
+      },
+      (error) => {
+        console.error("Error fetching class detail:", error);
+      }
+    );
   }
 
   fetchCourseDetail(): void {
@@ -99,7 +125,8 @@ export class StudentCourseDetailComponent {
           _id: assessment._id,
           type: assessment.type,
           TotalMarks: assessment.TotalMarks,
-          ObtainedMarks: assessment.Marks[0].obtained_marks }));
+          ObtainedMarks: assessment.Marks[0].obtained_marks
+        }));
       },
       (error) => {
         console.error("Error fetching class detail:", error);
@@ -112,7 +139,7 @@ export class StudentCourseDetailComponent {
     this.service.getStudentRemarks(this.courseId).subscribe(
       (response) => {
         this.remarks = response.remarks
-        console.log(response);        
+        console.log(response);
       },
       (error) => {
         console.error("Error fetching class detail:", error);
@@ -125,12 +152,12 @@ export class StudentCourseDetailComponent {
   }
 
   handleOk(): void {
-    this.newRemark.reciever= this.teacher_id
+    this.newRemark.reciever = this.teacher_id
     console.log('Button ok clicked!', this.newRemark);
     this.service.postTeacherRemarks(this.newRemark).subscribe(
       (response) => {
-        console.log(response); 
-        this.toastService.showToast("success", response.message);       
+        console.log(response);
+        this.toastService.showToast("success", response.message);
       },
       (error) => {
         console.error("Error fetching class detail:", error);
@@ -149,5 +176,28 @@ export class StudentCourseDetailComponent {
 
   toggleRemarkVisibility(): void {
     this.remarkVisible = !this.remarkVisible;
+  }
+
+  fetchMeetingDetails() {
+    this.meetingLinkForm.patchValue({ teacher_id: this.teacher_id });
+    if (this.meetingLinkForm.valid) {
+
+      // Use `this.meetingForm.value`, which is a plain object
+      const formValue = this.meetingLinkForm.value;
+      console.log('Form values:', formValue); // Debugging
+      // Use `this.meetingForm.value` which is a plain object
+      this.service.getMeetingLink(this.meetingLinkForm).subscribe(
+        (response) => {
+          console.log('Meeting link:', response.link);
+          alert(`Meeting link: ${response.link}`);
+        },
+        (error) => {
+          console.error('Error fetching meeting link:', error);
+          alert('Error fetching meeting link.');
+        }
+      );
+    } else {
+      console.log("Form not valid", this.meetingLinkForm.value);
+    }
   }
 }

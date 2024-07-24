@@ -444,6 +444,15 @@ export class Service {
     return this.http.get<any>(`${this.apiUrl}teacher/course/student/remarks`, { withCredentials: true });
   }
 
+  generateMeetingLink(meetingData: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.post<any>(`${this.apiUrl}meetings`, meetingData, { withCredentials: true });
+  }
+
 
   // student------------------------------------------------------------------------------------------------------------------------------------
   getStudentCourses(): Observable<any> {
@@ -595,6 +604,17 @@ export class Service {
     document.cookie = `refreshToken=${refreshToken}`;
     
     return this.http.get(`${this.apiUrl}student/result`, { withCredentials: true });  
+  }
+  // meeting
+  getMeetingLink(data: any): Observable<any> {
+
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    
+    return this.http.get<any>(`${this.apiUrl}meeting`, data);
   }
 }
 
