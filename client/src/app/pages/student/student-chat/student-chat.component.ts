@@ -31,8 +31,6 @@ export class StudentChatComponent {
 
   user =this.authService.getUserDetails();
 
-  private messageInterval: any; // To store the interval reference
-
   @ViewChild('messageContainer') private messageContainer!: ElementRef;
 
   constructor(private service: Service, private router: Router, private authService: AuthService) { }
@@ -41,11 +39,6 @@ export class StudentChatComponent {
     this.loadChats();
   }
 
-  ngOnDestroy(): void {
-    if (this.messageInterval) {
-      clearInterval(this.messageInterval); // Clear the interval on component destroy
-    }
-  }
 
   loadChats(): void {
     this.service.getChat().subscribe(
@@ -90,10 +83,6 @@ export class StudentChatComponent {
     this.isVisible = true;
     this.loadMessages(chat._id);
 
-    // Start interval to load messages every 3 seconds
-    this.messageInterval = setInterval(() => {
-      this.loadMessages(chat._id);
-    }, 3000);
   }
 
   loadMessages(chatId: string): void {

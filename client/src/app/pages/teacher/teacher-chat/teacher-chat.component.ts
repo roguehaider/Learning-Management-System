@@ -29,7 +29,6 @@ export class TeacherChatComponent implements AfterViewChecked {
   newChatStudent: any;
   user =this.authService.getUserDetails();
 
-  private messageInterval: any; // To store the interval reference
 
 
 
@@ -40,12 +39,6 @@ export class TeacherChatComponent implements AfterViewChecked {
   ngOnInit(): void {
     this.loadChats();
     this.fetchCourses();
-  }
-
-  ngOnDestroy(): void {
-    if (this.messageInterval) {
-      clearInterval(this.messageInterval); // Clear the interval on component destroy
-    }
   }
 
   loadChats(): void {
@@ -89,10 +82,6 @@ export class TeacherChatComponent implements AfterViewChecked {
     this.isVisible = true;
     this.loadMessages(chat._id);
 
-     // Start interval to load messages every 3 seconds
-     this.messageInterval = setInterval(() => {
-      this.loadMessages(chat._id);
-    }, 3000);
   }
 
   loadMessages(chatId: string): void {
