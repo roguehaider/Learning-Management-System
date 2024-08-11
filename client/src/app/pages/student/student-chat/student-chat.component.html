@@ -1,0 +1,104 @@
+<div class="container">
+
+
+  <h2>Chat</h2>
+
+  <!-- add chat -->
+  <div class="add-chat">
+    <Button style="background-color: #6AB187;" (click)="addChatModal()"><span nz-icon nzType="plus-circle"
+        nzTheme="fill"></span>Add Chat</Button>
+    <nz-modal [(nzVisible)]="addChat" [nzTitle]="'Add Chat'" (nzOnCancel)="addChatCancel()" [nzWidth]="'50%'">
+      <div *nzModalContent class="add-chat-container">
+           <div class="no-contact" *ngIf="teachers.length === 0" style="color: #1f3f496c;">
+            No Contacts
+           </div>
+       
+           <div class="students-list" *ngIf="teachers.length > 0">
+            <div class="add-chat-students" *ngFor="let teacher of teachers" (click)="newChatModal(teacher)">
+              <div class="name">
+                {{ teacher.teacherFname }} {{ teacher.teacherLname }}
+              </div>
+              <div class="course">
+                {{teacher.courseName}}
+              </div>
+            </div>
+          </div>
+        </div>
+      <div *nzModalFooter>
+        <!-- <div class="add-chat-btn">
+          <button style="background-color: #6AB187;">Chat</button>
+        </div>-->
+      </div>
+    </nz-modal>
+
+    <!-- new chat modal -->
+    <nz-modal [(nzVisible)]="newChat"
+      [nzTitle]="newChatTeacher ? newChatTeacher.teacherFname + ' ' + newChatTeacher.teacherLname : 'New Chat'"
+      (nzOnCancel)="newChatCancel()" [nzWidth]="'75%'">
+      <div *nzModalContent class="messages" #messageContainer>
+        <div *ngIf="selectedChat" class="message-container">
+          <div *ngFor="let message of messages"
+            [ngClass]="{'message-right': message.sender_id._id === selectedChat.users[0]._id, 'message-left': message.sender_id._id === selectedChat.users[1]._id}">
+            <span class="msg-initials">{{ getInitials(message.sender_id.Fname, message.sender_id.Lname) }}</span>
+            <p>
+              <span>{{ message.content }}</span>
+              <br>
+              <small>{{ message.createdAt | date: 'short' }}</small>
+            </p>
+          </div>
+        </div>
+      </div>
+      <div *nzModalFooter>
+        <div class="bottom">
+          <form (ngSubmit)="newMessage()" #messageForm="ngForm">
+            <input type="text" placeholder="Type a message..." [(ngModel)]="content" name="content" required>
+            <button type="submit" [disabled]="!messageForm.form.valid">
+              <span nz-icon nzType="send" nzTheme="outline"></span>
+            </button>
+          </form>
+        </div>
+      </div>
+    </nz-modal>
+  </div>
+
+  <div class="chat-container">
+    <div *ngIf="chats.length === 0" class="no-chats">
+      No chats available.
+    </div>
+
+    <div *ngIf="chats.length > 0" class="chat-list">
+      <div *ngFor="let chat of chats" class="chat-item" (click)="openChat(chat)">
+        <div class="chat-initials">{{ getInitials(getChatName(chat).split(' ')[0], getChatName(chat).split(' ')[1]) }}</div>
+        <div class="chat-name">{{ getChatName(chat) }}<div>
+      </div>
+    </div>
+  </div>
+
+  <nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedChat ? getChatName(selectedChat) : 'Chat Details'"
+    (nzOnCancel)="handleCancel()" [nzWidth]="'70%'">
+    <div *nzModalContent class="messages" #messageContainer>
+      <div *ngIf="selectedChat" class="message-container">
+        <div *ngFor="let message of messages"
+          [ngClass]="{'message-right': message.sender_id._id === user._id, 'message-left': message.sender_id._id === selectedChat.users[0]._id}">
+          <span class="msg-initials">{{ getInitials(message.sender_id.Fname, message.sender_id.Lname) }}</span>
+          <p>
+            <span>{{ message.content }}</span>
+            <br>
+            <small>{{ message.createdAt | date: 'short' }}</small>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div *nzModalFooter>
+      <div class="bottom">
+        <form (ngSubmit)="sendMessage()" #messageForm="ngForm">
+          <input type="text" placeholder="Type a message..." [(ngModel)]="content" name="content" required>
+          <button type="submit" [disabled]="!messageForm.form.valid">
+            <span nz-icon nzType="send" nzTheme="outline"></span>
+          </button>
+        </form>
+      </div>
+    </div>
+  </nz-modal>
+
+</div>

@@ -50,7 +50,7 @@ export class AdminloginComponent {
           localStorage.setItem('refreshToken', response.refreshToken); 
           localStorage.setItem('photo', response.user.photo);
           
-          console.log('User role:', localStorage.getItem('accessToken'));
+          console.log('Access token:', localStorage.getItem('accessToken'));
           
           
 
