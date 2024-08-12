@@ -34,7 +34,7 @@ export class StudentLeavesComponent {
   }
 
   formatTimestamp(isoDate: any): any {
-    return this.datePipe.transform(isoDate, 'yyyy-MM-ddTHH:mm:ss.sssZ');
+    return this.datePipe.transform(isoDate, 'yyyy-MM-dd');
     }
 
   showModal(): void {

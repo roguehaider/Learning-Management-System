@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Service } from 'src/app/services/service';
@@ -20,7 +20,7 @@ export class StudentChatComponent {
   coursesVisible = false;
   newChat = false;
 
- 
+
   selectedChat: any;
   messages: any;
   courses: any;
@@ -29,16 +29,17 @@ export class StudentChatComponent {
   visibleCourses: { [key: string]: boolean } = {};
   newChatTeacher: any;
 
-  user =this.authService.getUserDetails();
+  user = this.authService.getUserDetails();
 
-  @ViewChild('messageContainer') private messageContainer!: ElementRef;
+
+  @ViewChild('messageContainer') messageContainer!: ElementRef;
 
   constructor(private service: Service, private router: Router, private authService: AuthService) { }
+  
 
   ngOnInit(): void {
     this.loadChats();
   }
-
 
   loadChats(): void {
     this.service.getChat().subscribe(
@@ -50,7 +51,7 @@ export class StudentChatComponent {
       }
     );
   }
-  
+
   navigateToMessages(chat: any): void {
     const name = `${chat.Fname} ${chat.Lname}`;
 
@@ -63,11 +64,11 @@ export class StudentChatComponent {
     if (!this.selectedChat || !this.content.trim()) return;
 
     // Find the other user in the chat
-  const otherUser = this.selectedChat.users.find((user: any) => user._id !== this.user._id);
+    const otherUser = this.selectedChat.users.find((user: any) => user._id !== this.user._id);
 
     this.service.sendMessage(this.selectedChat._id, this.content, otherUser._id).subscribe(
       (response) => {
-        this.content = ''; 
+        this.content = '';
         console.log(response);
         this.loadMessages(this.selectedChat._id);
       },
@@ -82,7 +83,6 @@ export class StudentChatComponent {
     this.selectedChat = chat;
     this.isVisible = true;
     this.loadMessages(chat._id);
-
   }
 
   loadMessages(chatId: string): void {
@@ -99,10 +99,6 @@ export class StudentChatComponent {
 
   handleOk(): void {
     this.isConfirmLoading = true;
-    setTimeout(() => {
-      this.isVisible = false;
-      this.isConfirmLoading = false;
-    }, 3000);
   }
 
   handleCancel(): void {
@@ -129,13 +125,15 @@ export class StudentChatComponent {
   }
 
   scrollToBottom(): void {
-    try {
-      this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight;
-    } catch (err) {
-      console.error('Scroll to bottom error:', err);
+    if (this.isVisible && this.messageContainer) {
+      try {
+        this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight;
+      } catch (err) {
+        console.error('Scroll to bottom error:', err);
+      }
     }
   }
-
+  
   //add chat
 
   addChatModal(): void {
@@ -143,8 +141,8 @@ export class StudentChatComponent {
     this.addChat = true;
   }
 
-  addChatCancel(): void{
-    
+  addChatCancel(): void {
+
     this.addChat = false;
   }
 
@@ -153,7 +151,7 @@ export class StudentChatComponent {
     this.service.getTeachersforChat().subscribe(
       (response) => {
         const teachers = response.courseTeacherData;
-  
+
         // Filter out teachers who are already in the chat users
         this.teachers = teachers.filter((teacher: any) => {
           // Check if the teacher's ID exists in any of the chat's users
@@ -161,7 +159,7 @@ export class StudentChatComponent {
             chat.users.some((user: any) => user._id === teacher.teacherId)
           );
         });
-  
+
         console.log("Filtered teachers:", this.teachers);
       },
       (error) => {
@@ -169,11 +167,11 @@ export class StudentChatComponent {
       }
     );
   }
-  
-  
+
+
   toggleCourseVisibility(course: any): void {
     // Close all other courses
-    this.visibleCourses = {}; 
+    this.visibleCourses = {};
 
     // Toggle the visibility of the selected course
     this.visibleCourses[course._id] = !this.visibleCourses[course._id];
@@ -184,18 +182,18 @@ export class StudentChatComponent {
   }
 
   isCourseVisible(courseId: string): boolean {
-    
+
     return this.visibleCourses[courseId] || false;
   }
 
-  newChatModal(teacher: any){
+  newChatModal(teacher: any) {
     this.addChat = false;
     this.newChatTeacher = teacher
     console.log("selected student", teacher)
     this.newChat = true;
   }
 
-  newChatCancel(){
+  newChatCancel() {
     this.newChatTeacher = '';
     this.newChat = false;
   }
@@ -205,7 +203,7 @@ export class StudentChatComponent {
 
     this.service.newMessage(this.content, this.newChatTeacher.teacherId).subscribe(
       (response) => {
-        this.content = ''; 
+        this.content = '';
         console.log(response);
         this.loadChats();
         this.loadMessages(this.newChatTeacher.teacherId);
@@ -216,6 +214,6 @@ export class StudentChatComponent {
       }
     );
   }
- 
+
 
 }

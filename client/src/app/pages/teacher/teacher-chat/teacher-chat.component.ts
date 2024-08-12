@@ -1,4 +1,4 @@
-import { Component, AfterViewChecked, ElementRef, ViewChild } from '@angular/core';
+import { Component, AfterViewChecked, ViewChild, ElementRef } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth/auth.service';
 import { Service } from 'src/app/services/service';
@@ -64,7 +64,7 @@ export class TeacherChatComponent implements AfterViewChecked {
     if (!this.selectedChat || !this.content.trim()) return;
     const otherUser = this.selectedChat.users.find((user: any) => user._id !== this.user._id);
 
-    this.service.sendMessage(this.selectedChat._id, this.content, otherUser).subscribe(
+    this.service.sendMessage(this.selectedChat._id, this.content, otherUser._id).subscribe(
       (response) => {
         this.content = ''; 
         console.log(response);
@@ -127,10 +127,12 @@ export class TeacherChatComponent implements AfterViewChecked {
   }
 
   scrollToBottom(): void {
-    try {
-      this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight;
-    } catch (err) {
-      console.error('Scroll to bottom error:', err);
+    if (this.isVisible && this.messageContainer) {
+      try {
+        this.messageContainer.nativeElement.scrollTop = this.messageContainer.nativeElement.scrollHeight;
+      } catch (err) {
+        console.error('Scroll to bottom error:', err);
+      }
     }
   }
 

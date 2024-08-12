@@ -12,7 +12,6 @@
            <div class="no-contact" *ngIf="teachers.length === 0" style="color: #1f3f496c;">
             No Contacts
            </div>
-       
            <div class="students-list" *ngIf="teachers.length > 0">
             <div class="add-chat-students" *ngFor="let teacher of teachers" (click)="newChatModal(teacher)">
               <div class="name">
@@ -25,9 +24,6 @@
           </div>
         </div>
       <div *nzModalFooter>
-        <!-- <div class="add-chat-btn">
-          <button style="background-color: #6AB187;">Chat</button>
-        </div>-->
       </div>
     </nz-modal>
 
@@ -35,7 +31,7 @@
     <nz-modal [(nzVisible)]="newChat"
       [nzTitle]="newChatTeacher ? newChatTeacher.teacherFname + ' ' + newChatTeacher.teacherLname : 'New Chat'"
       (nzOnCancel)="newChatCancel()" [nzWidth]="'75%'">
-      <div *nzModalContent class="messages" #messageContainer>
+      <div *nzModalContent class="messages">
         <div *ngIf="selectedChat" class="message-container">
           <div *ngFor="let message of messages"
             [ngClass]="{'message-right': message.sender_id._id === selectedChat.users[0]._id, 'message-left': message.sender_id._id === selectedChat.users[1]._id}">
@@ -76,7 +72,7 @@
 
   <nz-modal [(nzVisible)]="isVisible" [nzTitle]="selectedChat ? getChatName(selectedChat) : 'Chat Details'"
     (nzOnCancel)="handleCancel()" [nzWidth]="'70%'">
-    <div *nzModalContent class="messages" #messageContainer>
+    <div *nzModalContent #messageContainer class="messages" >
       <div *ngIf="selectedChat" class="message-container">
         <div *ngFor="let message of messages"
           [ngClass]="{'message-right': message.sender_id._id === user._id, 'message-left': message.sender_id._id === selectedChat.users[0]._id}">
