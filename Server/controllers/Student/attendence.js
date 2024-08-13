@@ -91,7 +91,7 @@ async function handleGetLeaveStatus(req , res , next){
     catch (error) {
         return next(error)
     }
-    leavestatus = leave.status;
+    leavestatus = leave?.status;
     return res.status(200).json({leavestatus:leavestatus})
 }
 

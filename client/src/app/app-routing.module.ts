@@ -61,6 +61,8 @@ import { StudentSuggestionsComponent } from "./pages/student/student-suggestions
 import { StudentDiaryComponent } from "./pages/student/student-diary/student-diary.component";
 import { StudentChallanComponent } from "./pages/student/student-challan/student-challan.component";
 import { StudentResultComponent } from "./pages/student/student-result/student-result.component";
+import { StudentChatComponent } from "./pages/student/student-chat/student-chat.component";
+import { TeacherChatComponent } from "./pages/teacher/teacher-chat/teacher-chat.component";
 const routes: Routes = [
   {
     path: "admin",
@@ -128,6 +130,7 @@ const routes: Routes = [
       { path: "assessment", component: TeacherAssessmentsComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
       { path: "assessment/:assessmentType", component: TeacherAssessmentMarksComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
       { path: "assessment/marks/:assessmentType", component: TeacherUpdateAssessmentMarksComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
+      { path: "chat", component: TeacherChatComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
       { path: "remarks", component: TeacherRemarksComponent, canActivate: [AuthGuard], data: { expectedRole: 'Teacher' }  },
     ],
   },
@@ -144,7 +147,7 @@ const routes: Routes = [
       { path: "diary", component: StudentDiaryComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
       { path: "challan", component: StudentChallanComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
       { path: "result", component: StudentResultComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
-
+      { path: "chat", component: StudentChatComponent, canActivate: [AuthGuard], data: { expectedRole: 'Student' }  },
     ],
   },
 

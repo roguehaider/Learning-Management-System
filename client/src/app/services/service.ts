@@ -216,6 +216,7 @@ export class Service {
 
     document.cookie = `accessToken=${accessToken}`;
     document.cookie = `refreshToken=${refreshToken}`;
+    console.log("services", document.cookie)
     return this.http.get<any>(`${this.apiUrl}allAnnouncements`, { withCredentials: true });
   }
   //Create Announcements
@@ -444,6 +445,15 @@ export class Service {
     return this.http.get<any>(`${this.apiUrl}teacher/course/student/remarks`, { withCredentials: true });
   }
 
+  generateMeetingLink(meetingData: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    return this.http.post<any>(`${this.apiUrl}meetings`, meetingData, { withCredentials: true });
+  }
+
 
   // student------------------------------------------------------------------------------------------------------------------------------------
   getStudentCourses(): Observable<any> {
@@ -596,5 +606,65 @@ export class Service {
     
     return this.http.get(`${this.apiUrl}student/result`, { withCredentials: true });  
   }
+   //get teachers
+   getTeachersforChat(){
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    
+    return this.http.get<any>(`${this.apiUrl}chat/getTeachersIds`, { withCredentials: true });  
+   }
+
+  // meeting
+  getMeetingLink(teacher_id: any, date: any): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    
+    return this.http.get(`${this.apiUrl}meeting/${teacher_id}/${date}`, { withCredentials: true });  
+  }
+
+
+   //CHAT-----------------------------------------------------------------------------------------------------------------------------
+  getChat(): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+    
+    return this.http.get(`${this.apiUrl}chat`, { withCredentials: true });  
+  }
+
+  getMessagesByChatId(chatId: string): Observable<any> {
+    const accessToken = localStorage.getItem('accessToken');
+    const refreshToken = localStorage.getItem('refreshToken');
+
+    document.cookie = `accessToken=${accessToken}`;
+    document.cookie = `refreshToken=${refreshToken}`;
+
+    return this.http.get(`${this.apiUrl}chat/${chatId}`, { withCredentials: true });
+  }
+
+  sendMessage(chatId: string, content: string, receiverId?: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}sendMessage`, {
+      chat_id: chatId,
+      content: content,
+      receiver_id: receiverId
+    }, { withCredentials: true });
+  }
+
+  newMessage(content: string, receiverId?: string): Observable<any> {
+    return this.http.post(`${this.apiUrl}sendMessage`, {
+      content: content,
+      receiver_id: receiverId
+    }, { withCredentials: true });
+  }
+
+  
 }
 

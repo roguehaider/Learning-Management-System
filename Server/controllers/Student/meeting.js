@@ -4,13 +4,13 @@ const mongoDbIdPattern = /^[0-9a-fA-F]{24}$/;
 
 async function handleGetMeeting(req, res, next) {
 
-    const { teacher_id , date } = req.body;
+    const { teacher_id , date } = req.params;
 
     const getByIdSchema = Joi.object({
         teacher_id: Joi.string().regex(mongoDbIdPattern).required(),
         date: Joi.date().iso().required(),
     });
-    const { error } = getByIdSchema.validate(req.body);
+    const { error } = getByIdSchema.validate(req.params);
     if (error) {
         return next(error);
     }
