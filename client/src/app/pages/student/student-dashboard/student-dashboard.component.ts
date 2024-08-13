@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Service } from 'src/app/services/service';
 import { DatePipe } from '@angular/common';
 import { Announcements } from '../../admin/admin-announcements/admin-announcements.component';
+import { AuthService } from 'src/app/services/auth/auth.service';
 
 @Component({
   selector: 'app-student-dashboard',
@@ -15,7 +16,8 @@ export class StudentDashboardComponent {
   userName: any;
   rollNo: any
 
-  constructor(private service: Service, private datePipe: DatePipe) {
+  constructor(private service: Service, private datePipe: DatePipe, private authService: AuthService) {
+    this.authService.refreshToken();
     this.fetchCourses();
     this.fetchAnnouncements();
     const userJson = localStorage.getItem('user');

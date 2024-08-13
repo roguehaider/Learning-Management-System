@@ -91,6 +91,13 @@ const { handleResult } = require('../controllers/Student/result');
 
 const {handleGetMeeting} = require('../controllers/Student/meeting')
 
+const { getTeachersIds } = require('../controllers/Chat/getTeachers');
+
+// chat 
+
+const {handleSendMessage} = require('../controllers/Chat/message')
+const {handleGetChats , getChatById} =  require('../controllers/Chat/chat')
+
 const router = express.Router();
 
 router.get('/' , (req , res)=>{
@@ -364,7 +371,26 @@ router.get('/student/result' , auth , checkAuth("Student") , handleResult)
 
 // meeting
 
-router.get('/meeting' , auth , checkAuth("Student") , handleGetMeeting)
+router.get('/meeting/:teacher_id/:date' , auth , checkAuth("Student") , handleGetMeeting)
+
+
+// get teachers ids for chat 
+
+router.get('/chat/getTeachersIds', auth, getTeachersIds)
+
+// chat API's
+
+// send message 
+
+router.post('/sendMessage' , auth , handleSendMessage)
+
+// get chats 
+
+router.get('/chat' , auth , handleGetChats)
+
+// get chat by id 
+
+router.get('/chat/:chat_id' , auth , getChatById)
 
 module.exports = router;
 

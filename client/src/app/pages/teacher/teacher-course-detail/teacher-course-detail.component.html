@@ -12,6 +12,31 @@
             <span>{{this.totalStudents}}</span>
         </div>
     </div>
+    <div class="meeting-btn">
+        <button (click)="showMeetingModal()">Meeting<span nz-icon nzType="desktop" nzTheme="outline"></span></button>
+        <nz-modal [(nzVisible)]="meetingPopup" nzTitle="Generate Meeting Link" (nzOnCancel)="meetingPopupCancel()" (nzOnOk)="meetingPopupCancel()">
+            <ng-container *nzModalContent>
+                <nz-table #basicTable [nzData]="students">
+                    <thead>
+                        <tr>
+                            <th>Roll No</th>
+                            <th>First Name</th>
+                            <th>Last Name</th>
+                            <th>Generate Link</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let data of basicTable.data">
+                            <td>{{ data.roll_No }}</td>
+                            <td>{{ data.Fname }}</td>
+                            <td>{{ data.Lname }}</td>
+                            <td> <button style="color: #1F3F49; background-color: #ffffff; padding: 10px; border-radius: 8px; border: 1px solid #1f3f498c;" (click)="onSubmit(data)">Meeting</button></td>
+                        </tr>
+                    </tbody>
+                </nz-table>
+            </ng-container>
+          </nz-modal>
+    </div>
 
     <div class="assessment">
         <div class="heading" (click)="toggleAssessmentVisibility()" style="cursor: pointer;">
@@ -84,7 +109,6 @@
                         <th>Roll No</th>
                         <th>First Name</th>
                         <th>Last Name</th>
-                        <th>Roll No</th>
                         <th>Give Remark</th>
                     </tr>
                 </thead>
@@ -93,7 +117,6 @@
                         <td>{{ data.roll_No }}</td>
                         <td>{{ data.Fname }}</td>
                         <td>{{ data.Lname }}</td>
-                        <td>{{ data.roll_No }}</td>
                         <td>
                             <span nz-icon nzType="plus" nzTheme="outline" (click)="showModal(data)"></span>
                             <nz-modal [(nzVisible)]="isVisible" nzTitle="Give Remark" (nzOnCancel)="handleCancel()"
